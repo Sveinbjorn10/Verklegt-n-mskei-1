@@ -1,0 +1,23 @@
+Rökkvi Steinn Finnsson
+21 ára
+Hefur unnið á bíleleigu.
+Nemandi
+
+Hafa model framar (EKKI YEAR)
+Þið ætlið að hafa gagnagrunn fyrir alla viðskiptavini
+Fara automatically í að búa til viðskiptavin eftir 
+Vantar ökuskírteini í listann um upplýsingar um renter
+	-Hafa kortanúmer mögulega
+Ekki nógu skýrt hvað standard stendur fyrir
+Það er ekki hægt að losna við alla ábyrgð (ZERO)
+Taka út standard insurance og bjóða auka insurance (HAFA INCLUDED) (Getur hent úr pökkum)
+Fara í pöntunina og breyta henni aftur frekar en að tvísamþykkja allt 
+Undir insurance fá hvaða pakka ég er með og hvað hann innifelur (Skrefið fyrir ofan óþarfa skref)
+Ekki hægt að borga með cash venjulega
+Opnað alla pöntunina og losnað við aukainsurance ef viðskiptavinur breytir skoðun sinni eftir að hafa séð verðið
+Verð á dag, Verð á dag fyrir tryggingar og nafn á hverjum aukatryggingu.
+
+Óskýrt:
+Ekki mikið
+
+Ekki með nafn á fyrirtækið
