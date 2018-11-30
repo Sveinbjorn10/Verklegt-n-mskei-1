@@ -1,0 +1,27 @@
+Nafnorð
+
+Verkefni, hugbúnaður, starfsmenn, bílaleiga, útleigu/pantanir, bílar, viðskiptavinir, skrár, 
+gögn, gögn, verkefni, skipun, gögn, gögn, klasi, forritun, kerfi, högun, klasi, viðmótsaðgerðir,
+gögn, skrár, klasi, verkefni, leigan, flokka, bílar, bílaflokkur, taxti, skyldutrygging, trygging,
+gjald, lágmarksleiga, dagur, tryggingar, kreditkortanúmer, upplýsingar, kort, reiðufé,
+bílar, bílar, útleiga, viðskiptavinur, upplýsingar, viðskiptavinur, kerfi, pöntun, bílategund, dagur, tími,
+pöntun, leiga, kostnaður, kostnaður, bíll, leigutímabil, viðskiptavinur, pöntun, skráning, viðskiptavinur, 
+pöntun, villumeðhöndlun, kennitala, dagsetning, lykilgildi, notkunarsaga, bíll, notkunarsaga, viðskiptavinur, 
+leigusamningur, pöntunarstaðfesting, reikningur, verðlisti, skjáyfirlit, bílar, tími, verðskrá, gjald, 
+dagur, kílometrar, daggjald
+
+
+
+Relevant: Verkefni, starfsmenn, bílaleiga, bílar, viðskiptavinur, 
+bílaflokkur, taxti, skyldutrygging, lágmarksleiga,  kreditkortanúmer, upplýsingar, kort, reiðufé, pöntun,
+leigutímabil, skráning, villumeðhöndlun, kennitala, dagsetning, notkunarsaga, leigusamningur, pöntunarstaðfesting, reikningur, 
+verðlisti, skjáyfirlit, tími, kílometrar, daggjald
+
+
+Inrelevant:Skipun, klasi, forritun, viðmótsaðgerðir, lykilgildi
+
+
+Fuzzy:Skrár, gögn, högun, kerfi
+
+
+Orð sem við notum ekki í klasa:Hugbúnaður, flokkar, trygging, leiga, gjald, dagur, verkefni, verðskrá, 
