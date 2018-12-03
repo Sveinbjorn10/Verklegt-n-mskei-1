@@ -1,0 +1,10 @@
+Rent a car:
+Hafa möguleika á að leita að bíl sem uppfyllir kröfur eða slá bara inn bílnúmer
+
+Betra skipulag á fill in the following
+
+Betra skipulag á tryggingum. Eins og við vitum.
+
+Return a car:
+Ekki bæði Car ID og car license plate
+import folder, þarf að vera skýrara.
