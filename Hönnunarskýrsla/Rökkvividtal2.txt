@@ -1,0 +1,17 @@
+Rökkvi Steinn Finnsson
+Viðtal nr 2.
+
+Fyrst rétta lykla sem hefur upplýsingar um bílinn
+
+Bíllinn er reiknaður á G1-G8 (tank size) þar sem hvert strik er annað G-1
+
+Fer í  gegnum annað kerfi. Mynd af skemmdum/bilum.
+
+HSST DAMAGE APP(hood-millistór bíl)
+
+damage?já
+importar mynd af öllum upplýsingum.
+
+ID á hverjum bíl
+
+Boolean breyta laus==True, tekinn==False
