@@ -107,4 +107,3 @@ class Car:
 
     def set_availability(self, availability):
         self.__availability = availability
-        
