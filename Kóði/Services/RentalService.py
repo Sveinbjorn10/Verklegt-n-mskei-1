@@ -1,4 +1,4 @@
-from repos.RentalRepo import RentalRepo
+from Repos.RentalRepo import RentalRepo
 from datetime import datetime
 import os
 

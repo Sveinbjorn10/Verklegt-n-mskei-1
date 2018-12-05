@@ -1,6 +1,6 @@
-from services.CarService import CarService
-from services.CustomerService import CustomerService
-from services.RentalService import RentalService
+from Services.CarService import CarService
+from Services.CustomerService import CustomerService
+from Services.RentalService import RentalService
 from datetime import datetime
 import os
 
@@ -36,6 +36,5 @@ class Employee:
                     pass
                 if search_critera == "2":
                     choice = self.__rental_service.search_car(start_date, return_date)
-                    # if choice == "1":
-                        # os.system("smallcars.py")
+                    
                             

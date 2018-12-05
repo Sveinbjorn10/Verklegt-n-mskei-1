@@ -1,4 +1,4 @@
-from repos.CustomerRepo import CustomerRepo
+from Repos.CustomerRepo import CustomerRepo
 
 class CustomerService:
     def __init__(self):
