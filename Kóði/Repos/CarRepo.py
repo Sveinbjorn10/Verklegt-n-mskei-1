@@ -26,7 +26,7 @@ class CarRepo:
             total_km = car.get_total_km()
             tank_size = car.get_tank_size()
             availability = car.get_availability()
-            cars_file.write("{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}\n".format(license_plate, 
+            car_file.write("{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}\n".format(license_plate, 
                 make, model, manuf_year, car_class, seats, doors, color, weight, 
                 engine_size, horse_power, transmission, fuel_type, price, drive, total_km, 
                 tank_size, availability))
@@ -35,9 +35,9 @@ class CarRepo:
         if self.__cars == []:
             with open("./data/cars.csv", "r") as car_file:
                 for line in car_file.readlines():
-                    license_plate, make, model, manuf_year, car_class, seats, doors, color, weight, 
+                    (license_plate, make, model, manuf_year, car_class, seats, doors, color, weight, 
                         engine_size, horse_power, transmission, fuel_type, price, drive, total_km, 
-                        tank_size, availability = line.split(",")
+                        tank_size, availability) = line.split(",")
                     new_car = Car(license_plate, make, model, manuf_year, car_class, seats, doors, 
                         color, weight, engine_size, horse_power, transmission, fuel_type, price, drive, 
                         total_km, tank_size, availability)

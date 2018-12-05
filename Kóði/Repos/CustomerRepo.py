@@ -22,8 +22,8 @@ class CustomerRepo:
         if self.__customers == []:
             with open("./data/customers.csv", "r") as customer_file:
                 for line in customer_file.readlines():
-                    name, soc_sec_num, home_address, local_address, phone_num, email, driv_license, 
-                        card_num = line.split(",")
+                    (name, soc_sec_num, home_address, local_address, phone_num, email, driv_license, 
+                        card_num) = line.split(",")
                     new_customer = Customer(name, soc_sec_num, home_address, local_address, phone_num, email, 
                         driv_license, card_num)
                     self.__customers.append(new_customer)    
