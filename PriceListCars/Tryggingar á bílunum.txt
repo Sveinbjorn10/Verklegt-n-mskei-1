@@ -1,0 +1,94 @@
+VW golf:
+Miðlungstrygging: 2000kr
+Hámarkstrygging: 3750kr
+Súper kaskotrygging: 1624 kr
+Sand og öskufokstrygging: 1500kr
+Framrúðutrygging: 874kr
+
+Hyundai i10:
+Miðlungstrygging: 2000kr
+Hámarkstrygging: 3750kr
+Súper kaskotrygging: 1624 kr
+Sand og öskufokstrygging: 1500kr
+Framrúðutrygging: 874kr
+Auka ökumaður:
+
+Toyota Corolla:
+Miðlungstrygging: 2000kr
+Hámarkstrygging: 3750kr
+Súper kaskotrygging: 1624 kr
+Sand og öskufokstrygging: 1500kr
+Framrúðutrygging: 874kr
+Auka ökumaður:
+
+Skoda Octavia:
+Miðlungstrygging: 2000kr
+Hámarkstrygging: 3750kr
+Súper kaskotrygging: 1624 kr
+Sand og öskufokstrygging: 1500kr
+Framrúðutrygging: 874kr
+Auka ökumaður:
+
+Audi Q5:
+Miðlungstrygging: 3249kr
+Hámarkstrygging: 5499kr
+Súper kaskotrygging: 2750kr
+Sand og öskufokstrygging: 2000kr
+Framrúðutrygging: 1250kr
+Auka ökumaður: 3500kr fyrir hvern ökumann
+
+Toyota Landrcruiser:
+Miðlungstrygging: 3249kr
+Hámarkstrygging: 5499kr
+Súper kaskotrygging: 2750kr
+Sand og öskufokstrygging: 2000kr
+Framrúðutrygging: 1250kr
+Auka ökumaður: 3500kr fyrir hvern ökumann
+
+Toyota Rav4:
+Miðlungstrygging: 3249kr
+Hámarkstrygging: 5499kr
+Súper kaskotrygging: 2750kr
+Sand og öskufokstrygging: 2000kr
+Framrúðutrygging: 1250kr
+Auka ökumaður: 3500kr fyrir hvern ökumann
+
+Ford Galaxy:
+Miðlungstrygging: 3249kr
+Hámarkstrygging: 5499kr
+Súper kaskotrygging: 2750kr
+Sand og öskufokstrygging: 2000kr
+Framrúðutrygging: 1250kr
+Auka ökumaður: 3500kr
+
+Renault Traffic3:
+Miðlungstrygging: 3249kr
+Hámarkstrygging: 5499kr
+Súper kaskotrygging: 2750kr
+Sand og öskufokstrygging: 2000kr
+Framrúðutrygging: 1250kr
+Auka ökumaður: 3500kr
+
+VW Caravelle 4wd:
+Miðlungstrygging: 3249kr
+Hámarkstrygging: 5499kr
+Súper kaskotrygging: 2750kr
+Sand og öskufokstrygging: 2000kr
+Framrúðutrygging: 1250kr
+Auka ökumaður: 3500kr
+
+Ford Transit:
+Miðlungstrygging: 3750kr
+Hámarkstrygging: 6000kr
+Súper kaskotrygging: 3000kr
+Sand og öskufokstrygging: 2350r
+Framrúðutrygging: 1500kr
+Auka ökumaður: 3500kr
+
+Mercedes Sprinter:
+Miðlungstrygging: 3750kr
+Hámarkstrygging: 6000kr
+Súper kaskotrygging: 3000kr
+Sand og öskufokstrygging: 2350r
+Framrúðutrygging: 1500kr
+Auka ökumaður: 3500kr
