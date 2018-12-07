@@ -1,4 +1,6 @@
 from Models.Car import Car
+import os
+clear = lambda: os.system('cls')
 
 class CarRepo:
 
@@ -40,7 +42,7 @@ class CarRepo:
                         tank_size, availability) = line.split(",")
                     new_car = Car(license_plate, make, model, manuf_year, car_class, seats, doors, 
                         color, weight, engine_size, horse_power, transmission, fuel_type, price, drive, 
-                        total_km, tank_size, availability)
+                        total_km, tank_size, eval(availability))
                     self.__cars.append(new_car)    
         return self.__cars
 
@@ -84,6 +86,92 @@ class CarRepo:
                 return_list.append(car)
         return return_list
 
+    def search_by_license_plate(self, license_plate):
+        return_list = []
+        all_cars = self.get_cars()
+        for car in all_cars:
+            if car[0] == license_plate:
+                return_list.append(car)
+        return return_list
 
-# + update_car_info()
-# + change_car_status()
+    def change_car_status(self, license_plate):
+        all_cars = self.get_cars()
+        for car in all_cars:
+            if car[0] == license_plate:
+                car_availability = car.get_availability()
+                if car_availability == True:
+                    return car.set_availability(False)
+                else:
+                    return car.set_availability(True)
+
+    def update_car_info(self, driver_license):
+        all_cars = self.get_cars()
+        for car in all_cars:
+            if car[0] == driver_license:
+                edit_car = car[0]
+                print(edit_car)
+                print("1. Edit Color\n2. Edit Weight\n3. Edit Engine Size\n"
+                        "4. Edit Horse Power\n5. Edit Transmission\n"
+                        "6. Edit Fuel Type\n7. Edit Drive\n8. Edit Total km\n"
+                        "9. Edit Tank Size\n10. Edit Price\n11. Quit")
+                while True:   
+                    choice = input("What do you want to change:")
+                    if (choice < 1) or (choice > 11):
+                        print("Invalid Input")
+                        _ = input("Press Enter to continue...")
+                        clear()
+                    else:
+                        break
+                while True:
+                    if choice == 1:
+                        print("Current Color: {}".format(edit_car.get_color()))
+                        new_color = input("New color: ")
+                        edit_car.set_color(new_color)
+                        print("New Current Color: {}".format(edit_car.get_color()))
+                    if choice == 2:
+                        print("Current Weight: {}".format(edit_car.get_weight()))
+                        new_weight = input("New Weight: ")
+                        edit_car.set_weight(new_weight)
+                        print("New Current Weight: {}".format(edit_car.get_weight()))
+                    if choice == 3:
+                        print("Current Engine Size: {}".format(edit_car.get_engine_size()))
+                        new_engine_size = input("New Engine Size: ")
+                        edit_car.set_engine_size(new_engine_size)
+                        print("New Current Engine Size: {}".format(edit_car.get_engine_size()))
+                    if choice == 4:
+                        print("Current Horse Power: {}".format(edit_car.get_horse_power()))
+                        new_hp = input("New Horse Power: ")
+                        edit_car.set_horse_power(new_hp)
+                        print("New Current Horse Power: {}".format(edit_car.get_horse_power()))
+                    if choice == 5:
+                        print("Current Transmission: {}".format(edit_car.get_transmission()))
+                        new_transmission = input("New Transmission: ")
+                        edit_car.set_transmission(new_transmission)
+                        print("New Current Transmission: {}".format(edit_car.get_transmission()))
+                    if choice == 6:
+                        print("Current Fuel Type: {}".format(edit_car.get_fuel_type()))
+                        new_fuel_type = input("New Fuel Type: ")
+                        edit_car.set_fuel_type(new_fuel_type)
+                        print("New Current Fuel Type: {}".format(edit_car.get_fuel_type()))
+                    if choice == 7:
+                        print("Current Drive: {}".format(edit_car.get_drive()))
+                        new_drive = input("New Drive: ")
+                        edit_car.set_drive(new_drive)
+                        print("New Current Drive: {}".format(edit_car.get_drive()))
+                    if choice == 8:
+                        print("Current Total km: {}".format(edit_car.get_total_km()))
+                        new_total_km = input("New Total km: ")
+                        edit_car.set_total_km(new_total_km)
+                        print("New Current Total km: {}".format(edit_car.get_total_km()))
+                    if choice == 9:
+                        print("Current Tank Size: {}".format(edit_car.get_tank_size()))
+                        new_tank_size = input("New Tank Size: ")
+                        edit_car.set_tank_size(new_tank_size)
+                        print("New Current Tank Size: {}".format(edit_car.get_tank_size()))
+                    if choice == 10:
+                        print("Current Price: {}".format(edit_car.get_price()))
+                        new_price = input("New Price: ")
+                        edit_car.set_price(new_price)
+                        print("New Current Price: {}".format(edit_car.get_drive()))
+                    if choice == 11:
+                        break
