@@ -17,7 +17,7 @@ class RentalService:
                         start_date = datetime(date_list[2], date_list[1], date_list[0])
                     except:
                         go = False
-                        _ = input("Invalid input.\nPress any key to continue...")
+                        _ = input("Invalid input.\nPress Enter to continue...")
                         clear()
 
                     if go == True:
@@ -29,10 +29,10 @@ class RentalService:
                                 clear()
                                 break
                             else:
-                                _ = input("Invalid time period.\nPress any key to continue...")
+                                _ = input("Invalid time period.\nPress Enter to continue...")
                                 clear()
                         except:
-                            _ = input("Invalid time period.\nPress any key to continue...")
+                            _ = input("Invalid time period.\nPress Enter to continue...")
                             clear()
         return start_date, return_date  
     
@@ -50,7 +50,7 @@ class RentalService:
                 clear()
                 return choice
             else:
-                _ = input("Invalid input.\nPress any key to continue...")
+                _ = input("Invalid input.\nPress Enter to continue...")
                 clear()
         
     def search_car(self, start, end):
@@ -70,5 +70,5 @@ class RentalService:
             if choice in ["1", "2", "3", "4", "5", "6"]:
                 return choice
             else: 
-                _ = input("Invalid input.\nPress any key to continue...")
+                _ = input("Invalid input.\nPress Enter to continue...")
                 clear()

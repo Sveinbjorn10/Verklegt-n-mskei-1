@@ -36,5 +36,8 @@ class Employee:
                     pass
                 if search_critera == "2":
                     choice = self.__rental_service.search_car(start_date, return_date)
-                    
+                    os.system("start python show_cars.py "+ choice)
+                    with open("selected_cars.txt", "r", encoding = "utf-8") as f:
+                        print(f.read())
+                    _ = input("Press Enter to continue...")
                             

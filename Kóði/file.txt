@@ -1,0 +1,7 @@
+license_plate   make    model   manuf_year  car_class   seats   doors   color   weight  engine_size     horse_power     transmission    fuel_type   price       drive   total_km    tank_size   availability 
+
+DF 375,         Iveco,  Daily,  2012,       3,Nei       3,      5,      White,  5.0t,N  3.0l,N          180hp,N         Automatic,      Diesel,     10.000kr,   4WD,    100.000km,N 80l,N       True
+
+
+Nr.     Make    Model   Manuf_year  Seats   Doors   Color   Transmission    Fuel type   Price per day
+DF 375  Iveco   Daily   2012        3       5       White   Automatic       Diesel      10.000kr

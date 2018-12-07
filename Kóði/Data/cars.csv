@@ -1,2 +1,3 @@
-DF 375,Iveco,Daily,2012,Van,3,5,White,5.0t,3.0l,180hp,Automatic,Diesel,10.000kr,4WD,100.000km,80l,True
-AF 315,Volkswagen,Transporter,2011,Van,3,5,Grey,4.0t,3.0l,180hp,Automatic,Diesel,15.000kr,4WD,150.000km,70l,True
+DF 375,Iveco,Daily,2012,3,3,5,White,5.0t,3.0l,180hp,Automatic,Diesel,10.000kr,4WD,100.000km,80l,True
+AF 315,Volkswagen,Transporter,2011,3,3,5,Grey,4.0t,3.0l,180hp,Automatic,Diesel,15.000kr,4WD,150.000km,70l,True
+AF 315,Volkswagen,Transporter,2011,2,3,5,Grey,4.0t,3.0l,180hp,Automatic,Diesel,15.000kr,4WD,150.000km,70l,True
