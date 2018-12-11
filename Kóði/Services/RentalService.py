@@ -5,6 +5,8 @@ from datetime import datetime
 import os
 import csv
 
+os.system('mode con: cols=190 lines=40')
+
 clear = lambda: os.system('cls')
 
 class RentalService:
@@ -134,7 +136,7 @@ class RentalService:
             csv_reader = csv.reader(rentals)
             for rental in csv_reader:
                 rental_list.append(rental)
-        order_number = "ON{}-{}".format(year[2:] ,str((int(rental_list[-1][0][6:]) + 1)))
+        order_number = "ON{}-{:0>5}".format(year[2:] ,str((int(rental_list[-1][0][6:]) + 1)))
         return order_number
         
     
@@ -155,6 +157,8 @@ class RentalService:
     def print_order_confirmation(self, customer, car, insurance, payment, start, end, additional_driver = "Empty"):
         delta = end - start
         days = int(delta.days)
+        start_date = "{}/{}/{}".format(str(start.day), str(start.month), str(start.year))
+        end_date = "{}/{}/{}".format(str(end.day), str(end.month), str(end.year))
 
         order_number = self.get_order_number()
         name = customer.get_name()
@@ -174,46 +178,46 @@ class RentalService:
         car_price_per_day = car.get_price()
 
         car_price = car_price_per_day * days
-        car_price_w_vat = float(car_price * 1.24)
+        car_price_w_vat = car_price * 1.24
         car_string = "{} {} ({})".format(car_make, car_model, car_plate)
         car_class = car.get_car_class()
 
         insurance_list = self.get_insurance_info(car_class, insurance)
-        insurance_cost_per_day = int(insurance_list[0])
+        insurance_cost_per_day = insurance_list[0]
         insurance_cost = insurance_cost_per_day * days
-        insurance_cost_w_vat = float(insurance_cost * 1.24)
+        insurance_cost_w_vat = insurance_cost * 1.24
         insurance_name = insurance_list[1]
         insurance_info = insurance_list[2]
 
         total_price = car_price + insurance_cost
-        vat = float(total_price * 0.24)
-        total_price_w_vat = float(total_price * 1.24)
+        vat = total_price * 0.24
+        total_price_w_vat = total_price * 1.24
 
-        print("{:<150}".format(order_number))
-        print("{:<150}{:<20}".format(name, "HSST Rental Company"))
-        print("{:<150}{:<20}".format(ssn, "SSN: 040499-2059"))
-        print("{:<150}{:<20}".format(home_address, "Hvergiland 88"))
-        print("{:<150}{:<20}".format(email, "hsst@hsst.is"))
-        print("{:<150}{:<20}".format(phone, "Phone: 642-1000"))
+        print("{:<165}".format(order_number))
+        print("{:<165}{:<20}".format(name, "HSST Rental Company"))
+        print("{:<165}{:<20}".format(ssn, "SSN: 040499-2059"))
+        print("{:<165}{:<20}".format(home_address, "Hvergiland 88"))
+        print("{:<165}{:<20}".format(email, "hsst@hsst.is"))
+        print("{:<165}{:<20}".format(phone, "Phone: 642-1000"))
         print("\n\n")
-        print("{:<20}{:<45}{:<20}{:<20}{:<20}{:<30}{:<20}".format("Item", "Description", "Start Date", "Return Date", "Price per day",  "Total Price no VAT", "Total Price with VAT"))
-        print("{:<20}{:<45}{:<20}{:<20}{:<20} kr{:<30} kr{:<20} kr".format("Car Rental", car_string, start, end, car_price_per_day, car_price, car_price_w_vat))
-        print("{:<20}{:<45}{:<20}{:<20}{:<20} kr{:<30} kr{:<20} kr".format("Insurance", insurance_name, "", "", insurance_cost_per_day, insurance_cost, insurance_cost_w_vat))
+        print("{:<20}{:<55}{:<20}{:<20}{:<20}{:<30}{:<20}".format("Item", "Description", "Start Date", "Return Date", "Price per day",  "Total Price no VAT", "Total Price with VAT"))
+        print("{:<20}{:<55}{:<20}{:<20}{:<20}{:<30}{:<20}".format("Car Rental", car_string, start_date, end_date, str(car_price_per_day) + " kr", str(car_price) + " kr", str(int(car_price_w_vat)) + " kr"))
+        print("{:<20}{:<55}{:<20}{:<20}{:<20}{:<30}{:<20}".format("Insurance", insurance_name, "", "", str(insurance_cost_per_day) + " kr", str(insurance_cost) + " kr", str(int(insurance_cost_w_vat)) + " kr"))
         
         for info in insurance_info:
-                print("{:<15}-{:<45}".format("", info))
-
+                print("{:<20}-{:<45}".format("", info))
+        print("\n")
 
         #Additional driver here
         if additional_driver != "Empty": 
-            print("{:<15}{:<45}".format("Additional Driver", additional_driver_name))
-            print("{:<15}SSN: {:<45}".format("", additional_driver_ssn))
-            print("{:<15}Drivers License: {:<45}".format("", additional_driver_driv_license))
+            print("{:<20}{:<45}".format("Additional Driver", additional_driver_name))
+            print("{:<20}SSN: {:<45}".format("", additional_driver_ssn))
+            print("{:<20}Drivers License: {:<45}".format("", additional_driver_driv_license))
 
         print("\n\n")
-        print("{:.<100}{:.>70} kr".format("Total Price no VAT ", total_price))
-        print("{:.<100}{:.>70} kr".format("VAT ", vat))
-        print("{:.<100}{:.>70} kr".format("Total Price with VAT ", total_price_w_vat))
+        print("{:.<100}{:.>85}".format("Total Price no VAT ", str(int(total_price)) + " kr"))
+        print("{:.<100}{:.>85}".format("VAT ", str(int(vat)) + " kr"))
+        print("{:.<100}{:.>85}".format("Total Price with VAT ", str(int(total_price_w_vat)) + " kr"))
         print("\n\n")
         print("Payment: {}".format(payment))
         _ = input()
