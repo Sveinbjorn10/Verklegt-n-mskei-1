@@ -1,4 +1,4 @@
-from ui.Employee import Employee
+from UserInterface.Employee import Employee
 
 def main():
     ui = Employee()

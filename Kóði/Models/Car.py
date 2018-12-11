@@ -109,4 +109,4 @@ class Car:
         self.__availability = availability
 
     def __str__(self):
-        return "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n".format(self.__license_plate, self.__make, self.__model, self.__manuf_year, self.__car_class, self.__seats, self.__doors, self.__color, self.__weight, self.__engine_size, self.__horse_power, self.__transmission, self.__fuel_type, self.__drive, self.__total_km, self.__tank_size, self.__price, self.__availability)
+        return "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format(self.__license_plate, self.__make, self.__model, self.__manuf_year, self.__car_class, self.__seats, self.__doors, self.__color, self.__transmission, self.__price)

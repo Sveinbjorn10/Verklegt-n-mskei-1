@@ -36,5 +36,12 @@ class Employee:
                     pass
                 if search_critera == "2":
                     choice = self.__rental_service.search_car(start_date, return_date)
+
+            if action == "5":
+                clear()
+                self.__customer_service.print_customer_database()
+            if action == "6":
+                clear()
+                self.__car_service.print_car_database()
                     
                             
