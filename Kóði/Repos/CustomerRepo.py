@@ -8,7 +8,7 @@ class CustomerRepo:
 
     def add_customer(self, customer):
         # first add to file then to private list
-        with open("./data/customer.csv", "a+") as customer_file:
+        with open("./data/customers.csv", "a+") as customer_file:
             name = customer.get_name()
             soc_sec_num = customer.get_soc_sec_num()
             home_address = customer.get_home_address()
