@@ -200,3 +200,15 @@ class CarRepo:
         for car in carlist:
             string += str(car) + "\n"
         return string
+
+    def get_car_list(self):
+        car_list = []
+        car_class_list = []
+        with open("./data/cars.csv") as cars:
+            csv_reader = csv.reader(cars)
+            for car in csv_reader:
+                car_list.append(car)
+            for car in car_list:
+                new_car = Car(car[0], car[1], car[2], car[3], car[4], car[5], car[6], car[7], car[8], car[9], car[10], car[11], car[12], car[13], car[14], car[15], car[16], car[17])
+                car_class_list.append(new_car)
+        return car_class_list

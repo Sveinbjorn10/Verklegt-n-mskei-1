@@ -217,3 +217,7 @@ class RentalService:
         print("\n\n")
         print("Payment: {}".format(payment))
         _ = input()
+
+        
+        
+

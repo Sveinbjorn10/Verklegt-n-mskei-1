@@ -9,9 +9,6 @@ class CustomerService:
     def __init__(self):
         self.__customer_repo = CustomerRepo()
 
-    def print_customer_database(self):
-        print(self.__customer_repo)
-
     def customer_info(self):
         additional_driver = []
         
@@ -48,3 +45,7 @@ class CustomerService:
             additional_driver.append(add_drivers_license)
             clear()
             return customer, additional_driver
+
+
+
+
