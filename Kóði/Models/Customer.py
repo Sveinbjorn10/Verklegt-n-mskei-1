@@ -55,14 +55,8 @@ class Customer:
 
     def set_card_num(self, card_num):
         self.__card_num = card_num
-<<<<<<< HEAD
     
     def __str__(self):
         return "{:<30}{:<25}{:<15}{:<15}{:<15}{:<30}{:<20}{:<30}".format(self.__name, self.__soc_sec_num, 
-=======
-
-    def __str__(self):
-        return "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n".format(self.__name, self.__soc_sec_num, 
->>>>>>> 4a0deeb3af4a1a8c7ee54929a949f80a41a39913
             self.__home_address, self.__local_address, self.__phone_num, self.__email, 
             self.__driv_license, self.__card_num)
