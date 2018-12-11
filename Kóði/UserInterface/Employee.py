@@ -4,6 +4,7 @@ from Services.RentalService import RentalService
 from datetime import datetime
 import os
 
+os.system('mode con: cols=135 lines=40')
 clear = lambda: os.system('cls')
 
 class Employee:
@@ -36,8 +37,14 @@ class Employee:
                     pass
                 if search_critera == "2":
                     choice = self.__rental_service.search_car(start_date, return_date)
-                    os.system("start python show_cars.py "+ choice)
-                    with open("selected_cars.txt", "r", encoding = "utf-8") as f:
-                        print(f.read())
-                    _ = input("Press Enter to continue...")
-                            
+                    selected_car = self.__rental_service.select_car(choice)
+                    customer, additional_driver = self.__customer_service.customer_info() # þarf að fá klasaeintak hér
+                    insurance_list = self.__rental_service.insurance()
+                    payment = self.__rental_service.payment()
+                    self.__rental_service.print_order_confirmation(customer, selected_car, insurance_list, payment, start_date, return_date, additional_driver)
+            if action == "5":
+                clear()
+                self.__customer_service.print_customer_database()
+            if action == "6":
+                clear()
+                self.__car_service.print_car_database()

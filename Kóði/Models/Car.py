@@ -6,7 +6,7 @@ class Car:
         self.__make = make
         self.__model = model
         self.__manuf_year = manuf_year
-        self.__car_class = car_class
+        self.__car_class = int(car_class)
         self.__seats = seats
         self.__doors = doors
         self.__color = color
@@ -18,7 +18,7 @@ class Car:
         self.__drive = drive
         self.__total_km = total_km
         self.__tank_size = tank_size
-        self.__price = price
+        self.__price = int(price)
         self.__availability = availability
 
     def get_license_plate(self):
@@ -107,3 +107,6 @@ class Car:
 
     def set_availability(self, availability):
         self.__availability = availability
+    
+    def __str__(self):
+        return "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format(self.__license_plate, self.__make, self.__model, self.__manuf_year, self.__car_class, self.__seats, self.__doors, self.__color, self.__transmission, self.__price)

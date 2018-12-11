@@ -1,4 +1,5 @@
 from Models.Car import Car
+import csv
 
 class CarRepo:
 
@@ -31,15 +32,32 @@ class CarRepo:
                 engine_size, horse_power, transmission, fuel_type, price, drive, total_km, 
                 tank_size, availability))
 
-    def get_car(self):
+    def get_cars(self):
         if self.__cars == []:
-            with open("./data/cars.csv", "r") as car_file:
-                for line in car_file.readlines():
-                    (license_plate, make, model, manuf_year, car_class, seats, doors, color, weight, 
-                        engine_size, horse_power, transmission, fuel_type, price, drive, total_km, 
-                        tank_size, availability) = line.split(",")
+            with open("./Data/cars.csv", "r", encoding = "utf-8") as car_file:
+                car_reader = csv.reader(car_file)
+                for line in car_reader:
+                    license_plate = line[0]
+                    make = line[1]
+                    model = line[2]
+                    manuf_year = line[3]
+                    car_class = line[4]
+                    seats = line[5]
+                    doors = line[6]
+                    color = line[7]
+                    weight = line[8]
+                    engine_size = line[9]
+                    horse_power = line[10]
+                    transmission = line[11]
+                    fuel_type = line[12]
+                    price = line[13]
+                    drive = line[14]
+                    total_km = line[15]
+                    tank_size = line[16]
+                    availability = "True"
                     new_car = Car(license_plate, make, model, manuf_year, car_class, seats, doors, 
                         color, weight, engine_size, horse_power, transmission, fuel_type, price, drive, 
-                        total_km, tank_size, availability)
+                        total_km, tank_size, eval(availability))
                     self.__cars.append(new_car)    
         return self.__cars
+

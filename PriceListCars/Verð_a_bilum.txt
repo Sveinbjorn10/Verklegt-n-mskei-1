@@ -1,0 +1,26 @@
+Smábílar:
+VW Golf 11.260 á dag
+Hyundai  i10 9.265 á dag
+Meðaltal: 10.263
+
+Fjölskyldubílar:
+Toyota Corolla 13.775 á dag
+Skoda Octavia 15.675 á dag
+Meðaltal: 14.725
+
+Jeppar:
+Audi Q5 27.885 á dag
+Toyota Landcruiser 29.355 á dag
+Toyota Rav4 20.000 á dag
+Meðaltal: 25.767
+
+Smárútur 7-9:
+Ford Galaxy 18.480 á dag
+Renault Traffic3 27.165 á dag
+VW Caravelle 4wd 28.595 á dag
+Meðaltal: 24.882
+
+Sendiferðabílar:
+Ford Transit 14 sæta 41.500 á dag
+Mercedes Sprinter 15 sæta 45.700 á dag
+Meðaltal: 43.600
