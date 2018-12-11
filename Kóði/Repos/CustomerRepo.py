@@ -1,5 +1,6 @@
 from Models.Customer import Customer
 import os
+import csv
 clear = lambda: os.system('cls')
 
 class CustomerRepo:
@@ -22,10 +23,17 @@ class CustomerRepo:
 
     def get_customer_list(self):
         if self.__customers == []:
-            with open("./data/customers.csv", "r") as customer_file:
-                for line in customer_file.readlines():
-                    (name, soc_sec_num, home_address, local_address, phone_num, email, driv_license, 
-                        card_num) = line.split(",")
+            with open("./data/customers.csv", "r", encoding = "utf-8") as customer_file:
+                customer_reader = csv.reader(customer_file)
+                for line in customer_reader:
+                    name = line[0]
+                    soc_sec_num = line[1]
+                    home_address = line[2]
+                    local_address = line[3]
+                    phone_num = line[4]
+                    email = line[5]
+                    driv_license = line[6]
+                    card_num = line[7]
                     new_customer = Customer(name, soc_sec_num, home_address, local_address, phone_num, email, 
                         driv_license, card_num)
                     self.__customers.append(new_customer)    
@@ -110,3 +118,11 @@ class CustomerRepo:
                         print("New Current Credit/Debit Card Number: {}".format(edit_customer.get_card_num()))
                     if choice == 8:
                         break
+
+    def __str__(self):
+        string = "{:<30}{:<25}{:<15}{:<15}{:<15}{:<30}{:<20}{:<30}\n".format("Name:", "Social Security Number:", 
+            "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:")
+        customerlist = self.get_customer_list()
+        for customer in customerlist:
+            string += str(customer) + "\n"
+        return string
