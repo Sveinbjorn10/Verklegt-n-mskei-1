@@ -89,11 +89,13 @@ class CarRepo:
     def delete_car(self, license_plate):
         all_cars = self.get_cars()
         for index, car in enumerate(all_cars):
-            if car[0] == license_plate:
+            if car.get_license_plate == license_plate:
                 all_cars.pop(index)
-        with open("./Data/cars.csv", "w") as f:
-            for car in all_cars:
-                f.write(car)
+        with open("./Data/cars.csv", "w") as car_file:
+            car_file.truncate()
+            car_writer = csv.writer(car_file)
+            for row in all_cars:
+                car_writer.writerow(row)
 
     def get_available_cars(self):
         return_list = []

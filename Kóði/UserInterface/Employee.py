@@ -61,15 +61,32 @@ class Employee:
                         if payment != None:
                             break
                     self.__rental_service.print_order_confirmation(customer, car, insurance_list, payment, start_date, return_date, additional_driver)
-                    
+                    clear()
+            if action == "3":
+                clear()
+                self.__car_service.get_available_cars_database(self.__car_service.get_available_cars())
             if action == "5":
                 clear()
                 self.__customer_service.print_customer_database()
             if action == "6":
                 clear()
-                self.__car_service.print_car_database()
+                print(self.__car_service.print_car_database_menu())
+                choice = int(input("Input Choice Here: "))
+                while (choice < 1) or (choice > 5):
+                    print("Incorrect Input")
+                    choice = input("Input Choice Here: ")
+                if choice == 1:
+                    self.__car_service.print_car_database()
+                if choice == 2:
+                    self.__car_service.car_info()
+                if choice == 3:
+                    car_id = input("Input Car License To Update: ")
+                    self.__car_service.update_car_info(car_id)
+                if choice == 4:
+                    car_id = input("Input Car License To Delete: ")
+                    self.__car_service.delete_car(car_id)
+                else:
+                    clear()
             if action == "7":
                 clear()
                 self.__rental_service.print_rental_database()
-                    
-                            

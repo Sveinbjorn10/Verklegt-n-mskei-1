@@ -87,4 +87,58 @@ class CarService:
                     # clear()
             except:
                 _ = input("Invalid input!\nPress Enter to continue...")
-                # clear()
+                clear()
+
+    def get_available_cars_database(self, available_cars):
+        print("Available cars")
+        print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", 
+            "Nr.", "License", "Make", "Model", "Manuf. Year", "Seats", "Doors", "Color", 
+            "Transmission", "Fuel", "Price per day"))
+        for index, car in enumerate(available_cars):
+            print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", 
+                (index + 1), car.get_license_plate(), car.get_make(), car.get_model(), 
+                car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), 
+                car.get_transmission(), car.get_fuel_type(), car.get_price()))
+        print()
+
+    def get_available_cars(self):
+        return self.__car_repo.get_available_cars()
+
+    def print_car_database_menu(self):
+        print("\t1. View Car Database")
+        print("\t2. Add Car")
+        print("\t3. Edit Car")
+        print("\t4. Delete Car")
+        print("\t5. Return to Main Menu")
+
+    def car_info(self):
+        print("New Car")
+        license_plate = input("\tLicense Plate: ")
+        make = input("\tMake: ")
+        model = input("\tModel: ")
+        manuf_year = input("\tManufacturing Year: ")
+        car_class = input("\tCar Class: ")
+        seats = input("\tSeats: ")
+        doors = input("\tDoors: ")
+        color = input("\tColor: ")
+        weight = input("\tWeight: ")
+        engine_size = input("\tEngine Size: ")
+        horse_power = input("\tHorse Power: ")
+        transmission = input("\tTransmission: ")
+        fuel_type = input("\tFuel Type: ")
+        price = input("\tPrice: ")
+        drive = input("\tDrive: ")
+        total_km = input("\tTotal Kilometers: ")
+        tank_size = input("\tTank Size: ")
+        availability = True
+        new_car = Car(license_plate, make, model, manuf_year, car_class, 
+            seats, doors, color, weight, engine_size,  
+            horse_power, transmission, fuel_type, price, 
+            drive, total_km, tank_size, availability)
+        self.__car_repo.add_car(new_car)
+
+    def update_car_info(self, car_id):
+        return self.__car_repo.update_car_info(car_id)
+
+    def delete_car(self, car_id):
+        return self.__car_repo.delete_car(car_id)
