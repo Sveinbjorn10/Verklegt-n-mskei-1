@@ -34,14 +34,52 @@ class Employee:
                 start_date, return_date = self.__rental_service.pick_date()
                 search_critera = self.__rental_service.pick_search_criteria(start_date, return_date)
                 if search_critera == "1":
-                    pass
+                    while True:
+                        license_plate = input("Enter Car ID: ")
+                        car = self.__car_service.search_by_license_plate(license_plate)
+                        if car == None:
+                            clear()
+                            try_search = input("Search cars(Y/N)?").upper()
+                            if try_search == "Y":
+                                clear()
+                                search_critera = "2"
+                                break
+                            else:
+                                clear()
+                                go_back = input("Re-Enter Car ID(Y/N)?").upper()
+                                if go_back != "Y":
+                                    clear()
+                                    search_critera = "3"
+                                    break  
+                        else:
+                            clear()
+                            print("{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format("License:", "Make:", "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:"))
+                            print(car)
+                            confirm = input("Confirm car(Y/N)?").upper()
+                            if confirm == "Y":
+                                clear()
+                                break
+                            go_back = input("Re-Enter Car ID(Y/N)?").upper()
+                            if go_back != "Y":
+                                clear()
+                                search_critera = "3"
+                                break  
+
                 if search_critera == "2":
-                    choice = self.__rental_service.search_car(start_date, return_date)
-                    selected_car = self.__rental_service.select_car(choice)
-                    customer, additional_driver = self.__customer_service.customer_info() # þarf að fá klasaeintak hér
+                    available_cars = self.__car_service.car_by_class(start_date, return_date)
+                    if available_cars != None:
+                        car = self.__car_service.select_car(available_cars)
+                    else:
+                        search_critera = "3"
+                        clear()
+                    # choice = self.__rental_service.search_car(start_date, return_date)
+                    # car = self.__rental_service.select_car(choice)
+                
+                if search_critera != "3":
+                    customer, additional_driver = self.__customer_service.customer_info()
                     insurance_list = self.__rental_service.insurance()
                     payment = self.__rental_service.payment()
-                    self.__rental_service.print_order_confirmation(customer, selected_car, insurance_list, payment, start_date, return_date, additional_driver)
+                    self.__rental_service.print_order_confirmation(customer, car, insurance_list, payment, start_date, return_date, additional_driver)
             if action == "5":
                 clear()
                 self.__customer_service.print_customer_database()

@@ -15,6 +15,8 @@ class RentalService:
         self.__car_repo = CarRepo()
     
     def pick_date(self):
+        today = datetime.today()
+        now = datetime(today.year, today.month, today.day)
         while True:
             try:
                 date = input("Choose a starting date(DD/MM/YYYY): ")
@@ -31,7 +33,7 @@ class RentalService:
                 clear()
 
             if correct:
-                if (return_date > start_date) and (start_date > datetime.today()):
+                if (return_date > start_date) and (start_date >= now):
                     clear()
                     break
                 else:
@@ -81,25 +83,24 @@ class RentalService:
         for index, car in enumerate(my_list):
             print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", (index + 1), car.get_license_plate(), car.get_make(), car.get_model(), car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), car.get_transmission(), car.get_fuel_type(), car.get_price()))
 
-
-    def select_car(self, car_class):
-        car_list = self.__car_repo.get_car_list()
-        # available_cars = [car for car in car_list if ((car[4] == car_class) and (car[-1] == "True"))]
-        available_cars = [car for car in car_list if (car.get_availability() == "True") and (car.get_car_class() == car_class)]
-        clear()
-        while True:
-            self.print_list(available_cars)
-            try:
-                car_choice = int(input("Select a car: "))
-                if (car_choice > 0) and (car_choice <= len(available_cars)):
+    # def select_car(self, car_class):
+    #     car_list = self.__car_repo.get_car_list()
+    #     # available_cars = [car for car in car_list if ((car[4] == car_class) and (car[-1] == "True"))]
+    #     available_cars = [car for car in car_list if (car.get_availability() == "True") and (car.get_car_class() == car_class)]
+    #     clear()
+    #     while True:
+    #         self.print_list(available_cars)
+    #         try:
+    #             car_choice = int(input("Select a car: "))
+    #             if (car_choice > 0) and (car_choice <= len(available_cars)):
                     
-                    return available_cars[car_choice]
-                else:
-                    _ = input("Invalid input!\nPress Enter to continue...")
-                    clear()
-            except:
-                _ = input("Invalid input!\nPress Enter to continue...")
-                clear()
+    #                 return available_cars[car_choice]
+    #             else:
+    #                 _ = input("Invalid input!\nPress Enter to continue...")
+    #                 clear()
+    #         except:
+    #             _ = input("Invalid input!\nPress Enter to continue...")
+    #             clear()
 
     def insurance(self):
         print("Insurance options:")
@@ -138,8 +139,7 @@ class RentalService:
                 rental_list.append(rental)
         order_number = "ON{}-{:0>5}".format(year[2:] ,str((int(rental_list[-1][0][6:]) + 1)))
         return order_number
-        
-    
+         
     def get_insurance_info(self, car_class, insurance_num):
             insurance_list = []
             with open("./Data/insurance.csv", "r", encoding = "utf-8") as f:
@@ -221,3 +221,4 @@ class RentalService:
         print("\n\n")
         print("Payment: {}".format(payment))
         _ = input()
+        clear()
