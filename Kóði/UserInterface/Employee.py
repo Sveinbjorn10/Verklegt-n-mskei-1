@@ -4,7 +4,7 @@ from Services.RentalService import RentalService
 from datetime import datetime
 import os
 
-os.system('mode con: cols=135 lines=40')
+os.system('mode con: cols=190 lines=40')
 clear = lambda: os.system('cls')
 
 class Employee:
