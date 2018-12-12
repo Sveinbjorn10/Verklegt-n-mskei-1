@@ -5,6 +5,18 @@ class RentalRepo:
     def __init__(self):
         self.__rentals = []
 
+    def add_rental(self, rental):
+        with open("./Data/rentals.csv", "a+", encoding = "utf-8") as rental_file:
+            order_num = rental.get_order_num()
+            name = rental.get_name()
+            ssn = rental.get_soc_sec_num()
+            license_plate = rental.get_license_plate()
+            insurance = rental.get_insurance()
+            start_date = rental.get_start_date()
+            end_date = rental.get_end_date()
+            total_price = rental.get_total_price()
+            rental_file.write("{},{},{},{},{},{},{},{}\n".format(order_num, name, ssn, license_plate, insurance, start_date, end_date, total_price))
+
     def get_rental_list(self):
         if self.__rentals == []:
             with open("./data/rentals.csv", "r", encoding = "utf-8") as rental_file:
@@ -55,10 +67,3 @@ class RentalRepo:
             string += str(rental) + "\n"
         return string
 
-    # def search_by_time_period(self, name):
-    #     return_list = []
-    #     all_rentals = self.get_rental_list()
-    #     for rental in all_rentals:
-    #         if rental[1] == name:
-    #             return_list.append(rental)
-    #     return return_list

@@ -55,8 +55,11 @@ class Employee:
                     
                 if search_critera in ["1", "2"]:
                     customer, additional_driver = self.__customer_service.customer_info()
-                    insurance_list = self.__rental_service.insurance()
-                    payment = self.__rental_service.payment()
+                    while True:
+                        insurance_list = self.__rental_service.insurance()
+                        payment = self.__rental_service.payment()
+                        if payment != None:
+                            break
                     self.__rental_service.print_order_confirmation(customer, car, insurance_list, payment, start_date, return_date, additional_driver)
                     
             if action == "5":

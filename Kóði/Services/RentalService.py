@@ -1,6 +1,7 @@
 from Repos.RentalRepo import RentalRepo
 from Repos.CarRepo import CarRepo
 from Models.Car import Car
+from Models.Rental import Rental
 from datetime import datetime
 import os
 import csv
@@ -87,16 +88,22 @@ class RentalService:
             print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", (index + 1), car.get_license_plate(), car.get_make(), car.get_model(), car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), car.get_transmission(), car.get_fuel_type(), car.get_price()))
 
     def insurance(self):
-        print("Insurance options:")
-        print("\t1. Included Insurance")
-        print("\t2. Insurance Package 1")
-        print("\t3. Insurance Package 2")
-        print("\t4. Return to Customer Info") # Spurning hvort við eigum að gerae þetta...
-        os.system("start python insurance.py ")
-        choice = int(input("What insurance package do you want? "))
-        clear()
-        return choice
-    
+        while True:
+            print("Insurance options:")
+            print("\t1. Included Insurance")
+            print("\t2. Insurance Package 1")
+            print("\t3. Insurance Package 2")
+            print("\t4. See Insurance Info again") # Spurning hvort við eigum að gerae þetta...
+            os.system("start python insurance.py ")
+            try:
+                choice = int(input("What insurance package do you want? "))
+                if choice in [1, 2, 3]:
+                    clear()
+                    return choice
+            except:
+                _ = input("Invalid input.\nPress Enter to continu...")
+            clear()
+
     def payment(self):
         print("Payment methods:")
         print("\t1. Cash.")
@@ -107,11 +114,13 @@ class RentalService:
         clear()
         if choice == "1":
             return "Cash"
-        if choice == "2":
+        elif choice == "2":
             return "Credit Card"
-        if choice == "3":
+        elif choice == "3":
             return "Debit Card"
-    
+        else:
+            return None
+
     def get_order_number(self):
         rental_list = []
         date = datetime.today()
@@ -121,9 +130,10 @@ class RentalService:
             for rental in csv_reader:
                 rental_list.append(rental)
 
-        
-        
-        order_number = "ON{}-{:0>5}".format(year[2:] ,str((int(rental_list[-1][0][6:]) + 1))) # ÞArf að gera ráð fyrir empty rental database og nýju ári
+        if ((os.stat("Data/Rentals.csv").st_size) == 0) or (rental_list[-1][0][2:4] != (year[2:])):
+            order_number = "ON{}-00001".format(year[2:])
+        else:
+            order_number = "ON{}-{:0>5}".format(year[2:] ,str((int(rental_list[-1][0][6:]) + 1))) 
         return order_number
 
     def get_insurance_info(self, car_class, insurance_num):
@@ -140,8 +150,7 @@ class RentalService:
             insurance_info = [info for info in insurance_list[insurance_num - 1][5:]]
             return [int(insurance_cost), insurance_name, insurance_info]
         
-    def print_order_confirmation(self, customer, car, insurance, payment, 
-        start, end, additional_driver):
+    def print_order_confirmation(self, customer, car, insurance, payment, start, end, additional_driver):
         delta = end - start
         days = int(delta.days)
         start_date = "{}/{}/{}".format(str(start.day), str(start.month), str(start.year))
@@ -207,5 +216,8 @@ class RentalService:
         print("{:.<100}{:.>85}".format("Total Price with VAT ", str(int(total_price_w_vat)) + " kr"))
         print("\n\n")
         print("Payment: {}".format(payment))
-        _ = input()
+        confirm = input("Confirm order(Y/N):").upper()
+        if confirm == "Y":
+            rental = Rental(order_number, name, ssn, car_plate, insurance_name, start_date, end_date, str(int(total_price_w_vat)))
+            self.__rental_repo.add_rental(rental)
         clear()

@@ -8,7 +8,7 @@ class Rental:
         self.__insurance = insurance
         self.__start_date = start_date
         self.__end_date = end_date
-        self.__total_price = float(total_price)
+        self.__total_price = total_price
 
     def get_order_num(self):
         return self.__order_num
