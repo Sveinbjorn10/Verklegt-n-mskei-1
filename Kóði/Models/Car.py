@@ -109,4 +109,6 @@ class Car:
         self.__availability = availability
     
     def __str__(self):
-        return "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format(self.__license_plate, self.__make, self.__model, self.__manuf_year, self.__car_class, self.__seats, self.__doors, self.__color, self.__transmission, self.__price)
+        return "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format(self.__license_plate, 
+            self.__make, self.__model, self.__manuf_year, self.__car_class, self.__seats, self.__doors, 
+            self.__color, self.__transmission, self.__price)
