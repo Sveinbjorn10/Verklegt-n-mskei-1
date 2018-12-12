@@ -56,7 +56,7 @@ class CarRepo:
                     drive = line[14]
                     total_km = line[15]
                     tank_size = line[16]
-                    availability = "True"
+                    availability = "True" #Möguleiki á villum
                     new_car = Car(license_plate, make, model, manuf_year, car_class, seats, doors, 
                         color, weight, engine_size, horse_power, transmission, fuel_type, price, drive, 
                         total_km, tank_size, eval(availability))
@@ -74,7 +74,7 @@ class CarRepo:
         return_list = []
         all_cars = self.get_cars()
         for car in all_cars:
-            if car[2] == car_class:
+            if car.get_car_class() == car_class:
                 return_list.append(car)
         return return_list
 
@@ -87,29 +87,32 @@ class CarRepo:
         return return_list
 
     def delete_car(self, license_plate):
+        """Veit ekki Hvernig ég á að laga þetta"""
         all_cars = self.get_cars()
         for index, car in enumerate(all_cars):
-            if car[0] == license_plate:
+            if car.get_license_plate == license_plate:
                 all_cars.pop(index)
-        with open("./Data/cars.csv", "w") as f:
+        with open("./Data/cars.csv", "r") as inp, open("./Data/cars.csv", "w") as out:
+            writer = csv.writer(out)
             for car in all_cars:
                 f.write(car)
 
-    def get_available_cars(self, availability):
+    def get_available_cars(self):
         return_list = []
         all_cars = self.get_cars()
         for car in all_cars:
-            if car.get_availability == True:
+            if car.get_availability() == True:
                 return_list.append(car)
         return return_list
 
     def search_by_license_plate(self, license_plate):
-        return_list = []
         all_cars = self.get_cars()
         for car in all_cars:
-            if car[0] == license_plate:
-                return_list.append(car)
-        return return_list
+            if car.get_license_plate() == license_plate:
+                return car
+            else:
+                input("Car not found!\nPress Enter to continue...")
+                return None
 
     def change_car_status(self, license_plate):
         all_cars = self.get_cars()

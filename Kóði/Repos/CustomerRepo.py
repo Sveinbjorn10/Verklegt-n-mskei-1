@@ -9,7 +9,7 @@ class CustomerRepo:
 
     def add_customer(self, customer):
         # first add to file then to private list
-        with open("./data/customers.csv", "a+") as customer_file:
+        with open("./Data/customers.csv", "a+", encoding = "utf-8") as customer_file:
             name = customer.get_name()
             soc_sec_num = customer.get_soc_sec_num()
             home_address = customer.get_home_address()
@@ -48,12 +48,13 @@ class CustomerRepo:
         return return_list
     
     def search_by_ssn(self, soc_sec_num):
-        return_list = []
         all_customers = self.get_customer_list()
         for customer in all_customers:
-            if customer[1] == soc_sec_num:
-                return_list.append(customer)
-        return return_list
+            if customer.get_soc_sec_num() == soc_sec_num:
+                return customer
+            else:
+                _ = input("Customer not found.\nPress Enter to continue...")
+                return None
 
     def delete_customer(self, soc_sec_num):
         all_customers = self.get_customer_list()
