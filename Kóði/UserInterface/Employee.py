@@ -42,11 +42,15 @@ class Employee:
                     insurance_list = self.__rental_service.insurance()
                     payment = self.__rental_service.payment()
                     self.__rental_service.print_order_confirmation(customer, selected_car, insurance_list, payment, start_date, return_date, additional_driver)
+                    clear()
             if action == "5":
                 clear()
                 self.__customer_service.print_customer_database()
             if action == "6":
                 clear()
                 self.__car_service.print_car_database()
+            if action == "7":
+                clear()
+                self.__rental_service.print_rental_database()
                     
                             

@@ -11,6 +11,9 @@ class RentalService:
     def __init__(self):
         self.__rental_repo = RentalRepo()
         self.__car_repo = CarRepo()
+
+    def print_rental_database(self):
+        print(self.__rental_repo)
     
     def pick_date(self):
         while True:
@@ -79,7 +82,6 @@ class RentalService:
         for index, car in enumerate(my_list):
             print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", (index + 1), car.get_license_plate(), car.get_make(), car.get_model(), car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), car.get_transmission(), car.get_fuel_type(), car.get_price()))
 
-
     def select_car(self, car_class):
         car_list = self.__car_repo.get_car_list()
         # available_cars = [car for car in car_list if ((car[4] == car_class) and (car[-1] == "True"))]
@@ -136,7 +138,6 @@ class RentalService:
                 rental_list.append(rental)
         order_number = "ON{}-{}".format(year[2:] ,str((int(rental_list[-1][0][6:]) + 1)))
         return order_number
-        
     
     def get_insurance_info(self, car_class, insurance_num):
             insurance_list = []
@@ -152,7 +153,8 @@ class RentalService:
             insurance_info = [info for info in insurance_list[insurance_num - 1][5:]]
             return [int(insurance_cost), insurance_name, insurance_info]
         
-    def print_order_confirmation(self, customer, car, insurance, payment, start, end, additional_driver = "Empty"):
+    def print_order_confirmation(self, customer, car, insurance, payment, 
+        start, end, additional_driver = "Empty"):
         delta = end - start
         days = int(delta.days)
 
