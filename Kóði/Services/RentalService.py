@@ -143,7 +143,6 @@ class RentalService:
                     for line in csv_reader:
                             insurance_list.append(line)
             insurance_cost =  insurance_list[insurance_num - 1][car_class]
-            print(insurance_cost)
             insurance_name = insurance_list[insurance_num - 1][0]
             # insurance_info = [insurance_list[insurance_num - 1][5:]]
 
