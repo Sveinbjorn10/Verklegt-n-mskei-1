@@ -53,7 +53,7 @@ class CustomerRepo:
             if customer.get_soc_sec_num() == soc_sec_num:
                 return customer
             else:
-                _ = input("Customer not found.\nPress Enter to continue...")
+                _ = input("Customer is not in the database.\nPress Enter to continue...")
                 return None
 
     def delete_customer(self, soc_sec_num):

@@ -13,46 +13,68 @@ class CustomerService:
         print(self.__customer_repo)
 
     def get_additional_driver(self):
-        additional_driver = []
-        print("Additional Driver")
-        add_first_name = input("\tFirst Name: ")
-        additional_driver.append(add_first_name)
-        add_last_name = input("\tLast Name: ")
-        additional_driver.append(add_last_name)
-        add_ssn = input("\tSocial Security Number: ")
-        additional_driver.append(add_ssn)
-        add_drivers_license = input("\tDrivers License: ")
-        additional_driver.append(add_drivers_license)
+        yes_no = input("Additional Driver(Y/N)? ").upper()
+        clear()
+        if yes_no == "Y":
+            additional_driver = []
+            clear()
+            print("Additional Driver")
+            add_first_name = input("\tFirst Name: ")
+            additional_driver.append(add_first_name)
+            add_last_name = input("\tLast Name: ")
+            additional_driver.append(add_last_name)
+            add_ssn = input("\tSocial Security Number: ")
+            additional_driver.append(add_ssn)
+            add_drivers_license = input("\tDrivers License: ")
+            additional_driver.append(add_drivers_license)
+        else:
+            additional_driver = "Empty"
+
         return additional_driver
+
+    def confirm_customer(self, customer):
+        print("{:<30}{:<25}{:<15}{:<15}{:<15}{:<30}{:<20}{:<30}".format("Name:", "Social Security Number:", "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:"))
+        print(customer)
+        confirm = input("Confirm(Y/N): ").upper()
+        if confirm == "Y":
+            return True
+        else:
+            return False
 
     def customer_info(self):        
         while True:
             clear()
-            existing = input("Existing customer(Y/N): ").upper()
-            if existing == "Y":
-                    ssn = input("Enter Social Security Number: ")
-                    customer = self.__customer_repo.search_by_ssn(ssn)
-                    if customer != None:
-                        break
-            
+            while True:
+                print("Customer information:")
+                ssn = input("\tEnter Social Security Number: ")
+                if len(ssn) == 10:
+                    break
+                else:
+                    _ = input("Please enter a valid Social Security Number\nPress Enter to continue...")
+                    clear()
+            temp_customer = self.__customer_repo.search_by_ssn(ssn)
+            if temp_customer != None:
+                clear()
+                confirm = self.confirm_customer(temp_customer)
+                clear()
+                if confirm:
+                    customer = temp_customer
+                    break
             else:
-                print("Fill in the following (*required):")
-                first_name = input("\t*First Name: ")
-                last_name = input("\t*Last Name: ")
+                clear()
+                print("Please fill in the following information:")
+                first_name = input("\tFirst Name: ")
+                last_name = input("\tLast Name: ")
                 name = "{} {}".format(first_name, last_name)
-                ssn = input("\t*Social Security Number: ")
-                home_address = input("\t*Home Address: ")
-                local_address = input("\t*Local Address: ")
-                mobile_phone = input("\t*Mobile Phone: ")
-                email = input("\t*Email: ")
-                drivers_license = input("\t*Drivers License: ")
-                card_num = input("\t*Credit Card Number: ") #Búið að breyta í required þarf kannski að laga ehv...
-                home_phone = input("\tHome Phone: ") #Vantar þetta í customer klasann
-                local_phone = input("\tLocal Phone: ") #Vantar þetta í customer klasann
-                company_name = input("\tCompany Name: ") #Vantar þetta í customer klasann
+                home_address = input("\tHome Address: ")
+                local_address = input("\tLocal Address: ")
+                mobile_phone = input("\tMobile Phone: ") 
+                email = input("\tEmail: ") 
+                drivers_license = input("\tDrivers License: ") 
+                card_num = input("\tCredit Card Number: ") 
+
                 customer = Customer(name, ssn, home_address, local_address, mobile_phone, email, drivers_license, card_num)
                 self.__customer_repo.add_customer(customer)
-
+                break
         additional_driver = self.get_additional_driver()
-        clear()
         return customer, additional_driver

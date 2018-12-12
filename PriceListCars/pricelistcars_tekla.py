@@ -1,32 +1,27 @@
 def titles():
-    print("{:<33s}{:<33s}{:<21}".format("Car kind", "Car type", "Price per day"))
-    print("-" * 87)
+    print("{:<33s}{:<33s}{:<21}".format("Car class", "Price per day", "Car make e.g"))
+    print("-" * 100)
 
 def smallcars():
-    print("{:<33s}{:<33s}{:<21}".format("Small Cars", "VW Golf", "11.260"))
-    print("{:<33s}{:<33s}{:<21}".format("", "Hyundai i10", "9.265"))
+    print("{:<33s}{:<33s}{:<21}".format("Small Car", "10.000kr", "VW Golf"))
+    print("{:<33s}{:<33s}{:<21}".format("", "", "Hyundai i10"))
     print("")
 
 def familycars():
-    print("{:<33s}{:<33s}{:<21}".format("Family Cars", "Toyota Corolla", "13.775"))
-    print("{:<33s}{:<33s}{:<21}".format("", "Skoda Octavia", "15.675"))
-    print("")
-
-def suv():
-    print("{:<33s}{:<33s}{:<21}".format("Suvs", "Audi Q5", "27.885"))
-    print("{:<33s}{:<33s}{:<21}".format("", "Toyota Landcruiser", "29.355"))
-    print("{:<33s}{:<33s}{:<21}".format("", "Toyota Rav4", "20.000"))
+    print("{:<33s}{:<33s}{:<21}".format("Family Car", "14.000kr", "Toyota Corolla"))
+    print("{:<33s}{:<33s}{:<21}".format("", "", "Skoda Octavia"))
     print("")
 
 def van():
-    print("{:<33s}{:<33s}{:<21}".format("Vans", "Ford Galaxy", "18.480"))
-    print("{:<33s}{:<33s}{:<21}".format("", "Renault Traffic3", "27.165"))
-    print("{:<33s}{:<33s}{:<21}".format("", "VW Caravelle 4wd", "28.595"))
+    print("{:<33s}{:<33s}{:<21}".format("Van", "25.000kr", "Ford Galaxy"))
+    print("{:<33s}{:<33s}{:<21}".format("", "", "Renault Traffic3"))
+    print("{:<33s}{:<33s}{:<21}".format("", "", "VW Caravelle 4wd"))
     print("")
 
-def sendvan():
-    print("{:<33s}{:<33s}{:<21}".format("Send vans", "Ford Transit (14 seats)", "41.500"))
-    print("{:<33s}{:<33s}{:<21}".format("", "Mercedes Sprinter (15 seats)", "45.700"))
+def suv():
+    print("{:<33s}{:<33s}{:<21}".format("Suv", "20.000kr", "Audi Q5"))
+    print("{:<33s}{:<33s}{:<21}".format("", "", "Toyota Landcruiser"))
+    print("{:<33s}{:<33s}{:<21}".format("", "", "Toyota Rav4"))
     print("")
 
 
@@ -34,8 +29,7 @@ def main():
     titles()
     smallcars()
     familycars()
-    suv()
     van()
-    sendvan()
+    suv()
 
 main()

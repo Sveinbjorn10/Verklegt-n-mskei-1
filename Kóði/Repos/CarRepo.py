@@ -87,15 +87,15 @@ class CarRepo:
         return return_list
 
     def delete_car(self, license_plate):
-        """Veit ekki Hvernig ég á að laga þetta"""
         all_cars = self.get_cars()
         for index, car in enumerate(all_cars):
             if car.get_license_plate == license_plate:
                 all_cars.pop(index)
-        with open("./Data/cars.csv", "r") as inp, open("./Data/cars.csv", "w") as out:
-            writer = csv.writer(out)
-            for car in all_cars:
-                f.write(car)
+        with open("./Data/cars.csv", "w") as car_file:
+            car_file.truncate()
+            car_writer = csv.writer(car_file)
+            for row in all_cars:
+                car_writer.writerow(row)
 
     def get_available_cars(self):
         return_list = []
@@ -105,7 +105,8 @@ class CarRepo:
                 return_list.append(car)
         return return_list
 
-    def search_by_license_plate(self, license_plate):
+    def search_by_license_plate(self):
+        license_plate = input("Enter Car ID: ")
         all_cars = self.get_cars()
         for car in all_cars:
             if car.get_license_plate() == license_plate:

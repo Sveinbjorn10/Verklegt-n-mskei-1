@@ -116,12 +116,14 @@ class RentalService:
         rental_list = []
         date = datetime.today()
         year = str(date.year)
-        year[2:]
         with open("Data/rentals.csv", "r", encoding = "utf-8") as rentals:
             csv_reader = csv.reader(rentals)
             for rental in csv_reader:
                 rental_list.append(rental)
-        order_number = "ON{}-{:0>5}".format(year[2:] ,str((int(rental_list[-1][0][6:]) + 1)))
+
+        
+        
+        order_number = "ON{}-{:0>5}".format(year[2:] ,str((int(rental_list[-1][0][6:]) + 1))) # ÞArf að gera ráð fyrir empty rental database og nýju ári
         return order_number
 
     def get_insurance_info(self, car_class, insurance_num):
@@ -139,7 +141,7 @@ class RentalService:
             return [int(insurance_cost), insurance_name, insurance_info]
         
     def print_order_confirmation(self, customer, car, insurance, payment, 
-        start, end, additional_driver = "Empty"):
+        start, end, additional_driver):
         delta = end - start
         days = int(delta.days)
         start_date = "{}/{}/{}".format(str(start.day), str(start.month), str(start.year))
