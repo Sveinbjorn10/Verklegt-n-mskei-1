@@ -11,8 +11,8 @@ class CarService:
     def print_car_database(self):
         print(self.__car_repo)
 
-    def search_by_license_plate(self, license_plate):
-        return self.__car_repo.search_by_license_plate(license_plate)
+    def search_by_license_plate(self):
+        return self.__car_repo.search_by_license_plate()
 
     def print_time_period(self, start, end):
         start_date = "{}/{}/{}".format(start.day, start.month, start.year)
@@ -72,6 +72,7 @@ class CarService:
         # available_cars = [car for car in car_list if (car.get_availability() == "True") and (car.get_car_class() == car_class)]
         # clear()
         while True:
+            clear()
             print("Available cars")
             print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ","Nr.", "License", "Make", "Model", "Manuf. Year", "Seats", "Doors", "Color", "Transmission", "Fuel", "Price per day"))
             for index, car in enumerate(available_cars):
@@ -83,7 +84,7 @@ class CarService:
                     return available_cars[car_choice - 1]
                 else:
                     _ = input("Invalid input!\nPress Enter to continue...")
-                    clear()
+                    # clear()
             except:
                 _ = input("Invalid input!\nPress Enter to continue...")
-                clear()
+                # clear()

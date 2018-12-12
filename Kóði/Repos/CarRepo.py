@@ -103,7 +103,8 @@ class CarRepo:
                 return_list.append(car)
         return return_list
 
-    def search_by_license_plate(self, license_plate):
+    def search_by_license_plate(self):
+        license_plate = input("Enter Car ID: ")
         all_cars = self.get_cars()
         for car in all_cars:
             if car.get_license_plate() == license_plate:
