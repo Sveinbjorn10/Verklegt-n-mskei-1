@@ -23,7 +23,7 @@ class CustomerRepo:
 
     def get_customer_list(self):
         if self.__customers == []:
-            with open("./data/customers.csv", "r", encoding = "utf-8") as customer_file:
+            with open("./Data/customers.csv", "r", encoding = "utf-8") as customer_file:
                 customer_reader = csv.reader(customer_file)
                 for line in customer_reader:
                     name = line[0]

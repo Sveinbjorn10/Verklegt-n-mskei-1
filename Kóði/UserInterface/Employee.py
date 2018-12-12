@@ -43,6 +43,9 @@ class Employee:
                     payment = self.__rental_service.payment()
                     self.__rental_service.print_order_confirmation(customer, selected_car, insurance_list, payment, start_date, return_date, additional_driver)
                     clear()
+            if action == "3":
+                clear()
+                self.__car_service.print_available_cars()
             if action == "5":
                 clear()
                 self.__customer_service.print_customer_database()

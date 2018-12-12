@@ -99,7 +99,7 @@ class CarRepo:
         return_list = []
         all_cars = self.get_cars()
         for car in all_cars:
-            if car[-1] == True:
+            if car.get_availability == True:
                 return_list.append(car)
         return return_list
 

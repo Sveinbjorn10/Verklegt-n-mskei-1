@@ -6,5 +6,3 @@ class CarService:
 
     def print_car_database(self):
         print(self.__car_repo)
-
-    # def price_list(self):
