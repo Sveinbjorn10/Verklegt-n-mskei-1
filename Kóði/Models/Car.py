@@ -17,7 +17,7 @@ class Car:
         self.__fuel_type = fuel_type
         self.__drive = drive
         self.__total_km = total_km
-        self.__tank_size = int(tank_size)
+        self.__tank_size = tank_size
         self.__price = int(price)
         self.__availability = availability
 

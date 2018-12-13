@@ -70,19 +70,21 @@ class CarRepo:
             return_list.append(car)
         return return_list
 
-    def search_by_class(self, car_class):
+    def search_by_class(self):
         return_list = []
+        car_class = input("Enter Car Class: ")
         all_cars = self.get_cars()
         for car in all_cars:
             if car.get_car_class() == car_class:
                 return_list.append(car)
         return return_list
 
-    def search_by_model(self, model):
+    def search_by_model(self):
         return_list = []
+        model = input("Enter Car Model: ")
         all_cars = self.get_cars()
         for car in all_cars:
-            if car[3] == model:
+            if car.get_model == model:
                 return_list.append(car)
         return return_list
 
@@ -110,7 +112,8 @@ class CarRepo:
         all_cars = self.get_cars()
         for car in all_cars:
             if car.get_license_plate() == license_plate:
-                return car
+                print(car)
+                return None
             else:
                 input("Car not found!\nPress Enter to continue...")
                 return None

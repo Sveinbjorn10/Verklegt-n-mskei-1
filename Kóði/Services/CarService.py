@@ -13,6 +13,16 @@ class CarService:
 
     def search_by_license_plate(self):
         return self.__car_repo.search_by_license_plate()
+    
+    def search_by_class(self):
+        list_of_class_cars = self.__car_repo.search_by_class()
+        for car in list_of_class_cars:
+            print(car)
+    
+    def search_by_model(self):
+        list_of_model_cars = self.__car_repo.search_by_model()
+        for car in list_of_model_cars:
+            print(car)
 
     def print_time_period(self, start, end):
         start_date = "{}/{}/{}".format(start.day, start.month, start.year)
@@ -106,14 +116,15 @@ class CarService:
 
     def print_car_database_menu(self):
         print("\t1. View Car Database")
-        print("\t2. Add Car")
-        print("\t3. Edit Car")
-        print("\t4. Delete Car")
-        print("\t5. Return to Main Menu")
+        print("\t2. Search Cars")
+        print("\t3. Add Car")
+        print("\t4. Edit Car")
+        print("\t5. Delete Car")
+        print("\t6. Return to Main Menu")
 
     def car_info(self):
         print("New Car")
-        license_plate = input("\tLicense Plate: ")
+        license_plate = input("\tCar ID: ")
         make = input("\tMake: ")
         model = input("\tModel: ")
         manuf_year = input("\tManufacturing Year: ")
@@ -142,3 +153,23 @@ class CarService:
 
     def delete_car(self, car_id):
         return self.__car_repo.delete_car(car_id)
+
+    def print_price_list(self):
+        print("{:<33s}{:<33s}{:<21}".format("Car class", "Price per day", "Car make e.g"))
+        print("-" * 100)
+        print("{:<33s}{:<33s}{:<21}".format("Small Car", "10.000kr", "VW Golf"))
+        print("{:<33s}{:<33s}{:<21}\n".format("", "", "Hyundai i10"))
+        print("{:<33s}{:<33s}{:<21}".format("Family Car", "14.000kr", "Toyota Corolla"))
+        print("{:<33s}{:<33s}{:<21}\n".format("", "", "Skoda Octavia"))
+        print("{:<33s}{:<33s}{:<21}".format("Van", "25.000kr", "Ford Galaxy"))
+        print("{:<33s}{:<33s}{:<21}".format("", "", "Renault Traffic3"))
+        print("{:<33s}{:<33s}{:<21}\n".format("", "", "VW Caravelle 4wd"))
+        print("{:<33s}{:<33s}{:<21}".format("Suv", "20.000kr", "Audi Q5"))
+        print("{:<33s}{:<33s}{:<21}".format("", "", "Toyota Landcruiser"))
+        print("{:<33s}{:<33s}{:<21}\n".format("", "", "Toyota Rav4"))
+
+    def print_search_options(self):
+        print("\t1. Search by Car ID")
+        print("\t2. Search by Car Class")
+        print("\t3. Search by Model")
+        print("\t4. Return to Main Menu")

@@ -85,37 +85,37 @@ class CustomerRepo:
                         print("Current Name: {}".format(edit_customer.get_name()))
                         new_name = input("New Name: ")
                         edit_customer.set_name(new_name)
-                        print("New Current Name: {}".format(edit_customer.get_name()))
+                        print("Name Changed To: {}".format(edit_customer.get_name()))
                     if choice == 2:
                         print("Current Home Address: {}".format(edit_customer.get_home_address()))
                         new_address = input("New Home Address: ")
                         edit_customer.set_home_address(new_address)
-                        print("New Current Home Address: {}".format(edit_customer.get_home_address()))
+                        print("Home Address Changed To: {}".format(edit_customer.get_home_address()))
                     if choice == 3:
                         print("Current Local Address: {}".format(edit_customer.get_local_address()))
                         new_local_address = input("New Local Address: ")
                         edit_customer.set_local_address(new_local_address)
-                        print("New Current Local Address: {}".format(edit_customer.get_local_address()))
+                        print("Local Address Changed To: {}".format(edit_customer.get_local_address()))
                     if choice == 4:
                         print("Current Phone Number: {}".format(edit_customer.get_phone_num()))
                         new_phone_number = input("New Phone Number: ")
                         edit_customer.set_phone_num(new_phone_number)
-                        print("New Current Phone Number: {}".format(edit_customer.get_phone_num()))
+                        print("Phone Number Changed To: {}".format(edit_customer.get_phone_num()))
                     if choice == 5:
                         print("Current Email: {}".format(edit_customer.get_email()))
                         new_email = input("New Email: ")
                         edit_customer.set_email(new_email)
-                        print("New Current Email: {}".format(edit_customer.get_email()))
+                        print("Email Changed To: {}".format(edit_customer.get_email()))
                     if choice == 6:
                         print("Current Driver's License: {}".format(edit_customer.get_driv_license()))
                         new_driv_license = input("New Driver's License: ")
                         edit_customer.set_driv_license(new_driv_license)
-                        print("New Current Driver's License: {}".format(edit_customer.get_driv_license()))
+                        print("Driver's License Changed To: {}".format(edit_customer.get_driv_license()))
                     if choice == 7:
                         print("Current Credit/Debit Card Number: {}".format(edit_customer.get_card_num()))
                         new_card_num = input("New Credit/Debit Card Number: ")
                         edit_customer.set_card_num(new_card_num)
-                        print("New Current Credit/Debit Card Number: {}".format(edit_customer.get_card_num()))
+                        print("Credit/Debit Card Number Changed To: {}".format(edit_customer.get_card_num()))
                     if choice == 8:
                         break
 
@@ -126,8 +126,8 @@ class CustomerRepo:
                 return customer
 
     def __str__(self):
-        string = "{:<30}{:<25}{:<15}{:<15}{:<15}{:<30}{:<20}{:<30}\n".format("Name:", "Social Security Number:", 
-            "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:")
+        string = "{:<30}{:<25}{:<15}{:<15}{:<15}{:<30}{:<20}{:<30}\n{}".format("Name:", "Social Security Number:", 
+            "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:",("-"*100))
         customerlist = self.get_customer_list()
         for customer in customerlist:
             string += str(customer) + "\n"

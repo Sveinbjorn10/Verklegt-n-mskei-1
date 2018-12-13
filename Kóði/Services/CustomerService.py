@@ -94,3 +94,15 @@ class CustomerService:
 
     def get_customer_for_rental(self, rental_ssn):
         return self.__customer_repo.get_customer_for_rental(rental_ssn)
+    def print_customer_database_menu(self):
+        print("\t1. View Customer Database")
+        print("\t2. Add Customer")
+        print("\t3. Edit Customer")
+        print("\t4. Delete Customer")
+        print("\t5. Return to Main Menu")
+
+    def change_customer(self, soc_sec_num):
+        return self.__customer_repo.change_customer(soc_sec_num)
+    
+    def delete_customer(self, soc_sec_num):
+        return self.__customer_repo.delete_customer(soc_sec_num)
