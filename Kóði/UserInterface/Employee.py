@@ -72,7 +72,7 @@ class Employee:
                         if car != None:
                             rentals_with_car_id = self.__rental_service.search_by_license_plate_rentals(car.get_license_plate())
                             open_rentals = self.__rental_service.open_rentals(rentals_with_car_id)
-                            print("{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}{:<5}".format("Order Number", "Name", "SSN", "License Plate", "Insurance" , "Start Date", "End Date", "Total Price", "Status"))
+                            print("{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}{:<5}".format("Order Number", "Name", "SSN", "Car ID", "Insurance" , "Start Date", "End Date", "Total Price", "Status"))
                             print(open_rentals[0])
                             print()
                             fuel_price = self.__rental_service.fuel_status(car.get_tank_size())
@@ -142,10 +142,10 @@ class Employee:
                     clear()
                     self.__car_service.car_info()
                 if choice == 4:
-                    car_id = input("Input Car License To Update: ")
+                    car_id = input("Input Car ID To Update: ")
                     self.__car_service.update_car_info(car_id)
                 if choice == 5:
-                    car_id = input("Input Car License To Delete: ")
+                    car_id = input("Input Car ID To Delete: ")
                     self.__car_service.delete_car(car_id)
                 else:
                     clear()

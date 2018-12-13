@@ -124,7 +124,7 @@ class CarService:
 
     def car_info(self):
         print("New Car")
-        license_plate = input("\tLicense Plate: ")
+        license_plate = input("\tCar ID: ")
         make = input("\tMake: ")
         model = input("\tModel: ")
         manuf_year = input("\tManufacturing Year: ")
@@ -169,7 +169,7 @@ class CarService:
         print("{:<33s}{:<33s}{:<21}\n".format("", "", "Toyota Rav4"))
 
     def print_search_options(self):
-        print("\t1. Search by License Plate")
+        print("\t1. Search by Car ID")
         print("\t2. Search by Car Class")
         print("\t3. Search by Model")
         print("\t4. Return to Main Menu")
