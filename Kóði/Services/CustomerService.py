@@ -105,17 +105,5 @@ class CustomerService:
     def change_customer(self, ssn):
         return self.__customer_repo.change_customer(ssn)
     
-<<<<<<< HEAD
     def delete_customer(self, ssn):
         return self.__customer_repo.delete_customer(ssn)
-=======
-    def delete_customer(self, soc_sec_num):
-        return self.__customer_repo.delete_customer(soc_sec_num)
-
-    def print_search_options(self):
-        print("\t1. Search by SSN")
-        print("\t2. Return to Main Menu")
-
-    def search_by_name(self, name):
-        return self.__customer_repo.search_by_name(name)
->>>>>>> 47054d774b6955f197f8ac0ffd4a2ce39037367c

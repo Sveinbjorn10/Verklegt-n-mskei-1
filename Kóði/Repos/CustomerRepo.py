@@ -67,13 +67,8 @@ class CustomerRepo:
     def change_customer(self, ssn):
         all_customers = self.get_customer_list()
         for customer in all_customers:
-<<<<<<< HEAD
             if customer[1]  == ssn:
                 edit_customer = customer[1]
-=======
-            if customer.get_soc_sec_num  == soc_sec_num:
-                edit_customer = customer
->>>>>>> 47054d774b6955f197f8ac0ffd4a2ce39037367c
                 print(edit_customer)
                 print("1. Edit Name\n2. Edit Home Address\n3. Edit Local Address\n"
                     "4. Edit Phone Number\n5. Edit Email\n6. Edit Driver's License\n"

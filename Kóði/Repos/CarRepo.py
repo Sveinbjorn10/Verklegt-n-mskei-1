@@ -132,7 +132,7 @@ class CarRepo:
     def update_car_info(self, driver_license):
         all_cars = self.get_cars()
         for car in all_cars:
-            if car.get_license_plate == driver_license:
+            if car.get_car_id == driver_license:
                 edit_car = car
                 print(edit_car)
                 print("1. Edit Color\n2. Edit Weight\n3. Edit Engine Size\n"

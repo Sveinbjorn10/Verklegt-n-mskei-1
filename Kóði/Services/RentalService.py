@@ -234,13 +234,8 @@ class RentalService:
             self.__rental_repo.add_rental(rental)
         clear()
 
-<<<<<<< HEAD
     def search_by_car_id_rentals(self, car_id):
-        return self.__rental_repo.search_by_car_id(car_id)
-=======
-    def search_by_license_plate_rentals(self, license_plate): #Hægt að nota fyrir search criteria 2
-        return self.__rental_repo.search_by_license_plate_rentals(license_plate)
->>>>>>> 47054d774b6955f197f8ac0ffd4a2ce39037367c
+        return self.__rental_repo.search_by_car_id(car_id)  #Hægt að nota fyrir search criteria 2
 
     def open_rentals(self, rental_list):
         open_rentals = []
@@ -300,7 +295,7 @@ class RentalService:
         return payment
 
     def finish_order(self, rental, car, customer, fuel, damage):
-        car_string = "{} {} ({})".format(car.get_make(), car.get_model(), car.get_license_plate())
+        car_string = "{} {} ({})".format(car.get_make(), car.get_model(), car.get_car_id())
 
         today = datetime.today()
         now = datetime(today.year, today.month, today.day)
