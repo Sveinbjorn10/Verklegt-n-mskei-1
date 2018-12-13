@@ -41,7 +41,7 @@ class CustomerService:
         else:
             return False
 
-    def customer_info(self):        
+    def customer_info(self):
         while True:
             clear()
             while True:
@@ -89,15 +89,33 @@ class CustomerService:
         additional_driver = self.get_additional_driver()
         return customer, additional_driver
 
+    def search_by_soc_sec_num(self, ssn):
+        return self.__customer_repo.search_by_ssn(ssn)
+
+    def get_customer_for_rental(self, rental_ssn):
+        return self.__customer_repo.get_customer_for_rental(rental_ssn)
     def print_customer_database_menu(self):
         print("\t1. View Customer Database")
         print("\t2. Add Customer")
-        print("\t3. Edit Customer")
-        print("\t4. Delete Customer")
-        print("\t5. Return to Main Menu")
+        print("\t3. Add Customer")
+        print("\t4. Edit Customer")
+        print("\t5. Delete Customer")
+        print("\t6. Return to Main Menu")
 
     def change_customer(self, ssn):
         return self.__customer_repo.change_customer(ssn)
     
+<<<<<<< HEAD
     def delete_customer(self, ssn):
         return self.__customer_repo.delete_customer(ssn)
+=======
+    def delete_customer(self, soc_sec_num):
+        return self.__customer_repo.delete_customer(soc_sec_num)
+
+    def print_search_options(self):
+        print("\t1. Search by SSN")
+        print("\t2. Return to Main Menu")
+
+    def search_by_name(self, name):
+        return self.__customer_repo.search_by_name(name)
+>>>>>>> 47054d774b6955f197f8ac0ffd4a2ce39037367c

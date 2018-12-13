@@ -1,4 +1,5 @@
 from Models.Rental import Rental
+from Repos.CustomerRepo import CustomerRepo
 import csv
 class RentalRepo:
 
@@ -31,8 +32,14 @@ class RentalRepo:
                     start_date = line[5]
                     end_date = line[6]
                     total_price = line[7]
+<<<<<<< HEAD
                     finished = line[8]
                     new_rental = Rental(order_num, name, soc_sec_num, car_id, insurance, start_date, end_date, total_price, finished)
+=======
+                    status = line[8]
+                    payment = line[9]
+                    new_rental = Rental(order_num, name, soc_sec_num, license_plate, insurance, start_date, end_date, total_price, status, payment)
+>>>>>>> 47054d774b6955f197f8ac0ffd4a2ce39037367c
                     self.__rentals.append(new_rental)    
         return self.__rentals
     
@@ -52,7 +59,11 @@ class RentalRepo:
                 return_list.append(rental)
         return return_list
 
+<<<<<<< HEAD
     def search_by_car_id(self, car_id):
+=======
+    def search_by_license_plate_rentals(self, license_plate):
+>>>>>>> 47054d774b6955f197f8ac0ffd4a2ce39037367c
         return_list = []
         all_rentals = self.get_rental_list()
         for rental in all_rentals:
@@ -68,3 +79,10 @@ class RentalRepo:
             string += str(rental) + "\n"
         return string
 
+    def get_open_rental_for_car(self, car):
+        rental_list = self.get_rental_list()
+        for rental in rental_list:
+            if rental.get_status() == "Open":
+                if rental.get_license_plate() == car.get_license_plate():
+                    return rental
+    
