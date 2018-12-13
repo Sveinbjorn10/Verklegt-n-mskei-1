@@ -119,6 +119,12 @@ class CustomerRepo:
                     if choice == 8:
                         break
 
+    def get_customer_for_rental(self, rental_ssn):
+        customer_list = self.get_customer_list()
+        for customer in customer_list:
+            if customer.get_soc_sec_num() == int(rental_ssn):
+                return customer
+
     def __str__(self):
         string = "{:<30}{:<25}{:<15}{:<15}{:<15}{:<30}{:<20}{:<30}\n".format("Name:", "Social Security Number:", 
             "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:")

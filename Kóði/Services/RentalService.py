@@ -155,11 +155,11 @@ class RentalService:
                     csv_reader = csv.reader(f)
                     for line in csv_reader:
                             insurance_list.append(line)
-            insurance_cost =  insurance_list[insurance_num - 1][car_class]
-            insurance_name = insurance_list[insurance_num - 1][0]
+            insurance_cost =  insurance_list[int(insurance_num) - 1][car_class]
+            insurance_name = insurance_list[int(insurance_num) - 1][0]
             # insurance_info = [insurance_list[insurance_num - 1][5:]]
 
-            insurance_info = [info for info in insurance_list[insurance_num - 1][5:]]
+            insurance_info = [info for info in insurance_list[int(insurance_num) - 1][5:]]
             return [int(insurance_cost), insurance_name, insurance_info]
         
     def print_order_confirmation(self, customer, car, insurance, payment, start, end, additional_driver):
@@ -230,12 +230,12 @@ class RentalService:
         print("Payment: {}".format(payment))
         confirm = input("Confirm order(Y/N):").upper()
         if confirm == "Y":
-            rental = Rental(order_number, name, ssn, car_plate, insurance_name, start_date, end_date, str(int(total_price_w_vat)), "Open")
+            rental = Rental(order_number, name, ssn, car_plate, insurance, start_date, end_date, str(int(total_price_w_vat)), "Open", payment)
             self.__rental_repo.add_rental(rental)
         clear()
 
-    def search_by_license_plate_rentals(self, license_plate):
-        return self.__rental_repo.search_by_license_plate(license_plate)
+    def search_by_license_plate_rentals(self, license_plate): #Hægt að nota fyrir search criteria 2
+        return self.__rental_repo.search_by_license_plate_rentals(license_plate)
 
     def open_rentals(self, rental_list):
         open_rentals = []
@@ -243,6 +243,13 @@ class RentalService:
             if rental.get_status() == "Open":
                 open_rentals.append(rental)
         return open_rentals
+
+    def print_open_rentals(self, open_rentals, search_criteria):
+        print("{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}{:<5}".format("Order Number", "Name", "SSN", "License Plate", "Insurance" , "Start Date", "End Date", "Total Price", "Status"))
+        for rental in open_rentals:
+            print(rental)
+        if search_criteria == "1":
+            return open_rentals[0]
 
     def fuel_status(self, car):
         tank_size = car.get_tank_size()
@@ -253,5 +260,111 @@ class RentalService:
             else:
                 _ = input("Invalid input.\nPress Enter to continue...")
         num = int(fuel_level[-1])
-        fuel_price = (((9 - num) / 8) * tank_size) * 250
-        return fuel_price
+        fuel_price = (((8 - num) / 8) * tank_size) * 250
+        clear()
+        return int(fuel_price), fuel_level
+
+    def damage_check(self):
+        while True:
+            damage = input("Car damaged(Y/N): ").upper()
+            if damage == "Y":
+                print("Customer needs to fill out form AZ-190-TTS.")
+                _ = input("Press Enter to continue...")
+                return True
+            elif damage == "N":
+                _ = input("Car in perfect shape.\nPress Enter to continue...")
+                return False
+            else:
+                _ = input("Invalid input.\Press Enter to continue...")
+
+    def change_payment(self, payment):
+        change = input("Change payment(Y/N): ").upper()
+        if change == "Y":
+            print("Payment methods:")
+            print("\t1. Cash.")
+            print("\t2. Credit Card")
+            print("\t3. Debit Card.")
+            choice = input("Preferred payment method: ")
+            clear()
+            if choice == "1":
+                payment = "Cash"
+            elif choice == "2":
+                payment = "Credit Card"
+            elif choice == "3":
+                payment = "Debit Card"
+        return payment
+
+    def finish_order(self, rental, car, customer, fuel, damage):
+        car_string = "{} {} ({})".format(car.get_make(), car.get_model(), car.get_license_plate())
+
+        today = datetime.today()
+        now = datetime(today.year, today.month, today.day)
+        start_date= "{}/{}/{}".format(str(rental.get_start_date().day), str(rental.get_start_date().month), str(rental.get_start_date().year))
+        end_date = "{}/{}/{}".format(str(now.day), str(now.month), str(now.year))
+        delta = now - rental.get_start_date()
+        days = int(delta.days)
+
+        car_price = car.get_price() * days
+        car_price_with_vat = int(car_price * 1.24)
+
+        insurance_list = self.get_insurance_info(car.get_car_class(), rental.get_insurance())
+        insurance_cost_per_day = insurance_list[0]
+        insurance_cost = insurance_cost_per_day * days
+        insurance_cost_w_vat = int(insurance_cost * 1.24)
+        insurance_name = insurance_list[1]
+        insurance_info = insurance_list[2]
+
+        fuel_price = fuel[0]
+        fuel_price_with_vat = int(fuel_price * 1.24)
+
+        total_price = car_price + insurance_cost + fuel_price
+        total_price_with_vat = car_price_with_vat + insurance_cost_w_vat + fuel_price_with_vat
+        vat = total_price_with_vat - total_price
+
+        payment = rental.get_payment()
+        while True:
+            print("{:<165}".format(rental.get_order_num()))
+            print("{:<165}{:<20}".format(customer.get_name(), "HSST Rental Company"))
+            print("{:<165}{:<20}".format(customer.get_soc_sec_num(), "SSN: 040499-2059"))
+            print("{:<165}{:<20}".format(customer.get_home_address(), "Hvergiland 88"))
+            print("{:<165}{:<20}".format(customer.get_email(), "hsst@hsst.is"))
+            print("{:<165}{:<20}".format(customer.get_phone_num(), "Phone: 642-1000"))
+            print("\n\n")
+            print("{:<20}{:<55}{:<20}{:<20}{:<20}{:<30}{:<20}".format("Item", "Description", "Start Date", "Return Date", "Price per day",  "Total Price no VAT", "Total Price with VAT"))
+            print("{:<20}{:<55}{:<20}{:<20}{:<20}{:<30}{:<20}".format("Car Rental", car_string, start_date, end_date, str(car.get_price()) + " kr", str(car_price) + " kr", str(car_price_with_vat) + " kr"))
+            print("{:<20}{:<55}{:<20}{:<20}{:<20}{:<30}{:<20}".format("Insurance", insurance_name, "", "", str(insurance_cost_per_day) + " kr", str(insurance_cost) + " kr", str(insurance_cost_w_vat) + " kr"))
+            for info in insurance_info:
+                    print("{:<20}-{:<45}".format("", info))
+            print("\n")
+
+            print("{:<20}{:<55}{:<20}{:<20}{:<20}{:<30}{:<20}".format("Fuel Cost", "Fuel Level: " + fuel[1], "", "", "", str(fuel_price) + " kr", str(fuel_price_with_vat) + " kr"))
+            if damage == True:
+                print("{:<20}{:<55}".format("Damage", "AZ-190-TTS Report sent to insurance department"))
+            print("\n\n")
+            print("{:.<100}{:.>85}".format("Total Price no VAT ", str(total_price) + " kr"))
+            print("{:.<100}{:.>85}".format("VAT ", str(vat) + " kr"))
+            print("{:.<100}{:.>85}".format("Total Price with VAT ", str(total_price_with_vat) + " kr"))
+            print("\n\n")
+            print("Payment: {}\n\n".format(payment))
+            print("1. Confirm order")
+            print("2. Change payment method")
+            print("3. Back to main menu")
+            choice = input("Input choice here: ")
+            if choice == "1":
+                pass
+                # confirm order
+            elif choice == "2":
+                payment = self.change_payment(payment)
+                clear()
+            elif choice == "3":
+                pass
+            else:
+                _ = input("Invalid input.\nPress Enter to continue...")
+
+
+
+
+
+
+    def get_open_rental_for_car(self, car):
+        return self.__rental_repo.get_open_rental_for_car(car)

@@ -88,3 +88,9 @@ class CustomerService:
                     break
         additional_driver = self.get_additional_driver()
         return customer, additional_driver
+
+    def search_by_soc_sec_num(self, ssn):
+        return self.__customer_repo.search_by_ssn(ssn)
+
+    def get_customer_for_rental(self, rental_ssn):
+        return self.__customer_repo.get_customer_for_rental(rental_ssn)

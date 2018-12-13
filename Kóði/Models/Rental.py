@@ -1,15 +1,17 @@
+from datetime import datetime
 class Rental:
     def __init__(self, order_num, name, soc_sec_num, license_plate, insurance, 
-        start_date, end_date, total_price, status):
+        start_date, end_date, total_price, status, payment):
         self.__order_num = order_num
         self.__name = name
         self.__soc_sec_num = soc_sec_num
         self.__license_plate = license_plate
         self.__insurance = insurance
-        self.__start_date = start_date
+        self.__start_date = datetime(int(start_date[6:]), int(start_date[3:5]), int(start_date[0:2])) 
         self.__end_date = end_date
         self.__total_price = total_price
         self.__status = status
+        self.__payment = payment
 
     def get_order_num(self):
         return self.__order_num
@@ -37,6 +39,9 @@ class Rental:
 
     def get_status(self):
         return self.__status
+    
+    def get_payment(self):
+        return self.__payment
 
 
 
