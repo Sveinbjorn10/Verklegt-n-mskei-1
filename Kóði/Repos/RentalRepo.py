@@ -15,7 +15,8 @@ class RentalRepo:
             start_date = rental.get_start_date()
             end_date = rental.get_end_date()
             total_price = rental.get_total_price()
-            rental_file.write("{},{},{},{},{},{},{},{}\n".format(order_num, name, ssn, license_plate, insurance, start_date, end_date, total_price))
+            finished = rental.get_finished()
+            rental_file.write("{},{},{},{},{},{},{},{},{}\n".format(order_num, name, ssn, license_plate, insurance, start_date, end_date, total_price, finished))
 
     def get_rental_list(self):
         if self.__rentals == []:
@@ -30,8 +31,8 @@ class RentalRepo:
                     start_date = line[5]
                     end_date = line[6]
                     total_price = line[7]
-                    new_rental = Rental(order_num, name, soc_sec_num, license_plate, insurance, start_date, end_date, 
-                        total_price)
+                    finished = line[8]
+                    new_rental = Rental(order_num, name, soc_sec_num, license_plate, insurance, start_date, end_date, total_price, finished)
                     self.__rentals.append(new_rental)    
         return self.__rentals
     
@@ -55,7 +56,7 @@ class RentalRepo:
         return_list = []
         all_rentals = self.get_rental_list()
         for rental in all_rentals:
-            if rental[3] == license_plate:
+            if rental.get_license_plate() == license_plate:
                 return_list.append(rental)
         return return_list
 
