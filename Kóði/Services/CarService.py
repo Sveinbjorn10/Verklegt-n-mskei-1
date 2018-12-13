@@ -13,6 +13,16 @@ class CarService:
 
     def search_by_license_plate(self):
         return self.__car_repo.search_by_license_plate()
+    
+    def search_by_class(self):
+        list_of_class_cars = self.__car_repo.search_by_class()
+        for car in list_of_class_cars:
+            print(car)
+    
+    def search_by_model(self):
+        list_of_model_cars = self.__car_repo.search_by_model()
+        for car in list_of_model_cars:
+            print(car)
 
     def print_time_period(self, start, end):
         start_date = "{}/{}/{}".format(start.day, start.month, start.year)

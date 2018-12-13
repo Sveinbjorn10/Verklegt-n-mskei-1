@@ -1,11 +1,9 @@
 from Services.CarService import CarService
 from Services.CustomerService import CustomerService
 from Services.RentalService import RentalService
-from Models.Car import Car
 from datetime import datetime
 import os
 
-os.system('mode con: cols=190 lines=40')
 clear = lambda: os.system('cls')
 
 class Employee:
@@ -29,7 +27,7 @@ class Employee:
             print("\t7. Rental database")
             print("\t8. Exit")
             action = input("Input choice here: ")
-            clear()
+
             if action == "1":
                 clear()
                 start_date, return_date = self.__rental_service.pick_date()
@@ -130,9 +128,16 @@ class Employee:
                 if choice == 2:
                     clear()
                     self.__car_service.print_search_options()
-                    search_critera = input("Input Search Criteria")
-                    if search_critera = "1":
-                        license_plate
+                    search_critera = input("Input Search Criteria: ")
+                    if search_critera == "1":
+                        self.__car_service.search_by_license_plate()
+                        _ = input("Press Enter to continue...")
+                    if search_critera == "2":
+                        self.__car_service.search_by_class()
+                        _ = input("Press Enter to continue...")
+                    if search_critera == "3":
+                        self.__car_service.search_by_model()
+                        _ = input("Press Enter to continue...")
                 if choice == 3:
                     clear()
                     self.__car_service.car_info()
