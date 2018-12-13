@@ -105,14 +105,9 @@ class Employee:
                 
                 if choice == 2:
                     clear()
-                    self.__customer_service.print_search_options()
-                    search_critera = input("Input Search Criteria: ")
-                    if search_critera == "1":
-                        self.__customer_service.search_by_ssn()
-                        _ = input("Press Enter to continue...")
-                    if search_critera == "2":
-                        self.__car_service.search_by_model()
-                        _ = input("Press Enter to continue...")
+                    ssn = input("Input SSN to Search: ")
+                    self.__customer_service.search_by_ssn(ssn)
+                    _ = input("Press Enter to continue...")
 
                 if choice == 3:
                     self.__customer_service.customer_info()

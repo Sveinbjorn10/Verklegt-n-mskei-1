@@ -38,14 +38,6 @@ class CustomerRepo:
                         driv_license, card_num)
                     self.__customers.append(new_customer)    
         return self.__customers
-
-    def search_by_name(self, name):
-        return_list = []
-        all_customers = self.get_customer_list()
-        for customer in all_customers:
-            if customer.get_name == name:
-                return_list.append(customer)
-        return return_list
     
     def search_by_ssn(self, soc_sec_num):
         all_customers = self.get_customer_list()
