@@ -57,6 +57,6 @@ class Customer:
         self.__card_num = card_num
     
     def __str__(self):
-        return "{:<30}{:<25}{:<15}{:<15}{:<15}{:<30}{:<20}{:<30}".format(self.__name, self.__soc_sec_num, 
+        return "{:<30}{:<25}{:<20}{:<15}{:<15}{:<30}{:<20}{:<30}".format(self.__name, self.__soc_sec_num, 
             self.__home_address, self.__local_address, self.__phone_num, self.__email, 
             self.__driv_license, self.__card_num)

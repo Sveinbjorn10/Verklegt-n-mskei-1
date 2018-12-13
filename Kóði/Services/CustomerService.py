@@ -41,7 +41,7 @@ class CustomerService:
         else:
             return False
 
-    def customer_info(self):        
+    def customer_info(self):
         while True:
             clear()
             while True:
@@ -92,12 +92,20 @@ class CustomerService:
     def print_customer_database_menu(self):
         print("\t1. View Customer Database")
         print("\t2. Add Customer")
-        print("\t3. Edit Customer")
-        print("\t4. Delete Customer")
-        print("\t5. Return to Main Menu")
+        print("\t3. Add Customer")
+        print("\t4. Edit Customer")
+        print("\t5. Delete Customer")
+        print("\t6. Return to Main Menu")
 
     def change_customer(self, soc_sec_num):
         return self.__customer_repo.change_customer(soc_sec_num)
     
     def delete_customer(self, soc_sec_num):
         return self.__customer_repo.delete_customer(soc_sec_num)
+
+    def print_search_options(self):
+        print("\t1. Search by SSN")
+        print("\t2. Return to Main Menu")
+
+    def search_by_name(self, name):
+        return self.__customer_repo.search_by_name(name)

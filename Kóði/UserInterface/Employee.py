@@ -97,19 +97,31 @@ class Employee:
                 clear()
                 self.__customer_service.print_customer_database_menu()
                 choice = int(input("Input Choice Here: "))
-                while (choice < 1) or (choice > 5):
+                while (choice < 1) or (choice > 6):
                     print("Incorrect Input")
                     choice = input("Input Choice Here: ")
                 if choice == 1:
                     clear()
                     self.__customer_service.print_customer_database()
                     _ = input("Press Enter To Return To Main Menu...")
+                
                 if choice == 2:
-                    self.__customer_service.customer_info()
+                    clear()
+                    self.__customer_service.print_search_options()
+                    search_critera = input("Input Search Criteria: ")
+                    if search_critera == "1":
+                        self.__customer_service.search_by_ssn()
+                        _ = input("Press Enter to continue...")
+                    if search_critera == "2":
+                        self.__car_service.search_by_model()
+                        _ = input("Press Enter to continue...")
+
                 if choice == 3:
+                    self.__customer_service.customer_info()
+                if choice == 4:
                     ssn = input("Input SSN For Customer To Update: ")
                     self.__customer_service.change_customer(ssn)
-                if choice == 4:
+                if choice == 5:
                     ssn = input("Input SSN For Customer To Delete: ")
                     self.__customer_service.delete_customer(ssn)
                 else:
@@ -131,7 +143,6 @@ class Employee:
                     search_critera = input("Input Search Criteria: ")
                     if search_critera == "1":
                         self.__car_service.search_by_license_plate()
-                        _ = input("Press Enter to continue...")
                     if search_critera == "2":
                         self.__car_service.search_by_class()
                         _ = input("Press Enter to continue...")
