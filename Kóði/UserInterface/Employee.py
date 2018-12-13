@@ -67,16 +67,36 @@ class Employee:
                 self.__car_service.get_available_cars_database(self.__car_service.get_available_cars())
             if action == "5":
                 clear()
-                self.__customer_service.print_customer_database()
-            if action == "6":
-                clear()
-                print(self.__car_service.print_car_database_menu())
+                self.__customer_service.print_customer_database_menu()
                 choice = int(input("Input Choice Here: "))
                 while (choice < 1) or (choice > 5):
                     print("Incorrect Input")
                     choice = input("Input Choice Here: ")
                 if choice == 1:
+                    clear()
+                    self.__customer_service.print_customer_database()
+                    _ = input("Press Enter To Return To Main Menu...")
+                if choice == 2:
+                    self.__customer_service.customer_info()
+                if choice == 3:
+                    ssn = input("Input SSN For Customer To Update: ")
+                    self.__customer_service.change_customer(ssn)
+                if choice == 4:
+                    ssn = input("Input SSN For Customer To Delete: ")
+                    self.__customer_service.delete_customer(ssn)
+                else:
+                    clear()
+            if action == "6":
+                clear()
+                self.__car_service.print_car_database_menu()
+                choice = int(input("Input Choice Here: "))
+                while (choice < 1) or (choice > 5):
+                    print("Incorrect Input")
+                    choice = input("Input Choice Here: ")
+                if choice == 1:
+                    clear()
                     self.__car_service.print_car_database()
+                    _ = input("Press Enter To Return To Main Menu...")
                 if choice == 2:
                     self.__car_service.car_info()
                 if choice == 3:
@@ -90,3 +110,5 @@ class Employee:
             if action == "7":
                 clear()
                 self.__rental_service.print_rental_database()
+                _ = input("Press Enter To Return To Main Menu...")
+                clear()
