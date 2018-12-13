@@ -43,7 +43,7 @@ class CustomerRepo:
         return_list = []
         all_customers = self.get_customer_list()
         for customer in all_customers:
-            if customer[0] == name:
+            if customer.get_name == name:
                 return_list.append(customer)
         return return_list
     
@@ -67,8 +67,8 @@ class CustomerRepo:
     def change_customer(self, soc_sec_num):
         all_customers = self.get_customer_list()
         for customer in all_customers:
-            if customer[1]  == soc_sec_num:
-                edit_customer = customer[1]
+            if customer.get_soc_sec_num  == soc_sec_num:
+                edit_customer = customer
                 print(edit_customer)
                 print("1. Edit Name\n2. Edit Home Address\n3. Edit Local Address\n"
                     "4. Edit Phone Number\n5. Edit Email\n6. Edit Driver's License\n"
@@ -126,7 +126,7 @@ class CustomerRepo:
                 return customer
 
     def __str__(self):
-        string = "{:<30}{:<25}{:<15}{:<15}{:<15}{:<30}{:<20}{:<30}\n{}".format("Name:", "Social Security Number:", 
+        string = "{:<30}{:<25}{:<20}{:<15}{:<15}{:<30}{:<20}{:<30}\n{}\n".format("Name:", "SSN:", 
             "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:",("-"*100))
         customerlist = self.get_customer_list()
         for customer in customerlist:
