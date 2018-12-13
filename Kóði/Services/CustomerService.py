@@ -68,19 +68,23 @@ class CustomerService:
                     break
             else:
                 clear()
-                print("Please fill in the following information:")
-                first_name = input("\tFirst Name: ")
-                last_name = input("\tLast Name: ")
-                name = "{} {}".format(first_name, last_name)
-                home_address = input("\tHome Address: ")
-                local_address = input("\tLocal Address: ")
-                mobile_phone = input("\tMobile Phone: ") 
-                email = input("\tEmail: ") 
-                drivers_license = input("\tDrivers License: ") 
-                card_num = input("\tCredit Card Number: ") 
+                try_again = input("Try another Social Security Number(Y/N)?").upper()
+                if try_again != "Y":
+                    clear()
+                    print("Creating Customer - SSN: {}".format(ssn))
+                    print("Please fill in the following information:")
+                    first_name = input("\tFirst Name: ")
+                    last_name = input("\tLast Name: ")
+                    name = "{} {}".format(first_name, last_name)
+                    home_address = input("\tHome Address: ")
+                    local_address = input("\tLocal Address: ")
+                    mobile_phone = input("\tMobile Phone: ") 
+                    email = input("\tEmail: ") 
+                    drivers_license = input("\tDrivers License: ") 
+                    card_num = input("\tCredit Card Number: ") 
 
-                customer = Customer(name, ssn, home_address, local_address, mobile_phone, email, drivers_license, card_num)
-                self.__customer_repo.add_customer(customer)
-                break
+                    customer = Customer(name, ssn, home_address, local_address, mobile_phone, email, drivers_license, card_num)
+                    self.__customer_repo.add_customer(customer)
+                    break
         additional_driver = self.get_additional_driver()
         return customer, additional_driver
