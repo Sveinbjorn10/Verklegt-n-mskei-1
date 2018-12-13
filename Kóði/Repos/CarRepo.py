@@ -84,7 +84,11 @@ class CarRepo:
         model = input("Enter Car Model: ")
         all_cars = self.get_cars()
         for car in all_cars:
+<<<<<<< HEAD
             if car.get_model() == model:
+=======
+            if car.get_model == model:
+>>>>>>> b5cfc52353fb6cbc710bcfceb0e8a21013068bb1
                 return_list.append(car)
         return return_list
 
