@@ -52,9 +52,8 @@ class CustomerRepo:
         for customer in all_customers:
             if customer.get_soc_sec_num() == soc_sec_num:
                 return customer
-            else:
-                _ = input("Customer is not in the database.\nPress Enter to continue...")
-                return None
+        _ = input("Customer is not in the database.\nPress Enter to continue...")
+        return None
 
     def delete_customer(self, soc_sec_num):
         all_customers = self.get_customer_list()

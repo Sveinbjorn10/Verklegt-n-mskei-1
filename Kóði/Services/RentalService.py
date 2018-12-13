@@ -48,14 +48,27 @@ class RentalService:
     def print_time_period(self, start, end):
         start_date = "{}/{}/{}".format(start.day, start.month, start.year)
         end_date = "{}/{}/{}".format(end.day, end.month, end.year)
-        print("({}) ---> ({})".format(start_date, end_date))
+        print("({}) ---> ({})".format(start_date, end_date))        
 
-    def pick_search_criteria(self, start, end):
+    def pick_search_criteria_rent(self, start, end):
         while True:
             self.print_time_period(start, end)
             print("\t1. Car ID.")
             print("\t2. Search for car.")
             print("\t3. Return to menu.")
+            choice = input("Input choice here: ")
+            if choice in ["1", "2", "3"]:
+                clear()
+                return choice
+            else:
+                _ = input("Invalid input.\nPress Enter to continue...")
+                clear()
+        
+    def pick_search_criteria_return(self):
+        while True:
+            print("1. Car ID.")
+            print("2. Customer SSN.")
+            print("3. Return to menu.")
             choice = input("Input choice here: ")
             if choice in ["1", "2", "3"]:
                 clear()
@@ -143,7 +156,6 @@ class RentalService:
                     for line in csv_reader:
                             insurance_list.append(line)
             insurance_cost =  insurance_list[insurance_num - 1][car_class]
-            print(insurance_cost)
             insurance_name = insurance_list[insurance_num - 1][0]
             # insurance_info = [insurance_list[insurance_num - 1][5:]]
 
@@ -218,6 +230,28 @@ class RentalService:
         print("Payment: {}".format(payment))
         confirm = input("Confirm order(Y/N):").upper()
         if confirm == "Y":
-            rental = Rental(order_number, name, ssn, car_plate, insurance_name, start_date, end_date, str(int(total_price_w_vat)))
+            rental = Rental(order_number, name, ssn, car_plate, insurance_name, start_date, end_date, str(int(total_price_w_vat)), "Open")
             self.__rental_repo.add_rental(rental)
         clear()
+
+    def search_by_license_plate_rentals(self, license_plate):
+        return self.__rental_repo.search_by_license_plate(license_plate)
+
+    def open_rentals(self, rental_list):
+        open_rentals = []
+        for rental in rental_list:
+            if rental.get_status() == "Open":
+                open_rentals.append(rental)
+        return open_rentals
+
+    def fuel_status(self, car):
+        tank_size = car.get_tank_size()
+        while True:
+            fuel_level = input("Fuel Status (G1 - G8): ").upper()
+            if (fuel_level[0] == "G") and (fuel_level[1:] in ["1", "2", "3", "4", "5", "6", "7", "8"]):
+                break
+            else:
+                _ = input("Invalid input.\nPress Enter to continue...")
+        num = int(fuel_level[-1])
+        fuel_price = (((9 - num) / 8) * tank_size) * 250
+        return fuel_price

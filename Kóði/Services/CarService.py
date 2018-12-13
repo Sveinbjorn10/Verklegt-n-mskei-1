@@ -142,3 +142,17 @@ class CarService:
 
     def delete_car(self, car_id):
         return self.__car_repo.delete_car(car_id)
+
+    def print_price_list(self):
+        print("{:<33s}{:<33s}{:<21}{:<21}{:<21}".format("Car kind", "Car type", "Price per day", "HEllo", "Sælir"))
+        print("-" * 130)
+        print("{:<33s}{:<33s}{:<21}".format("Small Cars", "VW Golf", "11.260"))
+        print("{:<33s}{:<33s}{:<21}\n".format("", "Hyundai i10", "9.265"))
+        print("{:<33s}{:<33s}{:<21}".format("Family Cars", "Toyota Corolla", "13.775"))
+        print("{:<33s}{:<33s}{:<21}\n".format("", "Skoda Octavia", "15.675"))
+        print("{:<33s}{:<33s}{:<21}".format("Suvs", "Audi Q5", "27.885"))
+        print("{:<33s}{:<33s}{:<21}".format("", "Toyota Landcruiser", "29.355"))
+        print("{:<33s}{:<33s}{:<21}\n".format("", "Toyota Rav4", "20.000"))
+        print("{:<33s}{:<33s}{:<21}".format("Vans", "Ford Galaxy", "18.480"))
+        print("{:<33s}{:<33s}{:<21}".format("", "Renault Traffic3", "27.165"))
+        print("{:<33s}{:<33s}{:<21}\n".format("", "VW Caravelle 4wd", "28.595"))

@@ -3,7 +3,7 @@ class Customer:
     def __init__(self, name, soc_sec_num, home_address, local_address, 
         phone_num, email, driv_license, card_num):
         self.__name = name
-        self.__soc_sec_num = soc_sec_num
+        self.__soc_sec_num = int(soc_sec_num)
         self.__home_address = home_address
         self.__local_address = local_address
         self.__phone_num = phone_num
