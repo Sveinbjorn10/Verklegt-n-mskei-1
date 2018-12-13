@@ -35,7 +35,7 @@ class Employee:
                     clear()
                     search_critera = self.__rental_service.pick_search_criteria_rent(start_date, return_date)
                     if search_critera == "1":
-                            car = self.__car_service.search_by_license_plate()
+                            car = self.__car_service.search_by_car_id()
                             if car != None:
                                     break
                     
@@ -67,15 +67,26 @@ class Employee:
                     search_critera = self.__rental_service.pick_search_criteria_return()
                     clear()
                     if search_critera == "1":
-                        car = self.__car_service.search_by_license_plate()
+                        car = self.__car_service.search_by_car_id()
                         clear()
                         if car != None:
+<<<<<<< HEAD
+                            rentals_with_car_id = self.__rental_service.search_by_car_id_rentals(car.get_car_id())
+                            open_rentals = self.__rental_service.open_rentals(rentals_with_car_id)
+                            print("{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}{:<5}".format("Order Number", "Name", "SSN", "Car ID", "Insurance" , "Start Date", "End Date", "Total Price", "Status"))
+                            print(open_rentals[0])
+                            print()
+                            fuel_price = self.__rental_service.fuel_status(car.get_tank_size())
+                            
+
+=======
                             rental = self.__rental_service.get_open_rental_for_car(car)
                             customer = self.__customer_service.get_customer_for_rental(rental.get_soc_sec_num())
                             fuel_price, fuel_level = self.__rental_service.fuel_status(car)
                             damage = self.__rental_service.damage_check()
                             clear()
                             self.__rental_service.finish_order(rental, car, customer, [fuel_price, fuel_level], damage)
+>>>>>>> 47054d774b6955f197f8ac0ffd4a2ce39037367c
                     if search_critera == "2":
                         pass
                     if search_critera == "3":
@@ -135,7 +146,12 @@ class Employee:
                     self.__car_service.print_search_options()
                     search_critera = input("Input Search Criteria: ")
                     if search_critera == "1":
+<<<<<<< HEAD
+                        self.__car_service.search_by_car_id()
+                        _ = input("Press Enter to continue...")
+=======
                         self.__car_service.search_by_license_plate()
+>>>>>>> 47054d774b6955f197f8ac0ffd4a2ce39037367c
                     if search_critera == "2":
                         self.__car_service.search_by_class()
                         _ = input("Press Enter to continue...")

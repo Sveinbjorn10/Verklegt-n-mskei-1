@@ -98,7 +98,7 @@ class RentalService:
         print("Available cars")
         print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ","Nr.", "License", "Make", "Model", "Manuf. Year", "Seats", "Doors", "Color", "Transmission", "Fuel", "Price per day"))
         for index, car in enumerate(my_list):
-            print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", (index + 1), car.get_license_plate(), car.get_make(), car.get_model(), car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), car.get_transmission(), car.get_fuel_type(), car.get_price()))
+            print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", (index + 1), car.get_car_id(), car.get_make(), car.get_model(), car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), car.get_transmission(), car.get_fuel_type(), car.get_price()))
 
     def insurance(self):
         while True:
@@ -182,7 +182,7 @@ class RentalService:
 
         car_make = car.get_make()
         car_model = car.get_model()
-        car_plate = car.get_license_plate()
+        car_plate = car.get_car_id()
         car_price_per_day = car.get_price()
 
         car_price = car_price_per_day * days
@@ -234,8 +234,13 @@ class RentalService:
             self.__rental_repo.add_rental(rental)
         clear()
 
+<<<<<<< HEAD
+    def search_by_car_id_rentals(self, car_id):
+        return self.__rental_repo.search_by_car_id(car_id)
+=======
     def search_by_license_plate_rentals(self, license_plate): #Hægt að nota fyrir search criteria 2
         return self.__rental_repo.search_by_license_plate_rentals(license_plate)
+>>>>>>> 47054d774b6955f197f8ac0ffd4a2ce39037367c
 
     def open_rentals(self, rental_list):
         open_rentals = []

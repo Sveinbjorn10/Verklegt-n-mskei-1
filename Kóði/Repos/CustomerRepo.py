@@ -11,14 +11,14 @@ class CustomerRepo:
         # first add to file then to private list
         with open("./Data/customers.csv", "a+", encoding = "utf-8") as customer_file:
             name = customer.get_name()
-            soc_sec_num = customer.get_soc_sec_num()
+            ssn = customer.get_ssn()
             home_address = customer.get_home_address()
             local_address = customer.get_local_address()
             phone_num = customer.get_phone_num()
             email = customer.get_email()
             driv_license = customer.get_driv_license()
             card_num = customer.get_card_num()
-            customer_file.write("{},{},{},{},{},{},{},{}\n".format(name, soc_sec_num, 
+            customer_file.write("{},{},{},{},{},{},{},{}\n".format(name, ssn, 
                 home_address, local_address, phone_num, email, driv_license, card_num))
 
     def get_customer_list(self):
@@ -27,40 +27,45 @@ class CustomerRepo:
                 customer_reader = csv.reader(customer_file)
                 for line in customer_reader:
                     name = line[0]
-                    soc_sec_num = line[1]
+                    ssn = line[1]
                     home_address = line[2]
                     local_address = line[3]
                     phone_num = line[4]
                     email = line[5]
                     driv_license = line[6]
                     card_num = line[7]
-                    new_customer = Customer(name, soc_sec_num, home_address, local_address, phone_num, email, 
+                    new_customer = Customer(name, ssn, home_address, local_address, phone_num, email, 
                         driv_license, card_num)
                     self.__customers.append(new_customer)    
         return self.__customers
     
-    def search_by_ssn(self, soc_sec_num):
+    def search_by_ssn(self, ssn):
         all_customers = self.get_customer_list()
         for customer in all_customers:
-            if customer.get_soc_sec_num() == soc_sec_num:
+            if customer.get_ssn() == ssn:
                 return customer
         _ = input("Customer is not in the database.\nPress Enter to continue...")
         return None
 
-    def delete_customer(self, soc_sec_num):
+    def delete_customer(self, ssn):
         all_customers = self.get_customer_list()
         for index, customer in enumerate(all_customers):
-            if customer[1] == soc_sec_num:
+            if customer[1] == ssn:
                 all_customers.pop(index)
         with open("./Data/customers.csv", "w") as f:
             for customer in all_customers:
                 f.write(customer)
 
-    def change_customer(self, soc_sec_num):
+    def change_customer(self, ssn):
         all_customers = self.get_customer_list()
         for customer in all_customers:
+<<<<<<< HEAD
+            if customer[1]  == ssn:
+                edit_customer = customer[1]
+=======
             if customer.get_soc_sec_num  == soc_sec_num:
                 edit_customer = customer
+>>>>>>> 47054d774b6955f197f8ac0ffd4a2ce39037367c
                 print(edit_customer)
                 print("1. Edit Name\n2. Edit Home Address\n3. Edit Local Address\n"
                     "4. Edit Phone Number\n5. Edit Email\n6. Edit Driver's License\n"
