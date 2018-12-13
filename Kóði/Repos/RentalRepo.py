@@ -61,8 +61,8 @@ class RentalRepo:
         return return_list
 
     def __str__(self):
-        string = "{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}\n".format("Order Number:", "Name:", 
-            "SSN:", "License Plate:", "Insurance:" , "Start Date:", "End Date:", "Total Price:")
+        string = "{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}\n{}\n".format("Order Number:", "Name:", 
+            "SSN:", "License Plate:", "Insurance:" , "Start Date:", "End Date:", "Total Price:", "-"*130)
         rentallist = self.get_rental_list()
         for rental in rentallist:
             string += str(rental) + "\n"
