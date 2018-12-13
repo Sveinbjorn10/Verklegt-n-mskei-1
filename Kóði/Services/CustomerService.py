@@ -47,7 +47,13 @@ class CustomerService:
             while True:
                 print("Customer information:")
                 ssn = input("\tEnter Social Security Number: ")
-                if len(ssn) == 10:
+
+                try:
+                    ssn = int(ssn)
+                except:
+                    pass
+                
+                if (len(str(ssn)) == 10) and (type(ssn) == int):
                     break
                 else:
                     _ = input("Please enter a valid Social Security Number\nPress Enter to continue...")
