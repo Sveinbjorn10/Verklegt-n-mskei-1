@@ -120,7 +120,7 @@ class Employee:
                 clear()
                 self.__car_service.print_car_database_menu()
                 choice = int(input("Input Choice Here: "))
-                while (choice < 1) or (choice > 5):
+                while (choice < 1) or (choice > 6):
                     print("Incorrect Input")
                     choice = input("Input Choice Here: ")
                 if choice == 1:
@@ -128,16 +128,22 @@ class Employee:
                     self.__car_service.print_car_database()
                     _ = input("Press Enter To Return To Main Menu...")
                 if choice == 2:
-                    self.__car_service.car_info()
+                    clear()
+                    self.__car_service.print_search_options()
+                    search_critera = input("Input Search Criteria")
+                    if search_critera = "1":
+                        license_plate
                 if choice == 3:
+                    clear()
+                    self.__car_service.car_info()
+                if choice == 4:
                     car_id = input("Input Car License To Update: ")
                     self.__car_service.update_car_info(car_id)
-                if choice == 4:
+                if choice == 5:
                     car_id = input("Input Car License To Delete: ")
                     self.__car_service.delete_car(car_id)
                 else:
                     clear()
-            
             if action == "7":
                 clear()
                 self.__rental_service.print_rental_database()

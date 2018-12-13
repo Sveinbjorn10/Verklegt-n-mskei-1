@@ -106,10 +106,11 @@ class CarService:
 
     def print_car_database_menu(self):
         print("\t1. View Car Database")
-        print("\t2. Add Car")
-        print("\t3. Edit Car")
-        print("\t4. Delete Car")
-        print("\t5. Return to Main Menu")
+        print("\t2. Search Cars")
+        print("\t3. Add Car")
+        print("\t4. Edit Car")
+        print("\t5. Delete Car")
+        print("\t6. Return to Main Menu")
 
     def car_info(self):
         print("New Car")
@@ -156,3 +157,9 @@ class CarService:
         print("{:<33s}{:<33s}{:<21}".format("Suv", "20.000kr", "Audi Q5"))
         print("{:<33s}{:<33s}{:<21}".format("", "", "Toyota Landcruiser"))
         print("{:<33s}{:<33s}{:<21}\n".format("", "", "Toyota Rav4"))
+
+    def print_search_options(self):
+        print("\t1. Search by License Plate")
+        print("\t2. Search by Car Class")
+        print("\t3. Search by Model")
+        print("\t4. Return to Main Menu")
