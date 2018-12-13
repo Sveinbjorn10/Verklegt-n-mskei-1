@@ -35,7 +35,7 @@ class Employee:
                     clear()
                     search_critera = self.__rental_service.pick_search_criteria_rent(start_date, return_date)
                     if search_critera == "1":
-                            car = self.__car_service.search_by_license_plate()
+                            car = self.__car_service.search_by_car_id()
                             if car != None:
                                     break
                     
@@ -67,10 +67,10 @@ class Employee:
                     search_critera = self.__rental_service.pick_search_criteria_return()
                     clear()
                     if search_critera == "1":
-                        car = self.__car_service.search_by_license_plate()
+                        car = self.__car_service.search_by_car_id()
                         clear()
                         if car != None:
-                            rentals_with_car_id = self.__rental_service.search_by_license_plate_rentals(car.get_license_plate())
+                            rentals_with_car_id = self.__rental_service.search_by_car_id_rentals(car.get_car_id())
                             open_rentals = self.__rental_service.open_rentals(rentals_with_car_id)
                             print("{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}{:<5}".format("Order Number", "Name", "SSN", "Car ID", "Insurance" , "Start Date", "End Date", "Total Price", "Status"))
                             print(open_rentals[0])
@@ -130,7 +130,7 @@ class Employee:
                     self.__car_service.print_search_options()
                     search_critera = input("Input Search Criteria: ")
                     if search_critera == "1":
-                        self.__car_service.search_by_license_plate()
+                        self.__car_service.search_by_car_id()
                         _ = input("Press Enter to continue...")
                     if search_critera == "2":
                         self.__car_service.search_by_class()

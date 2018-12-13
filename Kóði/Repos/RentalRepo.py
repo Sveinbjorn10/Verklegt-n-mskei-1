@@ -10,13 +10,13 @@ class RentalRepo:
             order_num = rental.get_order_num()
             name = rental.get_name()
             ssn = rental.get_soc_sec_num()
-            license_plate = rental.get_license_plate()
+            car_id = rental.get_car_id()
             insurance = rental.get_insurance()
             start_date = rental.get_start_date()
             end_date = rental.get_end_date()
             total_price = rental.get_total_price()
             finished = rental.get_finished()
-            rental_file.write("{},{},{},{},{},{},{},{},{}\n".format(order_num, name, ssn, license_plate, insurance, start_date, end_date, total_price, finished))
+            rental_file.write("{},{},{},{},{},{},{},{},{}\n".format(order_num, name, ssn, car_id, insurance, start_date, end_date, total_price, finished))
 
     def get_rental_list(self):
         if self.__rentals == []:
@@ -26,13 +26,13 @@ class RentalRepo:
                     order_num = line[0]
                     name = line[1]
                     soc_sec_num = line[2]
-                    license_plate = line[3]
+                    car_id = line[3]
                     insurance = line[4]
                     start_date = line[5]
                     end_date = line[6]
                     total_price = line[7]
                     finished = line[8]
-                    new_rental = Rental(order_num, name, soc_sec_num, license_plate, insurance, start_date, end_date, total_price, finished)
+                    new_rental = Rental(order_num, name, soc_sec_num, car_id, insurance, start_date, end_date, total_price, finished)
                     self.__rentals.append(new_rental)    
         return self.__rentals
     
@@ -52,17 +52,17 @@ class RentalRepo:
                 return_list.append(rental)
         return return_list
 
-    def search_by_license_plate(self, license_plate):
+    def search_by_car_id(self, car_id):
         return_list = []
         all_rentals = self.get_rental_list()
         for rental in all_rentals:
-            if rental.get_license_plate() == license_plate:
+            if rental.get_car_id() == car_id:
                 return_list.append(rental)
         return return_list
 
     def __str__(self):
         string = "{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}\n{}\n".format("Order Number:", "Name:", 
-            "SSN:", "License Plate:", "Insurance:" , "Start Date:", "End Date:", "Total Price:", "-"*130)
+            "SSN:", "Car ID:", "Insurance:" , "Start Date:", "End Date:", "Total Price:", "-"*130)
         rentallist = self.get_rental_list()
         for rental in rentallist:
             string += str(rental) + "\n"

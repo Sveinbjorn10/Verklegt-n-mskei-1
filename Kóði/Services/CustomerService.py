@@ -25,7 +25,7 @@ class CustomerService:
             additional_driver.append(add_last_name)
             add_ssn = input("\tSocial Security Number: ")
             additional_driver.append(add_ssn)
-            add_drivers_license = input("\tDrivers License: ")
+            add_drivers_license = input("\tDriver's License: ")
             additional_driver.append(add_drivers_license)
         else:
             additional_driver = "Empty"
@@ -80,7 +80,7 @@ class CustomerService:
                     local_address = input("\tLocal Address: ")
                     mobile_phone = input("\tMobile Phone: ") 
                     email = input("\tEmail: ") 
-                    drivers_license = input("\tDrivers License: ") 
+                    drivers_license = input("\tDriver's License: ") 
                     card_num = input("\tCredit Card Number: ") 
 
                     customer = Customer(name, ssn, home_address, local_address, mobile_phone, email, drivers_license, card_num)
@@ -96,8 +96,8 @@ class CustomerService:
         print("\t4. Delete Customer")
         print("\t5. Return to Main Menu")
 
-    def change_customer(self, soc_sec_num):
-        return self.__customer_repo.change_customer(soc_sec_num)
+    def change_customer(self, ssn):
+        return self.__customer_repo.change_customer(ssn)
     
-    def delete_customer(self, soc_sec_num):
-        return self.__customer_repo.delete_customer(soc_sec_num)
+    def delete_customer(self, ssn):
+        return self.__customer_repo.delete_customer(ssn)

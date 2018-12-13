@@ -11,8 +11,8 @@ class CarService:
     def print_car_database(self):
         print(self.__car_repo)
 
-    def search_by_license_plate(self):
-        return self.__car_repo.search_by_license_plate()
+    def search_by_car_id(self):
+        return self.__car_repo.search_by_car_id()
     
     def search_by_class(self):
         list_of_class_cars = self.__car_repo.search_by_class()
@@ -86,7 +86,7 @@ class CarService:
             print("Available cars")
             print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ","Nr.", "License", "Make", "Model", "Manuf. Year", "Seats", "Doors", "Color", "Transmission", "Fuel", "Price per day"))
             for index, car in enumerate(available_cars):
-                print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", (index + 1), car.get_license_plate(), car.get_make(), car.get_model(), car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), car.get_transmission(), car.get_fuel_type(), car.get_price()))
+                print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", (index + 1), car.get_car_id(), car.get_make(), car.get_model(), car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), car.get_transmission(), car.get_fuel_type(), car.get_price()))
             try:
                 car_choice = int(input("Select a car: "))
                 if (car_choice > 0) and (car_choice <= len(available_cars)):
@@ -106,7 +106,7 @@ class CarService:
             "Transmission", "Fuel", "Price per day"))
         for index, car in enumerate(available_cars):
             print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", 
-                (index + 1), car.get_license_plate(), car.get_make(), car.get_model(), 
+                (index + 1), car.get_car_id(), car.get_make(), car.get_model(), 
                 car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), 
                 car.get_transmission(), car.get_fuel_type(), car.get_price()))
         print()
@@ -124,7 +124,7 @@ class CarService:
 
     def car_info(self):
         print("New Car")
-        license_plate = input("\tCar ID: ")
+        car_id = input("\tCar ID: ")
         make = input("\tMake: ")
         model = input("\tModel: ")
         manuf_year = input("\tManufacturing Year: ")
@@ -142,7 +142,7 @@ class CarService:
         total_km = int(input("\tTotal Kilometers: "))
         tank_size = input("\tTank Size: ")
         availability = True
-        new_car = Car(license_plate, make, model, manuf_year, car_class, 
+        new_car = Car(car_id, make, model, manuf_year, car_class, 
             seats, doors, color, weight, engine_size,  
             horse_power, transmission, fuel_type, price, 
             drive, total_km, tank_size, availability)
