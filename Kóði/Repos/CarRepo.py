@@ -45,9 +45,9 @@ class CarRepo:
                     fuel_type = line[9]
                     price = line[10]
                     tank_size = line[11]
-                    availability = "True" #Möguleiki á villum
+                    availability = line[12]
                     new_car = Car(car_id, make, model, manuf_year, car_class, seats, doors, 
-                        color, transmission, fuel_type, price, tank_size, eval(availability))
+                        color, transmission, fuel_type, price, tank_size, availability)
                     self.__cars.append(new_car)    
         return self.__cars
 
@@ -79,19 +79,19 @@ class CarRepo:
     def delete_car(self, car_id):
         all_cars = self.get_cars()
         for index, car in enumerate(all_cars):
-            if car.get_car_id == car_id:
+            if car.get_car_id() == car_id:
                 all_cars.pop(index)
-        with open("./Data/cars.csv", "w") as car_file:
+        with open("./Data/cars.csv", "w", encoding = "utf-8") as car_file:
             car_file.truncate()
-            car_writer = csv.writer(car_file)
-            for row in all_cars:
-                car_writer.writerow(row)
+            for car in all_cars:
+                self.add_car(car)
+        clear()
 
     def get_available_cars(self):
         return_list = []
         all_cars = self.get_cars()
         for car in all_cars:
-            if car.get_availability() == True:
+            if car.get_availability() == "Yes":
                 return_list.append(car)
         return return_list
 
@@ -108,15 +108,24 @@ class CarRepo:
         input("Car not found!\nPress Enter to continue...")
         return None
 
-    def change_car_status(self, car_id):
+    def change_car_status(self, car_id): #Breyta þessu all svakalega
+        update_list = []
         all_cars = self.get_cars()
         for car in all_cars:
-            if car.get_car_id == car_id:
+            if car.get_car_id() == car_id:
                 car_availability = car.get_availability()
-                if car_availability == True:
-                    return car.set_availability(False)
+                if car_availability == "Yes":
+                    car.set_availability("No")
+                    update_list.append(car)
                 else:
-                    return car.set_availability(True)
+                    car.set_availability("Yes")
+                    update_list.append(car)
+            else:
+                update_list.append(car)
+        with open("./Data/cars.csv", "w", encoding = "utf-8") as car_file:
+            car_file.truncate()
+            for car in update_list:
+                self.add_car(car)
 
     def update_car_info(self, driver_license):
         all_cars = self.get_cars()
@@ -171,34 +180,8 @@ class CarRepo:
             string += str(car) + "\n"
         return string
 
-    def get_car_list(self):
-        car_list = []
-        car_class_list = []
-        with open("./data/cars.csv") as cars:
-            csv_reader = csv.reader(cars)
-            for car in csv_reader:
-                car_list.append(car)
-            for line in car_list:
-                car_id = line[0]
-                make = line[1]
-                model = line[2]
-                manuf_year = line[3]
-                car_class = line[4]
-                seats = line[5]
-                doors = line[6]
-                color = line[7]
-                transmission = line[8]
-                fuel_type = line[9]
-                price = line[10]
-                tank_size = line[11]
-                availability = "True"
-                new_car = Car(car_id, make, model, manuf_year, car_class, seats, doors, 
-                        color, transmission, fuel_type, price, tank_size, eval(availability))
-                car_class_list.append(new_car)
-        return car_class_list
-
     def get_car_for_rental(self, rental):
-        car_list = self.get_car_list()
+        car_list = self.get_cars()
         for car in car_list:
             if car.get_car_id() == rental.get_car_id():
                 return car

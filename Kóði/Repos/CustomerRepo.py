@@ -51,11 +51,14 @@ class CustomerRepo:
     def delete_customer(self, ssn):
         all_customers = self.get_customer_list()
         for index, customer in enumerate(all_customers):
-            if customer.get_ssn() == int(ssn):
+            if customer.get_ssn() == ssn:
                 all_customers.pop(index)
-        with open("./Data/customers.csv", "w") as f:
+        with open("./Data/customers.csv", "w", encoding = "utf-8") as customer_file:
+            customer_file.truncate()
             for customer in all_customers:
-                f.write(customer)
+                self.add_customer(customer)
+        clear()
+                
 
     def change_customer(self, ssn):
         all_customers = self.get_customer_list()

@@ -234,6 +234,7 @@ class RentalService:
             else:
                 rental = Rental(order_number, name, ssn, car_plate, insurance, start, end, str(int(total_price_w_vat)), "Open", payment, [additional_driver_name, additional_driver_ssn, additional_driver_driv_license])
                 self.__rental_repo.add_rental(rental)
+        self.__car_repo.change_car_status(car.get_car_id())
         clear()
 
     def search_by_car_id_rentals(self, car_id):
@@ -390,6 +391,7 @@ class RentalService:
             choice = input("Input choice here: ")
             if choice == "1":
                 self.confirm_order(rental, payment, start, now, additional_driver, total_price_with_vat)
+                self.__car_repo.change_car_status(car.get_car_id())
             elif choice == "2":
                 clear()
                 payment = self.change_payment(payment)
