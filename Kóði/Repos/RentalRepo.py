@@ -17,10 +17,6 @@ class RentalRepo:
             end_date = rental.get_end_date()
             total_price = rental.get_total_price()
             status = rental.get_status()
-<<<<<<< HEAD
-            rental_file.write("{},{},{},{},{},{},{},{},{}\n".format(order_num, name, ssn, license_plate, insurance, start_date, end_date, total_price, status))
-
-=======
             payment = rental.get_payment()
             additional_driver = rental.get_additional_driver()
             if additional_driver != []:
@@ -28,7 +24,6 @@ class RentalRepo:
             else:
                 rental_file.write("{},{},{},{},{},{},{},{},{},{},{},{},{}\n".format(order_num, name, ssn, car_id, insurance, start_date, end_date, total_price, status, payment, "Empty", "Empty", "Empty"))
     
->>>>>>> 90781a6bd8d945d979beab3c38c72551e620994a
     def get_rental_list(self):
         if self.__rentals == []:
             with open("./data/rentals.csv", "r", encoding = "utf-8") as rental_file:
@@ -77,17 +72,11 @@ class RentalRepo:
 
     def __str__(self):
         string = "{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}\n{}\n".format("Order Number:", "Name:", 
-<<<<<<< HEAD
-            "SSN:", "License Plate:", "Insurance:" , "Start Date:", "End Date:", "Total Price:", "-"*130)
-=======
             "SSN:", "Car ID:", "Insurance:" , "Start Date:", "End Date:", "Total Price:", "-"*130)
->>>>>>> 90781a6bd8d945d979beab3c38c72551e620994a
         rentallist = self.get_rental_list()
         for rental in rentallist:
             string += str(rental) + "\n"
         return string
-<<<<<<< HEAD
-=======
 
     def get_open_rental_for_car(self, car):
         rental_list = self.get_rental_list()
@@ -102,4 +91,3 @@ class RentalRepo:
         for rental in rental_list:
             self.add_rental(rental)
     
->>>>>>> 90781a6bd8d945d979beab3c38c72551e620994a

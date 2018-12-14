@@ -160,7 +160,6 @@ class CarService:
     def delete_car(self, car_id):
         return self.__car_repo.delete_car(car_id)
 
-<<<<<<< HEAD
     def print_price_options(self):
         print("\t1. Print car prices")
         print("\t2. Print Insurance prices")
@@ -168,9 +167,6 @@ class CarService:
 
 
     def print_car_price_list(self):
-=======
-    def print_price_list(self):
->>>>>>> 90781a6bd8d945d979beab3c38c72551e620994a
         print("{:<33s}{:<33s}{:<21}".format("Car class", "Price per day", "Car make e.g"))
         print("-" * 100)
         print("{:<33s}{:<33s}{:<21}".format("Small Car", "10.000kr", "VW Golf"))
@@ -184,7 +180,6 @@ class CarService:
         print("{:<33s}{:<33s}{:<21}".format("", "", "Toyota Landcruiser"))
         print("{:<33s}{:<33s}{:<21}\n".format("", "", "Toyota Rav4"))
 
-<<<<<<< HEAD
     def print_insurance_price_list(self):
         print("{:<45}{:^25}{:^25}{:^25}".format("Insurance Name:", "Included Insurance", "Insurance Package 1", "Insurance Package 2"))
         print("-" * 140)
@@ -209,10 +204,8 @@ class CarService:
         print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Insurance Package 1", "49.500kr", "49.500kr", "105.000kr", "95.000kr"))
         print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Insurance package 2", "0kr", "0kr", "0kr", "0kr"))
         _ = input()
-=======
     def print_search_options(self):
         print("\t1. Search by Car ID")
         print("\t2. Search by Car Class")
         print("\t3. Search by Model")
         print("\t4. Return to Main Menu")
->>>>>>> 90781a6bd8d945d979beab3c38c72551e620994a
