@@ -191,7 +191,7 @@ class Employee:
                     clear()
                     self.__car_service.print_car_database()
                     _ = input("Press Enter To Return To Main Menu...")
-                if choice == 2:
+                if choice == 2: #Search Car Database
                     clear()
                     self.__car_service.print_search_options()
                     search_criteria = input("Input Search Criteria: ")
@@ -199,10 +199,8 @@ class Employee:
                         self.__car_service.search_by_car_id()
                     if search_criteria == "2":
                         self.__car_service.search_by_class()
-                        _ = input("Press Enter to continue...")
                     if search_criteria == "3":
                         self.__car_service.search_by_model()
-                        _ = input("Press Enter to continue...")
                 if choice == 3:
                     clear()
                     self.__car_service.car_info()
