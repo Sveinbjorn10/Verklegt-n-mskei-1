@@ -71,9 +71,10 @@ class CarRepo:
                 _ = input("Invalid input.\nPress Enter to continue...")
                 clear()
         for car in all_cars:
-            if car.get_car_class() == int(car_class):
+            if car.get_car_class() == car_class:
                 return_list.append(car)
         return return_list
+        
 
     def search_by_model(self):
         return_list = []
@@ -82,7 +83,11 @@ class CarRepo:
         for car in all_cars:
             if car.get_model() == model:
                 return_list.append(car)
-        return return_list
+        if return_list != []:
+            return return_list
+        else:
+            input("Car not found!\nPress Enter to continue...")
+        return "Empty"
 
     def delete_car(self, car_id):
         all_cars = self.get_cars()

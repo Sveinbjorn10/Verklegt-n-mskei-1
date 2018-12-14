@@ -30,9 +30,10 @@ class CarService:
         list_of_model_cars = self.__car_repo.search_by_model()
         string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format("License:", "Make:", 
             "Model:", "Manuf. Year:", "Car Class:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
-        print(string)
-        for car in list_of_model_cars:
-            print(car)
+        if list_of_model_cars != "Empty":
+            print(string)
+            for car in list_of_model_cars:
+                print(car)
 
     def print_time_period(self, start, end):
         start_date = "{}/{}/{}".format(start.day, start.month, start.year)

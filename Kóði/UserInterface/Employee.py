@@ -223,7 +223,6 @@ class Employee:
                         clear()
                     if search_criteria == "3":
                         self.__car_service.search_by_model()
-                        _ = input("Press Enter to continue...")
                         clear()
                     else:
                         clear()
@@ -242,63 +241,43 @@ class Employee:
                     clear()
             if action == "7": #Rental Database
                 clear()
-                while True:
-                    self.__rental_service.print_rental_database_menu()
-                    choice = input("Input Choice Here: ")
+                self.__rental_service.print_rental_database_menu()
+                choice = int(input("Input Choice Here: "))
+                while (choice < 1) or (choice > 3):
+                    print("Incorrect Input")
+                    choice = int(input("Input Choice Here: "))
+                if choice == 1:
                     clear()
-                    if choice in ["1", "2", "3"]:
-                        break
-                    else:
-                        _ = input("Invalid input.\nPress Enter to continue...")
-                        clear()
-
-                if choice == "1":
-                    while True:
-                        self.__rental_service.print_view_rental_database_menu()
-                        search_criteria = input("Input Choice Here: ")
-                        clear()
-                        if search_criteria in ["1", "2", "3"]:
-                            break
-                        else:
-                            _ = input("Invalid input.\nPress Enter to continue...")
-                            clear()
-
-                    if search_criteria == "1":
+                    self.__rental_service.print_view_rental_database_menu()
+                    search_criteria = int(input("Input Choice Here: "))
+                    while (search_criteria < 1) or (search_criteria > 3):
+                        print("Incorrect Input")
+                        search_criteria = int(input("Input Choice Here: "))
+                    if search_criteria == 1:
                         self.__rental_service.print_rental_database()
                         _ = input("Press Enter to continue...")
-                        clear()
-
-                    if search_criteria == "2":
+                    if search_criteria == 2:
                         self.__rental_service.get_open_car_rentals_for_database()
                         _ = input("Press Enter to continue...")
-                        clear()
                     else:
                         clear()
-
-                if choice == "2":
+                if choice == 2:
                     clear()
-                    while True:
-                        self.__rental_service.print_search_rental_database_menu()
-                        search_criteria = input("Input Choice Here: ")
-                        clear()
-                        if search_criteria in ["1", "2", "3"]:
-                            break
-                        else:
-                            _ = input("Invalid input.\nPress Enter to continue...")
-                            clear() 
-                    if search_criteria == "1":
+                    self.__rental_service.print_search_rental_database_menu()
+                    search_criteria = int(input("Input Choice Here: "))
+                    while (search_criteria < 1) or (search_criteria > 3):
+                        print("Incorrect Input")
+                        search_criteria = int(input("Input Choice Here: "))
+                    if search_criteria == 1:
                         ssn = input("Input SSN: ")
-                        clear()
                         self.__rental_service.search_rentals_by_ssn(ssn)
                         _ = input("Press Enter to continue...")
-
-                    if search_criteria == "2":
+                    if search_criteria == 2:
                         car_id = input("Input Car ID: ").upper()
-                        clear()
                         self.__rental_service.search_by_car_id_rentals(car_id)
                         _ = input("Press Enter to continue...")
-                        clear()
                     else:
                         clear()
-                if choice == "3":
+                if choice == 3:
                     clear()
+                clear()
