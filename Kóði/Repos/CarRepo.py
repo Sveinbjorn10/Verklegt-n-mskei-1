@@ -127,16 +127,18 @@ class CarRepo:
             for car in update_list:
                 self.add_car(car)
 
-    def update_car_info(self, driver_license):
+    def update_car_info(self, car_id):
         all_cars = self.get_cars()
         for car in all_cars:
-            if car.get_car_id == driver_license:
+            if car.get_car_id() == car_id:
+                string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}\n".format("License:", "Make:", 
+                    "Model:", "Manuf. Year:", "Car Class:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
                 edit_car = car
-                print(edit_car)
-                print("1. Edit Color\n2. Edit Transmission\n"
-                        "3. Edit Fuel Type\n4. Edit Tank Size\n5. Edit Price\n6. Return to Main Menu")
-                while True:   
-                    choice = input("What do you want to change:")
+                print("{}{}\n".format(string, edit_car))
+                print("1. Edit Color\n2. Edit Transmission\n3. Edit Price\n"
+                    "4. Return to Main Menu")
+                while True:
+                    choice = input("What do you want to change: ")
                     if (choice < 1) or (choice > 6):
                         print("Invalid Input")
                         _ = input("Press Enter to continue...")
@@ -148,28 +150,24 @@ class CarRepo:
                         print("Current Color: {}".format(edit_car.get_color()))
                         new_color = input("New color: ")
                         edit_car.set_color(new_color)
-                        print("New Current Color: {}".format(edit_car.get_color()))
+                        print("Color Changed To: {}".format(edit_car.get_color()))
+                        _ = input("Press Enter To Return To Main Menu...")
+                        break
                     if choice == 2:
                         print("Current Transmission: {}".format(edit_car.get_transmission()))
                         new_transmission = input("New Transmission: ")
                         edit_car.set_transmission(new_transmission)
-                        print("New Current Transmission: {}".format(edit_car.get_transmission()))
+                        print("Transmission Changed To: {}".format(edit_car.get_transmission()))
+                        _ = input("Press Enter To Return To Main Menu...")
+                        break
                     if choice == 3:
-                        print("Current Fuel Type: {}".format(edit_car.get_fuel_type()))
-                        new_fuel_type = input("New Fuel Type: ")
-                        edit_car.set_fuel_type(new_fuel_type)
-                        print("New Current Fuel Type: {}".format(edit_car.get_fuel_type()))
-                    if choice == 4:
-                        print("Current Tank Size: {}".format(edit_car.get_tank_size()))
-                        new_tank_size = input("New Tank Size: ")
-                        edit_car.set_tank_size(new_tank_size)
-                        print("New Current Tank Size: {}".format(edit_car.get_tank_size()))
-                    if choice == 5:
                         print("Current Price: {}".format(edit_car.get_price()))
                         new_price = input("New Price: ")
                         edit_car.set_price(new_price)
-                        print("New Current Price: {}".format(edit_car.get_drive()))
-                    if choice == 6:
+                        print("Price Changed To: {}".format(edit_car.get_drive()))
+                        _ = input("Press Enter To Return To Main Menu...")
+                        break
+                    if choice == 4:
                         break
 
     def __str__(self):

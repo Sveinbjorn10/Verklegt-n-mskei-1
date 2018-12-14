@@ -60,12 +60,6 @@ class Car:
     def set_transmission(self, transmission):
         self.__transmission = transmission
 
-    def set_fuel_type(self, fuel_type):
-        self.__fuel_type = fuel_type
-        
-    def set_tank_size(self, tank_size):
-        self.__tank_size = tank_size
-
     def set_price(self, price):
         self.__price = price
 

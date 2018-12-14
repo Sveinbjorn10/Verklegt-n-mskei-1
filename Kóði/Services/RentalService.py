@@ -238,7 +238,21 @@ class RentalService:
         clear()
 
     def search_by_car_id_rentals(self, car_id):
-        return self.__rental_repo.search_by_car_id(car_id)  #Hægt að nota fyrir search criteria 2
+        car_id_list = self.__rental_repo.search_by_car_id(car_id)  #Hægt að nota fyrir search criteria 2
+        string = "{:<15}{:<30}{:<12}{:<10}{:<12}{:<20}{:<20}{:<15}{:<10}\n{}\n".format("Order Number:", "Name:", 
+            "SSN:", "Car ID:", "Insurance:" , "Start Date:", "End Date:", "Total Price:"," " ,"-"*130)
+        print(string)
+        for car in car_id_list:
+            print(car)
+
+    
+    def search_rentals_by_ssn(self, ssn):
+        customer_ssn_list = self.__rental_repo.search_by_cust_ssn(ssn)
+        string = "{:<15}{:<30}{:<12}{:<10}{:<12}{:<20}{:<20}{:<15}{:<10}\n{}\n".format("Order Number:", "Name:", 
+            "SSN:", "Car ID:", "Insurance:" , "Start Date:", "End Date:", "Total Price:"," " ,"-"*130)
+        print(string)
+        for car in customer_ssn_list:
+            print(car)
 
     def open_rentals(self, rental_list):
         open_rentals = []
@@ -405,6 +419,21 @@ class RentalService:
     def get_open_rental_for_car(self, car):
         return self.__rental_repo.get_open_rental_for_car(car)
 
+    def print_rental_database_menu(self):
+        print("\t1. View Rental Database")
+        print("\t2. Search Rental")
+        print("\t3. Return to Main Menu")
+
+    def print_view_rental_database_menu(self):
+        print("\t1. View Rental Database History")
+        print("\t2. View Open Rentals")
+        print("\t3. Return to Main Menu")
+
+    def print_search_rental_database_menu(self):
+        print("\t1. Search Rental by Customer SSN")
+        print("\t2. Search Rental by Car ID")
+        print("\t3. Return to Main Menu")
+
     def get_open_rental_for_customer(self, customer, search_criteria):
         rental_list = self.__rental_repo.get_rental_list()
         open_rentals = []
@@ -418,3 +447,11 @@ class RentalService:
             _ = input("No rentals found for {}.\nPress Enter to continue...".format(customer.get_name()))
             clear()
             return None
+
+    def get_open_car_rentals_for_database(self):
+        all_open_car_rentals = self.__rental_repo.get_open_rental_for_car("Empty")
+        string = "{:<15}{:<30}{:<12}{:<10}{:<12}{:<20}{:<20}{:<15}{:<10}\n{}\n".format("Order Number:", "Name:", 
+            "SSN:", "Car ID:", "Insurance:" , "Start Date:", "End Date:", "Total Price:"," " ,"-"*130)
+        print(string)
+        for car in all_open_car_rentals:
+            print(car)

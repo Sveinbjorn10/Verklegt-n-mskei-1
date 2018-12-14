@@ -69,6 +69,6 @@ class Rental:
     def __str__(self):
         start_date = "{}/{}/{}".format(self.__start_date[8:10], self.__start_date[5:7], self.__start_date[0:4])
         end_date = "{}/{}/{}".format(self.__end_date[8:10], self.__end_date[5:7], self.__end_date[0:4])
-        return "{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}{:<5}".format(self.__order_num, 
+        return "{:<15}{:<30}{:<12}{:<10}{:<12}{:<20}{:<20}{:<15}{:<10}".format(self.__order_num, 
             self.__name, self.__ssn, self.__car_id, self.__insurance, start_date, end_date, 
             str(self.__total_price) + " kr", self.__status)

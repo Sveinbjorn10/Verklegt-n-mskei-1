@@ -63,14 +63,17 @@ class CustomerRepo:
     def change_customer(self, ssn):
         all_customers = self.get_customer_list()
         for customer in all_customers:
-            if customer.get_ssn() == ssn:
+            if customer.get_ssn() == int(ssn):
                 edit_customer = customer
-                print(edit_customer)
+                string = "{:<30}{:<12}{:<20}{:<15}{:<15}{:<30}{:<20}{:<30}\n".format("Name:", "SSN:", 
+                    "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", 
+                    "Card Number:", ("-"*100))
+                print("{}{}\n".format(string, edit_customer))
                 print("1. Edit Name\n2. Edit Home Address\n3. Edit Local Address\n"
                     "4. Edit Phone Number\n5. Edit Email\n6. Edit Driver's License\n"
-                    "7. Edit Credit/Debit Card Number\n8. Quit") 
+                    "7. Edit Credit/Debit Card Number\n8. Return to Main Menu") 
                 while True:   
-                    choice = input("What do you want to change:")
+                    choice = int(input("What do you want to change:"))
                     if (choice < 1) or (choice > 8):
                         print("Invalid Input\nPress Enter to continue...")
                         clear()
@@ -82,36 +85,50 @@ class CustomerRepo:
                         new_name = input("New Name: ")
                         edit_customer.set_name(new_name)
                         print("Name Changed To: {}".format(edit_customer.get_name()))
+                        _ = input("Press Enter To Return To Main Menu...")
+                        break
                     if choice == 2:
                         print("Current Home Address: {}".format(edit_customer.get_home_address()))
                         new_address = input("New Home Address: ")
                         edit_customer.set_home_address(new_address)
                         print("Home Address Changed To: {}".format(edit_customer.get_home_address()))
+                        _ = input("Press Enter To Return To Main Menu...")
+                        break
                     if choice == 3:
                         print("Current Local Address: {}".format(edit_customer.get_local_address()))
                         new_local_address = input("New Local Address: ")
                         edit_customer.set_local_address(new_local_address)
                         print("Local Address Changed To: {}".format(edit_customer.get_local_address()))
+                        _ = input("Press Enter To Return To Main Menu...")
+                        break
                     if choice == 4:
                         print("Current Phone Number: {}".format(edit_customer.get_phone_num()))
                         new_phone_number = input("New Phone Number: ")
                         edit_customer.set_phone_num(new_phone_number)
                         print("Phone Number Changed To: {}".format(edit_customer.get_phone_num()))
+                        _ = input("Press Enter To Return To Main Menu...")
+                        break
                     if choice == 5:
                         print("Current Email: {}".format(edit_customer.get_email()))
                         new_email = input("New Email: ")
                         edit_customer.set_email(new_email)
                         print("Email Changed To: {}".format(edit_customer.get_email()))
+                        _ = input("Press Enter To Return To Main Menu...")
+                        break
                     if choice == 6:
                         print("Current Driver's License: {}".format(edit_customer.get_driv_license()))
                         new_driv_license = input("New Driver's License: ")
                         edit_customer.set_driv_license(new_driv_license)
                         print("Driver's License Changed To: {}".format(edit_customer.get_driv_license()))
+                        _ = input("Press Enter To Return To Main Menu...")
+                        break
                     if choice == 7:
                         print("Current Credit/Debit Card Number: {}".format(edit_customer.get_card_num()))
                         new_card_num = input("New Credit/Debit Card Number: ")
                         edit_customer.set_card_num(new_card_num)
                         print("Credit/Debit Card Number Changed To: {}".format(edit_customer.get_card_num()))
+                        _ = input("Press Enter To Return To Main Menu...")
+                        break
                     if choice == 8:
                         break
 
