@@ -10,6 +10,7 @@ class CarRepo:
 
     def add_car(self, car):
         # first add to file then to private list
+        self.__cars.append(car)
         with open("./data/cars.csv", "a+") as car_file:
             car_id = car.get_car_id()
             make = car.get_make()
