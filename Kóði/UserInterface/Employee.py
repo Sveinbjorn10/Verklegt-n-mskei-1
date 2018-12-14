@@ -137,85 +137,111 @@ class Employee:
                 clear()
             if action == "4": #Price List
                 clear()
-                self.__car_service.print_price_options()
-                choice = int(input("Input Choice Here: "))
-                while (choice < 1) or (choice > 3):
-                    print("Incorrect Input")
-                    choice = int(input("Input Choice Here: "))
-                if choice == 1:
+                while True:
+                    self.__car_service.print_price_options()
+                    choice = input("Input Choice Here: ")
                     clear()
+                    if choice in ["1", "2", "3"]:
+                        break
+                    else:
+                        _ = input("Invalid input.\nPress Enter to continue...")
+                        clear()
+                if choice == "1":
                     self.__car_service.print_car_price_list()
                     _ = input("Press Enter To Return To Main Menu...")
-                if choice == 2:
                     clear()
+                if choice == "2":
                     self.__car_service.print_insurance_price_list()
                     _ = input("Press Enter To Return To Main Menu...")
+                    clear()
                 else:
                     clear()
             if action == "5": #Customer Database
                 clear()
-                self.__customer_service.print_customer_database_menu()
-                choice = int(input("Input Choice Here: "))
-                while (choice < 1) or (choice > 6):
-                    print("Incorrect Input")
-                    choice = int(input("Input Choice Here: "))
-                if choice == 1:
+                while True:
+                    self.__customer_service.print_customer_database_menu()
+                    choice = input("Input Choice Here: ")
                     clear()
+                    if choice in ["1", "2", "3", "4", "5", "6"]:
+                        break
+                    else:
+                        _ = input("Invalid input.\nPress Enter to continue...")
+                        clear()
+
+                if choice == "1":
                     self.__customer_service.print_customer_database()
                     _ = input("Press Enter To Return To Main Menu...")
-                if choice == 2:
                     clear()
+                if choice == "2":
                     ssn = input("Input SSN to Search: ")
                     customer = self.__customer_service.search_by_ssn(ssn, False)
                     print(customer)
                     _ = input("Press Enter to continue...")
-                if choice == 3:
+                    clear()
+                if choice == "3":
                     self.__customer_service.customer_info(True)
-                if choice == 4:
+                    clear()
+                if choice == "4":
                     ssn = input("Input SSN For Customer To Update: ")
                     self.__customer_service.change_customer(ssn)
-                if choice == 5:
                     clear()
+                if choice == "5":
                     ssn = input("Input SSN For Customer To Delete: ")
                     self.__customer_service.delete_customer(ssn)
+                    clear()
                 else:
                     clear()
             if action == "6": #Car Database
                 clear()
-                self.__car_service.print_car_database_menu()
-                choice = int(input("Input Choice Here: "))
-                while (choice < 1) or (choice > 6):
-                    print("Incorrect Input")
-                    choice = int(input("Input Choice Here: "))
-                if choice == 1:
+                while True:
+                    self.__car_service.print_car_database_menu()
+                    choice = input("Input Choice Here: ")
                     clear()
+                    if choice in ["1", "2", "3", "4", "5", "6"]:
+                        break
+                    else:
+                        _ = input("Invalid input.\nPress Enter to continue...")
+                        clear()
+
+                if choice == "1":
                     self.__car_service.print_car_database()
                     _ = input("Press Enter To Return To Main Menu...")
-                if choice == 2:
                     clear()
-                    self.__car_service.print_search_options()
-                    search_criteria = input("Input Search Criteria: ")
+                if choice == "2":
+                    while True:
+                        self.__car_service.print_search_options()
+                        search_criteria = input("Input Search Criteria: ")
+                        clear()
+                        if search_criteria in ["1", "2", "3", "4"]:
+                            break
+
                     if search_criteria == "1":
                         self.__car_service.search_by_car_id()
+                        clear()
                     if search_criteria == "2":
                         self.__car_service.search_by_class()
                         _ = input("Press Enter to continue...")
+                        clear()
                     if search_criteria == "3":
                         self.__car_service.search_by_model()
                         _ = input("Press Enter to continue...")
-                if choice == 3:
-                    clear()
+                        clear()
+                    else:
+                        clear()
+                if choice == "3":
                     self.__car_service.car_info()
-                if choice == 4:
+                    clear()
+                if choice == "4":
                     car_id = input("Input Car ID To Update: ").upper()
                     self.__car_service.update_car_info(car_id)
-                if choice == 5:
                     clear()
+                if choice == "5":
                     car_id = input("Input Car ID To Delete: ")
                     self.__car_service.delete_car(car_id)
+                    clear()
                 else:
                     clear()
-            if action == "7":  #Rental Database
+            if action == "7": #Rental Database
                 clear()
                 while True:
                     self.__rental_service.print_rental_database_menu()

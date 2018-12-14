@@ -98,7 +98,7 @@ class CarRepo:
         return return_list
 
     def search_by_car_id(self):
-        car_id = input("Enter Car ID: ")
+        car_id = input("Enter Car ID: ").upper()
         all_cars = self.get_cars()
         for car in all_cars:
             if car.get_car_id() == car_id:
