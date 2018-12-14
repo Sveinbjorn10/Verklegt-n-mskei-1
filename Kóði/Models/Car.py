@@ -1,8 +1,8 @@
 class Car:
-    def __init__(self, license_plate, make, model, manuf_year, car_class, 
+    def __init__(self, car_id, make, model, manuf_year, car_class, 
         seats, doors, color, weight, engine_size, horse_power, transmission, 
         fuel_type, price, drive, total_km, tank_size, availability = True):
-        self.__license_plate = license_plate
+        self.__car_id = car_id
         self.__make = make
         self.__model = model
         self.__manuf_year = manuf_year
@@ -21,8 +21,8 @@ class Car:
         self.__price = int(price)
         self.__availability = availability
 
-    def get_license_plate(self):
-        return self.__license_plate
+    def get_car_id(self):
+        return self.__car_id
 
     def get_make(self):
         return self.__make
@@ -109,6 +109,6 @@ class Car:
         self.__availability = availability
     
     def __str__(self):
-        return "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format(self.__license_plate, 
+        return "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format(self.__car_id, 
             self.__make, self.__model, self.__manuf_year, self.__car_class, self.__seats, self.__doors, 
             self.__color, self.__transmission, self.__price)

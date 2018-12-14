@@ -11,7 +11,7 @@ class CarRepo:
     def add_car(self, car):
         # first add to file then to private list
         with open("./data/cars.csv", "a+") as car_file:
-            license_plate = car.get_license_plate()
+            car_id = car.get_car_id()
             make = car.get_make()
             model = car.get_model()
             manuf_year = car.get_manuf_year()
@@ -29,7 +29,7 @@ class CarRepo:
             total_km = car.get_total_km()
             tank_size = car.get_tank_size()
             availability = car.get_availability()
-            car_file.write("{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}\n".format(license_plate, 
+            car_file.write("{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}\n".format(car_id, 
                 make, model, manuf_year, car_class, seats, doors, color, weight, 
                 engine_size, horse_power, transmission, fuel_type, price, drive, total_km, 
                 tank_size, availability))
@@ -39,7 +39,7 @@ class CarRepo:
             with open("./Data/cars.csv", "r", encoding = "utf-8") as car_file:
                 car_reader = csv.reader(car_file)
                 for line in car_reader:
-                    license_plate = line[0]
+                    car_id = line[0]
                     make = line[1]
                     model = line[2]
                     manuf_year = line[3]
@@ -57,7 +57,7 @@ class CarRepo:
                     total_km = line[15]
                     tank_size = line[16]
                     availability = "True" #Möguleiki á villum
-                    new_car = Car(license_plate, make, model, manuf_year, car_class, seats, doors, 
+                    new_car = Car(car_id, make, model, manuf_year, car_class, seats, doors, 
                         color, weight, engine_size, horse_power, transmission, fuel_type, price, drive, 
                         total_km, tank_size, eval(availability))
                     self.__cars.append(new_car)    
@@ -75,7 +75,7 @@ class CarRepo:
         car_class = input("Enter Car Class: ")
         all_cars = self.get_cars()
         for car in all_cars:
-            if car.get_car_class() == car_class:
+            if car.get_car_class() == int(car_class):
                 return_list.append(car)
         return return_list
 
@@ -88,10 +88,10 @@ class CarRepo:
                 return_list.append(car)
         return return_list
 
-    def delete_car(self, license_plate):
+    def delete_car(self, car_id):
         all_cars = self.get_cars()
         for index, car in enumerate(all_cars):
-            if car.get_license_plate == license_plate:
+            if car.get_car_id == car_id:
                 all_cars.pop(index)
         with open("./Data/cars.csv", "w") as car_file:
             car_file.truncate()
@@ -107,20 +107,23 @@ class CarRepo:
                 return_list.append(car)
         return return_list
 
-    def search_by_license_plate(self):
-        license_plate = input("Enter Car ID: ")
+    def search_by_car_id(self):
+        car_id = input("Enter Car ID: ")
         all_cars = self.get_cars()
         for car in all_cars:
-            if car.get_license_plate() == license_plate:
+            if car.get_car_id() == car_id:
+                string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}\n".format("License:", "Make:", 
+                    "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
+                print("{}{}".format(string, car))
+                _ = input("Press Enter to continue...")
                 return car
-            else:
-                input("Car not found!\nPress Enter to continue...")
-                return None
+        input("Car not found!\nPress Enter to continue...")
+        return None
 
-    def change_car_status(self, license_plate):
+    def change_car_status(self, car_id):
         all_cars = self.get_cars()
         for car in all_cars:
-            if car[0] == license_plate:
+            if car.get_car_id == car_id:
                 car_availability = car.get_availability()
                 if car_availability == True:
                     return car.set_availability(False)
@@ -130,7 +133,7 @@ class CarRepo:
     def update_car_info(self, driver_license):
         all_cars = self.get_cars()
         for car in all_cars:
-            if car.get_license_plate == driver_license:
+            if car.get_car_id == driver_license:
                 edit_car = car
                 print(edit_car)
                 print("1. Edit Color\n2. Edit Weight\n3. Edit Engine Size\n"

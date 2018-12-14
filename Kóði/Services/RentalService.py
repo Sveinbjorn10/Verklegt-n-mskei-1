@@ -98,7 +98,7 @@ class RentalService:
         print("Available cars")
         print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ","Nr.", "License", "Make", "Model", "Manuf. Year", "Seats", "Doors", "Color", "Transmission", "Fuel", "Price per day"))
         for index, car in enumerate(my_list):
-            print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", (index + 1), car.get_license_plate(), car.get_make(), car.get_model(), car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), car.get_transmission(), car.get_fuel_type(), car.get_price()))
+            print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", (index + 1), car.get_car_id(), car.get_make(), car.get_model(), car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), car.get_transmission(), car.get_fuel_type(), car.get_price()))
 
     def insurance(self):
         while True:
@@ -168,7 +168,7 @@ class RentalService:
 
         order_number = self.get_order_number()
         name = customer.get_name()
-        ssn = customer.get_soc_sec_num()
+        ssn = customer.get_ssn()
         home_address = customer.get_home_address()
         email = customer.get_email()
         phone = customer.get_phone_num()
@@ -180,7 +180,7 @@ class RentalService:
 
         car_make = car.get_make()
         car_model = car.get_model()
-        car_plate = car.get_license_plate()
+        car_plate = car.get_car_id()
         car_price_per_day = car.get_price()
 
         car_price = car_price_per_day * days
@@ -236,8 +236,8 @@ class RentalService:
                 self.__rental_repo.add_rental(rental)
         clear()
 
-    def search_by_license_plate_rentals(self, license_plate): #Hægt að nota fyrir search criteria 2
-        return self.__rental_repo.search_by_license_plate_rentals(license_plate)
+    def search_by_car_id_rentals(self, car_id):
+        return self.__rental_repo.search_by_car_id(car_id)  #Hægt að nota fyrir search criteria 2
 
     def open_rentals(self, rental_list):
         open_rentals = []
@@ -297,8 +297,8 @@ class RentalService:
     def confirm_order(self, rental, payment, start, end, additional_driver, total_price):
         order_num = rental.get_order_num()
         name = rental.get_name()
-        ssn = rental.get_soc_sec_num()
-        car = rental.get_license_plate()
+        ssn = rental.get_ssn()
+        car = rental.get_car_id()
         insurance = rental.get_insurance()
         additional_driver_name = additional_driver[0]
         additional_driver_ssn = additional_driver[1]
@@ -315,7 +315,7 @@ class RentalService:
         self.__rental_repo.change_rental_list(rental_list)
          
     def finish_order(self, rental, car, customer, fuel, damage):
-        car_string = "{} {} ({})".format(car.get_make(), car.get_model(), car.get_license_plate())
+        car_string = "{} {} ({})".format(car.get_make(), car.get_model(), car.get_car_id())
 
         today = datetime.today()
         now = datetime(today.year, today.month, today.day)
@@ -347,7 +347,7 @@ class RentalService:
         while True:
             print("{:<165}".format(rental.get_order_num()))
             print("{:<165}{:<20}".format(customer.get_name(), "HSST Rental Company"))
-            print("{:<165}{:<20}".format(customer.get_soc_sec_num(), "SSN: 040499-2059"))
+            print("{:<165}{:<20}".format(customer.get_ssn(), "SSN: 040499-2059"))
             print("{:<165}{:<20}".format(customer.get_home_address(), "Hvergiland 88"))
             print("{:<165}{:<20}".format(customer.get_email(), "hsst@hsst.is"))
             print("{:<165}{:<20}".format(customer.get_phone_num(), "Phone: 642-1000"))
