@@ -238,21 +238,29 @@ class RentalService:
         clear()
 
     def search_by_car_id_rentals(self, car_id):
-        car_id_list = self.__rental_repo.search_by_car_id(car_id)  #Hægt að nota fyrir search criteria 2
-        string = "{:<15}{:<30}{:<12}{:<10}{:<12}{:<20}{:<20}{:<15}{:<10}\n{}\n".format("Order Number:", "Name:", 
-            "SSN:", "Car ID:", "Insurance:" , "Start Date:", "End Date:", "Total Price:"," " ,"-"*130)
-        print(string)
-        for car in car_id_list:
-            print(car)
-
+        car_id_list = self.__rental_repo.search_by_car_id(car_id)
+        if car_id_list != "Empty":
+            string = "{:<15}{:<30}{:<12}{:<10}{:<12}{:<20}{:<20}{:<15}{:<10}\n{}\n".format("Order Number:", "Name:", 
+                "SSN:", "Car ID:", "Insurance:" , "Start Date:", "End Date:", "Total Price:"," " ,"-"*130)
+            print(string)
+            for car in car_id_list:
+                print(car)
+            _ = input("Please Press Enter to continue...")
+        else:
+            input("Rental not found!\nPress Enter to continue...")
     
     def search_rentals_by_ssn(self, ssn):
         customer_ssn_list = self.__rental_repo.search_by_cust_ssn(ssn)
-        string = "{:<15}{:<30}{:<12}{:<10}{:<12}{:<20}{:<20}{:<15}{:<10}\n{}\n".format("Order Number:", "Name:", 
-            "SSN:", "Car ID:", "Insurance:" , "Start Date:", "End Date:", "Total Price:"," " ,"-"*130)
-        print(string)
-        for car in customer_ssn_list:
-            print(car)
+        if customer_ssn_list != "Empty":
+            string = "{:<15}{:<30}{:<12}{:<10}{:<12}{:<20}{:<20}{:<15}{:<10}\n{}\n".format("Order Number:", "Name:", 
+                "SSN:", "Car ID:", "Insurance:" , "Start Date:", "End Date:", "Total Price:"," " ,"-"*130)
+            print(string)
+            for car in customer_ssn_list:
+                print(car)
+            _ = input("Please Press Enter to continue...")
+        else:
+            input("Rental not found!\nPress Enter to continue...")
+            
 
     def open_rentals(self, rental_list):
         open_rentals = []
