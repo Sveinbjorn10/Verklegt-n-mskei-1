@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-DF375,Iveco,Daily,2012,3,3,5,White,Automatic,Diesel,10000,80,True
+DF375,Iveco,Daily,2012,3,3,5,White,Automatic,Diesel,10000,80,Yes
 AF315,Volkswagen,Transporter,2011,3,3,5,Grey,Automatic,Diesel,15000,70,True
 VOB36,Kia,Picanto,2012,1,5,5,Brown,Manual,Petrol,75000,60,True
 JB007,Toyota,Yaris,2012,1,4,3,Black,Automatic,Petrol,6000,45,True
@@ -7,12 +6,3 @@ MYB00,Toyota,Land Cruiser,2018,4,7,5,Gold,Automatic,Diesel,20000,100,True
 SV034,Lincoln,Navigator,2007,4,5,5,White,Automatic,Diesel,20000,80,True
 BLF33,Skoda,Octavia,2016,2,5,5,Black,Manual,Diesel,14000,80,True
 NYC48,Toyota,Rav4,2009,4,5,5,Grey,Automatic,diesel,20000,55,True
-=======
-DF375,Iveco,Daily,2012,3,3,5,White,Automatic,Diesel,10000,80,Yes
-AF315,Volkswagen,Transporter,2011,3,3,5,Grey,Automatic,Diesel,15000,70,Yes
-VOB36,Kia,Picanto,2012,1,5,5,Brown,Manual,Petrol,75000,60,Yes
-JB007,Toyota,Yaris,2012,1,4,3,Black,Automatic,Petrol,6000,45,Yes
-MYB00,Toyota,Land Cruiser,2018,4,7,5,Gold,Automatic,Diesel,20000,100,Yes
-SV034,Lincoln,Navigator,2007,4,5,5,White,Automatic,Diesel,20000,80,Yes
-KKK99,Devil,Child,666,3,5,5,Red,Automatic,Blood,1000000,90000,Yes
->>>>>>> a2bc5b3f19c0c83236ac3294b2b1c3bafa95511d
