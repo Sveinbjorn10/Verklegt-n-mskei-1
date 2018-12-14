@@ -135,19 +135,23 @@ class CarService:
         make = input("\tMake: ")
         model = input("\tModel: ")
         manuf_year = input("\tManufacturing Year: ")
-        car_class = int(input("\tCar Class: "))
-        seats = int(input("\tSeats: "))
-        doors = int(input("\tDoors: "))
+        car_class = input("\tCar Class: ")
+        seats = input("\tSeats: ")
+        doors = input("\tDoors: ")
         color = input("\tColor: ")
         transmission = input("\tTransmission: ")
         fuel_type = input("\tFuel Type: ")
-        price = int(input("\tPrice: "))
+        price = input("\tPrice: ")
         tank_size = input("\tTank Size: ")
-        availability = True
-        new_car = Car(car_id, make, model, manuf_year, car_class, 
-            seats, doors, color, transmission, fuel_type, price, tank_size, 
-            availability)
-        self.__car_repo.add_car(new_car)
+        availability = "Yes"
+        if "" in [car_id, make, model, manuf_year, car_class, seats, doors, color, transmission, fuel_type, price, tank_size]:
+            _ = input("Every criteria must be filled in.\nPress Enter to continue...")
+            clear()
+        else:
+            new_car = Car(car_id, make, model, manuf_year, car_class, 
+                seats, doors, color, transmission, fuel_type, price, tank_size, 
+                availability)
+            self.__car_repo.add_car(new_car)
 
     def update_car_info(self, car_id):
         return self.__car_repo.update_car_info(car_id)

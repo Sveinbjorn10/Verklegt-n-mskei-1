@@ -15,6 +15,7 @@ class Employee:
         self.__rental_service = RentalService()
 
     def main_screen(self):
+        clear()
         action = ""
         while (action != "8"):
             print("Welcome to HSST Rental Software")
@@ -27,6 +28,9 @@ class Employee:
             print("\t7. Rental database")
             print("\t8. Exit")
             action = input("Input choice here: ")
+
+            if action not in ["1", "2", "3", "4", "5", "6", "7", "8"]:
+                clear()
 
             if action == "1": #Rent A Car
                 clear()
@@ -86,7 +90,7 @@ class Employee:
                                 clear()
                     if search_criteria == "2":
                         while True:
-                            while True: #Þetta shit er til ehvstaðar annarsstaðar
+                            while True:
                                 print("Customer information:")
                                 ssn = input("\tEnter Social Security Number: ")
                                 trulse = True
@@ -175,8 +179,9 @@ class Employee:
                 if choice == "2":
                     ssn = input("Input SSN to Search: ")
                     customer = self.__customer_service.search_by_ssn(ssn, False)
-                    print(customer)
-                    _ = input("Press Enter to continue...")
+                    if customer != None:
+                        print(customer)
+                        _ = input("Press Enter to continue...")
                     clear()
                 if choice == "3":
                     self.__customer_service.customer_info(True)
@@ -187,6 +192,7 @@ class Employee:
                     clear()
                 if choice == "5":
                     ssn = input("Input SSN For Customer To Delete: ")
+                    
                     self.__customer_service.delete_customer(ssn)
                     clear()
                 else:

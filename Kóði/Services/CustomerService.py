@@ -46,6 +46,7 @@ class CustomerService:
             return False
 
     def customer_info(self, in_database):
+        ssn_valid = True
         while True:
             clear()
             while True:
@@ -64,8 +65,12 @@ class CustomerService:
                 else:
                     if in_database == False:
                         _ = input("Please enter a valid Social Security Number\nPress Enter to continue...")
+                    else:
+                        ssn_valid = False
+                        break
                 clear()
-
+                if ssn_valid == False:
+                    break
             temp_customer = self.__customer_repo.search_by_ssn(ssn, in_database)
             if temp_customer != None:
                 clear()
@@ -78,30 +83,39 @@ class CustomerService:
                 clear()
                 if in_database == False:
                     try_again = input("Try another Social Security Number(Y/N)?").upper()
-                if in_database == True:
+                if in_database == True:                    
                     try_again = "N"
                 if try_again != "Y":
-                    clear()
-                    print("Creating Customer - SSN: {}".format(ssn))
-                    print("Please fill in the following information:")
-                    first_name = input("\tFirst Name: ")
-                    last_name = input("\tLast Name: ")
-                    name = "{} {}".format(first_name, last_name)
-                    home_address = input("\tHome Address: ")
-                    local_address = input("\tLocal Address: ")
-                    mobile_phone = input("\tMobile Phone: ") 
-                    email = input("\tEmail: ") 
-                    drivers_license = input("\tDriver's License: ") 
-                    card_num = input("\tCredit Card Number: ") 
+                    while True:
+                        clear()
+                        print("Creating Customer - SSN: {}".format(ssn))
+                        print("Please fill in the following information:")
+                        first_name = input("\tFirst Name: ")
+                        last_name = input("\tLast Name: ")
+                        name = "{} {}".format(first_name, last_name)
+                        home_address = input("\tHome Address: ")
+                        local_address = input("\tLocal Address: ")
+                        mobile_phone = input("\tMobile Phone: ") 
+                        email = input("\tEmail: ") 
+                        drivers_license = input("\tDriver's License: ") 
+                        card_num = input("\tCredit Card Number: ") 
 
-                    customer = Customer(name, ssn, home_address, local_address, mobile_phone, email, drivers_license, card_num)
-                    self.__customer_repo.add_customer(customer)
-                    break
+                        if "" in [name, ssn, home_address, local_address, mobile_phone, email, drivers_license, card_num]:
+                            _ = input("Every criteria must be filled in.\nPress Enter to continue...")
+                            clear()
+                        else:
+                            customer = Customer(name, ssn, home_address, local_address, mobile_phone, email, drivers_license, card_num)
+                            self.__customer_repo.add_customer(customer)
+                            break
+                else:
+                    if in_database == True:
+                        break
         if in_database == False:
             additional_driver = self.get_additional_driver()
             return customer, additional_driver
         else:
-            return customer
+            if in_database == False:
+                return customer
 
     def print_customer_database_menu(self):
         print("\t1. View Customer Database")

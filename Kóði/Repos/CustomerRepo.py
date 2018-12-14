@@ -63,7 +63,7 @@ class CustomerRepo:
     def change_customer(self, ssn):
         all_customers = self.get_customer_list()
         for customer in all_customers:
-            if customer.get_ssn() == int(ssn):
+            if customer.get_ssn() == ssn:
                 edit_customer = customer
                 string = "{:<30}{:<12}{:<20}{:<15}{:<15}{:<30}{:<20}{:<30}\n{:<100}".format("Name:", "SSN:", 
                     "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", 

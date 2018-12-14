@@ -5,7 +5,7 @@ class Car:
         self.__make = make
         self.__model = model
         self.__manuf_year = manuf_year
-        self.__car_class = car_class
+        self.__car_class = int(car_class) #Breyting 9:56
         self.__seats = seats
         self.__doors = doors
         self.__color = color
