@@ -103,9 +103,9 @@ class CarService:
 
     def get_available_cars_database(self, available_cars):
         print("Available cars")
-        print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", 
+        print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}\n{:>}".format(" ", 
             "Nr.", "License", "Make", "Model", "Manuf. Year", "Seats", "Doors", "Color", 
-            "Transmission", "Fuel", "Price per day"))
+            "Transmission", "Fuel", "Price per day", "-"*135))
         for index, car in enumerate(available_cars):
             print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", 
                 (index + 1), car.get_car_id(), car.get_make(), car.get_model(), 
