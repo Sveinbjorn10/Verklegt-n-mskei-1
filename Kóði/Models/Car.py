@@ -11,13 +11,7 @@ class Car:
         self.__color = color
         self.__transmission = transmission
         self.__fuel_type = fuel_type
-<<<<<<< HEAD
-        self.__tank_size = tank_size
-=======
-        self.__drive = drive
-        self.__total_km = total_km
         self.__tank_size = int(tank_size)
->>>>>>> 0662460e8a89b32edd3690d19aa4d0241e3c2655
         self.__price = int(price)
         self.__availability = availability
 
@@ -65,12 +59,6 @@ class Car:
     
     def set_transmission(self, transmission):
         self.__transmission = transmission
-
-    def set_fuel_type(self, fuel_type):
-        self.__fuel_type = fuel_type
-        
-    def set_tank_size(self, tank_size):
-        self.__tank_size = tank_size
 
     def set_price(self, price):
         self.__price = price

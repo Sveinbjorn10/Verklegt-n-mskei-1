@@ -28,7 +28,7 @@ class Employee:
             print("\t8. Exit")
             action = input("Input choice here: ")
 
-            if action == "1":
+            if action == "1": #Rent A Car
                 clear()
                 start_date, return_date = self.__rental_service.pick_date()
                 while True:
@@ -62,7 +62,7 @@ class Employee:
                     self.__rental_service.print_order_confirmation(customer, car, insurance_list, payment, start_date, return_date, additional_driver)
                     clear()
 
-            if action == "2":
+            if action == "2": #Return A Car
                 while True:
                     search_critera = self.__rental_service.pick_search_criteria_return()
                     clear()
@@ -81,18 +81,18 @@ class Employee:
                     if search_critera == "3":
                         break
 
-            if action == "3":
+            if action == "3": #Available Cars
                 clear()
                 self.__car_service.get_available_cars_database(self.__car_service.get_available_cars())
                 _ = input("Press Enter To Return To Main Menu...")
                 clear()
-            if action == "4":
+            if action == "4": #Price List
                 clear()
                 self.__car_service.print_price_options()
                 choice = int(input("Input Choice Here: "))
                 while (choice < 1) or (choice > 3):
                     print("Incorrect Input")
-                    choice = input("Input Choice Here: ")
+                    choice = int(input("Input Choice Here: "))
                 if choice == 1:
                     clear()
                     self.__car_service.print_car_price_list()
@@ -103,13 +103,13 @@ class Employee:
                     _ = input("Press Enter To Return To Main Menu...")
                 else:
                     clear()
-            if action == "5":
+            if action == "5": #Customer Database
                 clear()
                 self.__customer_service.print_customer_database_menu()
                 choice = int(input("Input Choice Here: "))
                 while (choice < 1) or (choice > 6):
                     print("Incorrect Input")
-                    choice = input("Input Choice Here: ")
+                    choice = int(input("Input Choice Here: "))
                 if choice == 1:
                     clear()
                     self.__customer_service.print_customer_database()
@@ -129,13 +129,13 @@ class Employee:
                     self.__customer_service.delete_customer(ssn)
                 else:
                     clear()
-            if action == "6":
+            if action == "6": #Car Database
                 clear()
                 self.__car_service.print_car_database_menu()
                 choice = int(input("Input Choice Here: "))
                 while (choice < 1) or (choice > 6):
                     print("Incorrect Input")
-                    choice = input("Input Choice Here: ")
+                    choice = int(input("Input Choice Here: "))
                 if choice == 1:
                     clear()
                     self.__car_service.print_car_database()
@@ -156,15 +156,43 @@ class Employee:
                     clear()
                     self.__car_service.car_info()
                 if choice == 4:
-                    car_id = input("Input Car ID To Update: ")
+                    car_id = input("Input Car ID To Update: ").upper()
                     self.__car_service.update_car_info(car_id)
                 if choice == 5:
                     car_id = input("Input Car ID To Delete: ")
                     self.__car_service.delete_car(car_id)
                 else:
                     clear()
-            if action == "7":
+            if action == "7":  #Rental Database
                 clear()
-                self.__rental_service.print_rental_database()
-                _ = input("Press Enter To Return To Main Menu...")
+                self.__rental_service.print_rental_database_menu()
+                choice = int(input("Input Choice Here: "))
+                while (choice < 1) or (choice > 3):
+                    print("Incorrect Input")
+                    choice = int(input("Input Choice Here: "))
+                if choice == 1:
+                    clear()
+                    self.__rental_service.print_view_rental_database_menu()
+                    search_critera = int(input("Input Choice Here: "))
+                    while (search_critera < 1) or (search_critera > 3):
+                        print("Incorrect Input")
+                        search_critera = int(input("Input Choice Here: "))
+                    if search_critera == 1:
+                        self.__rental_service.print_rental_database()
+                if choice == 2:
+                    clear()
+                    self.__rental_service.print_search_rental_database_menu()
+                    search_critera = int(input("Input Choice Here: "))
+                    while (search_critera < 1) or (search_critera > 3):
+                        print("Incorrect Input")
+                        search_critera = int(input("Input Choice Here: "))
+                    if search_critera == 1:
+                       pass
+                    if search_critera == 2:
+                        car_id = input("Input Car ID: ").upper()
+                        car = self.__rental_service.search_by_car_id_rentals(car_id)
+                        print(car)
+                        _ = input("Press Enter to continue...")
+                else:
+                    break
                 clear()

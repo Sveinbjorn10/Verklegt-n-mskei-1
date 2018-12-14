@@ -386,3 +386,18 @@ class RentalService:
 
     def get_open_rental_for_car(self, car):
         return self.__rental_repo.get_open_rental_for_car(car)
+
+    def print_rental_database_menu(self):
+        print("\t1. View Rental Database")
+        print("\t2. Search Rental")
+        print("\t3. Return to Main Menu")
+
+    def print_view_rental_database_menu(self):
+        print("\t1. View Rental Database History")
+        print("\t2. View Open Rentals")
+        print("\t3. Return to Main Menu")
+
+    def print_search_rental_database_menu(self):
+        print("\t1. Search Rental by Customer SSN")
+        print("\t2. Search Rental by Car ID")
+        print("\t3. Return to Main Menu")

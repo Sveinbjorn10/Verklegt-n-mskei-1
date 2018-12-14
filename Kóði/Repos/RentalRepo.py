@@ -41,8 +41,8 @@ class RentalRepo:
                     payment = line[9]
                     additional_driver_name = line[10]
                     additional_driver_ssn = line[11]
-                    additional_driver_license_plate = line[12]
-                    new_rental = Rental(order_num, name, ssn, car_id, insurance, start_date, end_date, total_price, status, payment, [additional_driver_name, additional_driver_ssn,additional_driver_license_plate])
+                    additional_driver_car_id = line[12]
+                    new_rental = Rental(order_num, name, ssn, car_id, insurance, start_date, end_date, total_price, status, payment, [additional_driver_name, additional_driver_ssn,additional_driver_car_id])
                     self.__rentals.append(new_rental)    
         return self.__rentals
     
@@ -50,7 +50,7 @@ class RentalRepo:
         return_list = []
         all_rentals = self.get_rental_list()
         for rental in all_rentals:
-            if rental[1] == name:
+            if rental.get_name() == name:
                 return_list.append(rental)
         return return_list
     
@@ -58,7 +58,7 @@ class RentalRepo:
         return_list = []
         all_rentals = self.get_rental_list()
         for rental in all_rentals:
-            if rental[2] == ssn:
+            if rental.get_ssn() == ssn:
                 return_list.append(rental)
         return return_list
 
@@ -71,8 +71,8 @@ class RentalRepo:
         return return_list
 
     def __str__(self):
-        string = "{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}\n{}\n".format("Order Number:", "Name:", 
-            "SSN:", "Car ID:", "Insurance:" , "Start Date:", "End Date:", "Total Price:", "-"*130)
+        string = "{:<15}{:<30}{:<12}{:<10}{:<12}{:<20}{:<20}{:<15}{:<10}\n{}\n".format("Order Number:", "Name:", 
+            "SSN:", "Car ID:", "Insurance:" , "Start Date:", "End Date:", "Total Price:"," " ,"-"*130)
         rentallist = self.get_rental_list()
         for rental in rentallist:
             string += str(rental) + "\n"
