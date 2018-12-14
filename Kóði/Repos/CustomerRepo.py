@@ -39,18 +39,20 @@ class CustomerRepo:
                     self.__customers.append(new_customer)    
         return self.__customers
     
-    def search_by_ssn(self, ssn):
+    def search_by_ssn(self, ssn, in_database=True):
         all_customers = self.get_customer_list()
         for customer in all_customers:
-            if customer.get_ssn() == ssn:
+            if customer.get_ssn() == int(ssn):
+                print(customer)
                 return customer
-        _ = input("Customer is not in the database.\nPress Enter to continue...")
+        if in_database == False:
+            _ = input("Customer is not in the database.\nPress Enter to continue...")
         return None
 
     def delete_customer(self, ssn):
         all_customers = self.get_customer_list()
         for index, customer in enumerate(all_customers):
-            if customer[1] == ssn:
+            if customer.get_ssn() == int(ssn):
                 all_customers.pop(index)
         with open("./Data/customers.csv", "w") as f:
             for customer in all_customers:
@@ -59,8 +61,8 @@ class CustomerRepo:
     def change_customer(self, ssn):
         all_customers = self.get_customer_list()
         for customer in all_customers:
-            if customer[1]  == ssn:
-                edit_customer = customer[1]
+            if customer.get_ssn() == ssn:
+                edit_customer = customer
                 print(edit_customer)
                 print("1. Edit Name\n2. Edit Home Address\n3. Edit Local Address\n"
                     "4. Edit Phone Number\n5. Edit Email\n6. Edit Driver's License\n"
@@ -114,11 +116,11 @@ class CustomerRepo:
     def get_customer_for_rental(self, rental_ssn):
         customer_list = self.get_customer_list()
         for customer in customer_list:
-            if customer.get_soc_sec_num() == int(rental_ssn):
+            if customer.get_ssn() == int(rental_ssn):
                 return customer
 
     def __str__(self):
-        string = "{:<30}{:<25}{:<20}{:<15}{:<15}{:<30}{:<20}{:<30}\n{}\n".format("Name:", "SSN:", 
+        string = "{:<30}{:<12}{:<20}{:<15}{:<15}{:<30}{:<20}{:<30}\n{}\n".format("Name:", "SSN:", 
             "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:",("-"*100))
         customerlist = self.get_customer_list()
         for customer in customerlist:

@@ -75,7 +75,7 @@ class CarRepo:
         car_class = input("Enter Car Class: ")
         all_cars = self.get_cars()
         for car in all_cars:
-            if car.get_car_class() == car_class:
+            if car.get_car_class() == int(car_class):
                 return_list.append(car)
         return return_list
 
@@ -112,17 +112,18 @@ class CarRepo:
         all_cars = self.get_cars()
         for car in all_cars:
             if car.get_car_id() == car_id:
-                print(car)
+                string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}\n".format("License:", "Make:", 
+                    "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
+                print("{}{}".format(string, car))
                 _ = input("Press Enter to continue...")
                 return None
-            else:
-                input("Car not found!\nPress Enter to continue...")
-                return None
+        input("Car not found!\nPress Enter to continue...")
+        return None
 
     def change_car_status(self, car_id):
         all_cars = self.get_cars()
         for car in all_cars:
-            if car[0] == car_id:
+            if car.get_car_id == car_id:
                 car_availability = car.get_availability()
                 if car_availability == True:
                     return car.set_availability(False)

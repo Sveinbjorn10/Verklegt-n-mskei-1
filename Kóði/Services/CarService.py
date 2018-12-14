@@ -16,11 +16,17 @@ class CarService:
     
     def search_by_class(self):
         list_of_class_cars = self.__car_repo.search_by_class()
+        string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format("License:", "Make:", 
+            "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
+        print(string)
         for car in list_of_class_cars:
             print(car)
     
     def search_by_model(self):
         list_of_model_cars = self.__car_repo.search_by_model()
+        string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format("License:", "Make:", 
+            "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
+        print(string)
         for car in list_of_model_cars:
             print(car)
 

@@ -53,7 +53,7 @@ class Employee:
                         break
                     
                 if search_critera in ["1", "2"]:
-                    customer, additional_driver = self.__customer_service.customer_info()
+                    customer, additional_driver = self.__customer_service.customer_info(False)
                     while True:
                         insurance_list = self.__rental_service.insurance()
                         payment = self.__rental_service.payment()
@@ -71,7 +71,7 @@ class Employee:
                         clear()
                         if car != None:
                             rental = self.__rental_service.get_open_rental_for_car(car)
-                            customer = self.__customer_service.get_customer_for_rental(rental.get_soc_sec_num())
+                            customer = self.__customer_service.get_customer_for_rental(rental.get_ssn())
                             fuel_price, fuel_level = self.__rental_service.fuel_status(car)
                             damage = self.__rental_service.damage_check()
                             clear()
@@ -102,15 +102,13 @@ class Employee:
                     clear()
                     self.__customer_service.print_customer_database()
                     _ = input("Press Enter To Return To Main Menu...")
-                
                 if choice == 2:
                     clear()
                     ssn = input("Input SSN to Search: ")
                     self.__customer_service.search_by_ssn(ssn)
                     _ = input("Press Enter to continue...")
-
                 if choice == 3:
-                    self.__customer_service.customer_info()
+                    self.__customer_service.customer_info(True)
                 if choice == 4:
                     ssn = input("Input SSN For Customer To Update: ")
                     self.__customer_service.change_customer(ssn)
@@ -136,7 +134,6 @@ class Employee:
                     search_critera = input("Input Search Criteria: ")
                     if search_critera == "1":
                         self.__car_service.search_by_car_id()
-                        _ = input("Press Enter to continue...")
                     if search_critera == "2":
                         self.__car_service.search_by_class()
                         _ = input("Press Enter to continue...")

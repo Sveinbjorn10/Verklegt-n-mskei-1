@@ -170,7 +170,7 @@ class RentalService:
 
         order_number = self.get_order_number()
         name = customer.get_name()
-        ssn = customer.get_soc_sec_num()
+        ssn = customer.get_ssn()
         home_address = customer.get_home_address()
         email = customer.get_email()
         phone = customer.get_phone_num()
@@ -325,7 +325,7 @@ class RentalService:
         while True:
             print("{:<165}".format(rental.get_order_num()))
             print("{:<165}{:<20}".format(customer.get_name(), "HSST Rental Company"))
-            print("{:<165}{:<20}".format(customer.get_soc_sec_num(), "SSN: 040499-2059"))
+            print("{:<165}{:<20}".format(customer.get_ssn(), "SSN: 040499-2059"))
             print("{:<165}{:<20}".format(customer.get_home_address(), "Hvergiland 88"))
             print("{:<165}{:<20}".format(customer.get_email(), "hsst@hsst.is"))
             print("{:<165}{:<20}".format(customer.get_phone_num(), "Phone: 642-1000"))

@@ -10,7 +10,7 @@ class RentalRepo:
         with open("./Data/rentals.csv", "a+", encoding = "utf-8") as rental_file:
             order_num = rental.get_order_num()
             name = rental.get_name()
-            ssn = rental.get_soc_sec_num()
+            ssn = rental.get_ssn()
             car_id = rental.get_car_id()
             insurance = rental.get_insurance()
             start_date = rental.get_start_date()
@@ -26,7 +26,7 @@ class RentalRepo:
                 for line in rental_reader:
                     order_num = line[0]
                     name = line[1]
-                    soc_sec_num = line[2]
+                    ssn = line[2]
                     car_id = line[3]
                     insurance = line[4]
                     start_date = line[5]
@@ -34,7 +34,7 @@ class RentalRepo:
                     total_price = line[7]
                     status = line[8]
                     payment = line[9]
-                    new_rental = Rental(order_num, name, soc_sec_num, car_id, insurance, start_date, end_date, total_price, status, payment)
+                    new_rental = Rental(order_num, name, ssn, car_id, insurance, start_date, end_date, total_price, status, payment)
                     self.__rentals.append(new_rental)    
         return self.__rentals
     
@@ -46,11 +46,11 @@ class RentalRepo:
                 return_list.append(rental)
         return return_list
     
-    def search_by_cust_ssn(self, soc_sec_num):
+    def search_by_cust_ssn(self, ssn):
         return_list = []
         all_rentals = self.get_rental_list()
         for rental in all_rentals:
-            if rental[2] == soc_sec_num:
+            if rental[2] == ssn:
                 return_list.append(rental)
         return return_list
 
