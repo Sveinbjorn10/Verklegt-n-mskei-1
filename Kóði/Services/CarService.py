@@ -16,7 +16,7 @@ class CarService:
     
     def search_by_class(self):
         list_of_class_cars = self.__car_repo.search_by_class()
-        if list_of_class_cars != []:    
+        if list_of_class_cars != []:
             string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format("License:", "Make:", 
             "Model:", "Manuf. Year:", "Car Class:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
             print(string)
@@ -24,6 +24,7 @@ class CarService:
                 print(car)
         else:
             _ = input("No Car Found for that Class.\nPress Enter to continue...")
+            clear()
     
     def search_by_model(self):
         list_of_model_cars = self.__car_repo.search_by_model()
