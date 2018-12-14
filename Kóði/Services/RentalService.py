@@ -106,7 +106,7 @@ class RentalService:
             print("\t1. Included Insurance")
             print("\t2. Insurance Package 1")
             print("\t3. Insurance Package 2")
-            print("\t4. See Insurance Info again") # Spurning hvort við eigum að gerae þetta...
+            print("\t4. See Insurance Info again")
             os.system("start python insurance.py ")
             try:
                 choice = int(input("What insurance package do you want? "))
@@ -157,8 +157,6 @@ class RentalService:
                             insurance_list.append(line)
             insurance_cost =  insurance_list[int(insurance_num) - 1][car_class]
             insurance_name = insurance_list[int(insurance_num) - 1][0]
-            # insurance_info = [insurance_list[insurance_num - 1][5:]]
-
             insurance_info = [info for info in insurance_list[int(insurance_num) - 1][5:]]
             return [int(insurance_cost), insurance_name, insurance_info]
         
@@ -230,8 +228,12 @@ class RentalService:
         print("Payment: {}".format(payment))
         confirm = input("Confirm order(Y/N):").upper()
         if confirm == "Y":
-            rental = Rental(order_number, name, ssn, car_plate, insurance, start_date, end_date, str(int(total_price_w_vat)), "Open", payment)
-            self.__rental_repo.add_rental(rental)
+            if additional_driver == "Empty":
+                rental = Rental(order_number, name, ssn, car_plate, insurance, start, end, str(int(total_price_w_vat)), "Open", payment)
+                self.__rental_repo.add_rental(rental)
+            else:
+                rental = Rental(order_number, name, ssn, car_plate, insurance, start, end, str(int(total_price_w_vat)), "Open", payment, [additional_driver_name, additional_driver_ssn, additional_driver_driv_license])
+                self.__rental_repo.add_rental(rental)
         clear()
 
     def search_by_license_plate_rentals(self, license_plate): #Hægt að nota fyrir search criteria 2
@@ -275,30 +277,49 @@ class RentalService:
                 _ = input("Car in perfect shape.\nPress Enter to continue...")
                 return False
             else:
-                _ = input("Invalid input.\Press Enter to continue...")
+                _ = input("Invalid input.\nPress Enter to continue...")
 
     def change_payment(self, payment):
-        change = input("Change payment(Y/N): ").upper()
-        if change == "Y":
-            print("Payment methods:")
-            print("\t1. Cash.")
-            print("\t2. Credit Card")
-            print("\t3. Debit Card.")
-            choice = input("Preferred payment method: ")
-            clear()
-            if choice == "1":
-                payment = "Cash"
-            elif choice == "2":
-                payment = "Credit Card"
-            elif choice == "3":
-                payment = "Debit Card"
+        print("Payment methods:")
+        print("\t1. Cash.")
+        print("\t2. Credit Card")
+        print("\t3. Debit Card.")
+        choice = input("Preferred payment method: ")
+        clear()
+        if choice == "1":
+            payment = "Cash"
+        elif choice == "2":
+            payment = "Credit Card"
+        elif choice == "3":
+            payment = "Debit Card"
         return payment
 
+    def confirm_order(self, rental, payment, start, end, additional_driver, total_price):
+        order_num = rental.get_order_num()
+        name = rental.get_name()
+        ssn = rental.get_soc_sec_num()
+        car = rental.get_license_plate()
+        insurance = rental.get_insurance()
+        additional_driver_name = additional_driver[0]
+        additional_driver_ssn = additional_driver[1]
+        additional_driver_drivers_license = additional_driver[2]
+
+        new_rental = Rental(order_num, name, ssn, car, insurance, start, end, total_price, "Closed", payment, [additional_driver_name, additional_driver_ssn, additional_driver_drivers_license])
+
+        rental_list = self.__rental_repo.get_rental_list()
+        for index, old_rental in enumerate(rental_list):
+            if old_rental.get_order_num() == new_rental.get_order_num():
+                rental_list.pop(index)
+                rental_list.insert(index, new_rental)
+        
+        self.__rental_repo.change_rental_list(rental_list)
+         
     def finish_order(self, rental, car, customer, fuel, damage):
         car_string = "{} {} ({})".format(car.get_make(), car.get_model(), car.get_license_plate())
 
         today = datetime.today()
         now = datetime(today.year, today.month, today.day)
+        start = rental.get_start_date()
         start_date= "{}/{}/{}".format(str(rental.get_start_date().day), str(rental.get_start_date().month), str(rental.get_start_date().year))
         end_date = "{}/{}/{}".format(str(now.day), str(now.month), str(now.year))
         delta = now - rental.get_start_date()
@@ -322,6 +343,7 @@ class RentalService:
         vat = total_price_with_vat - total_price
 
         payment = rental.get_payment()
+        additional_driver = rental.get_additional_driver()
         while True:
             print("{:<165}".format(rental.get_order_num()))
             print("{:<165}{:<20}".format(customer.get_name(), "HSST Rental Company"))
@@ -351,20 +373,16 @@ class RentalService:
             print("3. Back to main menu")
             choice = input("Input choice here: ")
             if choice == "1":
-                pass
-                # confirm order
+                self.confirm_order(rental, payment, start, now, additional_driver, total_price_with_vat)
             elif choice == "2":
+                clear()
                 payment = self.change_payment(payment)
                 clear()
             elif choice == "3":
-                pass
+                clear()
+                break
             else:
                 _ = input("Invalid input.\nPress Enter to continue...")
-
-
-
-
-
 
     def get_open_rental_for_car(self, car):
         return self.__rental_repo.get_open_rental_for_car(car)

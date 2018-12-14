@@ -112,9 +112,7 @@ class CarRepo:
         all_cars = self.get_cars()
         for car in all_cars:
             if car.get_license_plate() == license_plate:
-                print(car)
-                _ = input("Press Enter to continue...")
-                return None
+                return car
             else:
                 input("Car not found!\nPress Enter to continue...")
                 return None
