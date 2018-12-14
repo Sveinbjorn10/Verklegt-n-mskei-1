@@ -263,7 +263,8 @@ class RentalService:
 
     def print_open_rentals(self, open_rentals, search_criteria):
         while True:
-            print("{:<5}{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}{:<5}".format("Nr." ,"Order Number", "Name", "SSN", "License Plate", "Insurance" , "Start Date", "End Date", "Total Price", "Status"))
+            # print("{:<5}{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}{:<5}".format("Nr." ,"Order Number", "Name", "SSN", "License Plate", "Insurance" , "Start Date", "End Date", "Total Price", "Status"))
+            print("{:<5}{:<15}{:<30}{:<12}{:<10}{:<12}{:<20}{:<20}{:<15}{:<10}\n{}".format("Nr:", "Order Number:", "Name:", "SSN:", "Car ID:", "Insurance:" , "Start Date:", "End Date:", "Total Price:","Status" ,"-"*150))
             for index, rental in enumerate(open_rentals):
                 print("{:<5}".format(index + 1), end = "")
                 print(rental)
@@ -272,6 +273,7 @@ class RentalService:
             elif search_criteria == "2":
                 try:
                     chosen_rental = int(input("Select an order: "))
+                    clear()
                     if (chosen_rental > 0) and ((chosen_rental - 1) < len(open_rentals)): 
                         for index, rental in enumerate(open_rentals):
                             if index == (chosen_rental - 1):
@@ -406,6 +408,8 @@ class RentalService:
             if choice == "1":
                 self.confirm_order(rental, payment, start, now, additional_driver, total_price_with_vat)
                 self.__car_repo.change_car_status(car.get_car_id())
+                clear()
+                break
             elif choice == "2":
                 clear()
                 payment = self.change_payment(payment)

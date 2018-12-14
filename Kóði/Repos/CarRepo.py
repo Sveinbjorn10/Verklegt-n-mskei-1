@@ -8,9 +8,10 @@ class CarRepo:
     def __init__(self):
         self.__cars = []
 
-    def add_car(self, car):
+    def add_car(self, car, not_in_delete = True):
         # first add to file then to private list
-        self.__cars.append(car)
+        if not_in_delete == True:
+            self.__cars.append(car)
         with open("./data/cars.csv", "a+") as car_file:
             car_id = car.get_car_id()
             make = car.get_make()
@@ -85,7 +86,7 @@ class CarRepo:
         with open("./Data/cars.csv", "w", encoding = "utf-8") as car_file:
             car_file.truncate()
             for car in all_cars:
-                self.add_car(car)
+                self.add_car(car, False)
         clear()
 
     def get_available_cars(self):
