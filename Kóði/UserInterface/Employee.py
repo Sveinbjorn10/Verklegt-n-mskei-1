@@ -33,13 +33,13 @@ class Employee:
                 start_date, return_date = self.__rental_service.pick_date()
                 while True:
                     clear()
-                    search_critera = self.__rental_service.pick_search_criteria_rent(start_date, return_date)
-                    if search_critera == "1":
+                    search_criteria = self.__rental_service.pick_search_criteria_rent(start_date, return_date)
+                    if search_criteria == "1":
                             car = self.__car_service.search_by_car_id()
                             if car != None:
                                     break
                     
-                    if search_critera == "2":
+                    if search_criteria == "2":
                         available_cars = self.__car_service.car_by_class(start_date, return_date)
                         if available_cars != None:
                             if available_cars != []:
@@ -49,10 +49,10 @@ class Employee:
                                 _ = input("No car available in that class.\nPress Enter to continue...")
                         else:
                             clear()
-                    if search_critera == "3":
+                    if search_criteria == "3":
                         break
                     
-                if search_critera in ["1", "2"]:
+                if search_criteria in ["1", "2"]:
                     customer, additional_driver = self.__customer_service.customer_info(False)
                     while True:
                         insurance_list = self.__rental_service.insurance()
@@ -63,25 +63,69 @@ class Employee:
                     clear()
 
             if action == "2": #Return A Car
+                clear()
+                frue = False
                 while True:
-                    search_critera = self.__rental_service.pick_search_criteria_return()
+                    search_criteria = self.__rental_service.pick_search_criteria_return()
                     clear()
-                    if search_critera == "1":
+                    if search_criteria == "1":
                         car = self.__car_service.search_by_car_id()
                         clear()
                         if car != None:
                             rental = self.__rental_service.get_open_rental_for_car(car)
-                            customer = self.__customer_service.get_customer_for_rental(rental.get_ssn())
-                            fuel_price, fuel_level = self.__rental_service.fuel_status(car)
-                            damage = self.__rental_service.damage_check()
-                            clear()
-                            self.__rental_service.finish_order(rental, car, customer, [fuel_price, fuel_level], damage)
-                    if search_critera == "2":
-                        pass
-                    if search_critera == "3":
+                            if rental != None:
+                                customer = self.__customer_service.get_customer_for_rental(rental.get_ssn())
+                                frue = True
+                            else:
+                                _ = input("No open rental for {}.\nPress Enter to continue...".format(car.get_car_id()))
+                                clear()
+                    if search_criteria == "2":
+                        while True:
+                            while True: #Þetta shit er til ehvstaðar annarsstaðar
+                                print("Customer information:")
+                                ssn = input("\tEnter Social Security Number: ")
+                                trulse = True
+                                for num in ssn:
+                                    try:
+                                        int(num)
+                                    except:
+                                        trulse = False
+
+                                if (len(ssn) == 10) and (trulse == True):
+                                    
+                                    break
+                                else:
+                                    _ = input("Please enter a valid Social Security Number\nPress Enter to continue...")
+                                clear()
+                            temp_customer = self.__customer_service.search_by_ssn(ssn, False)
+                            if temp_customer != None:
+                                clear()
+                                confirm = self.__customer_service.confirm_customer(temp_customer)
+                            else:
+                                confirm = False
+                                clear()
+                                break
+                            if confirm == True:
+                                customer = temp_customer
+                                clear()
+                                rental = self.__rental_service.get_open_rental_for_customer(customer, search_criteria)
+                                if rental != None:
+                                    car = self.__car_service.get_car_for_rental(rental)
+                                    frue = True
+                                    break
+                                else:
+                                    break
+                                
+                    if search_criteria == "3":
                         break
 
-            if action == "3": #Available Cars
+                    if (search_criteria in ["1", "2"]) and (frue == True):
+                        fuel_price, fuel_level = self.__rental_service.fuel_status(car)
+                        damage = self.__rental_service.damage_check()
+                        clear()
+                        self.__rental_service.finish_order(rental, car, customer, [fuel_price, fuel_level], damage)
+
+            if action == "3": #Available Cars 
                 clear()
                 self.__car_service.get_available_cars_database(self.__car_service.get_available_cars())
                 _ = input("Press Enter To Return To Main Menu...")
@@ -117,7 +161,8 @@ class Employee:
                 if choice == 2:
                     clear()
                     ssn = input("Input SSN to Search: ")
-                    self.__customer_service.search_by_ssn(ssn)
+                    customer = self.__customer_service.search_by_ssn(ssn, False)
+                    print(customer)
                     _ = input("Press Enter to continue...")
                 if choice == 3:
                     self.__customer_service.customer_info(True)
@@ -143,13 +188,13 @@ class Employee:
                 if choice == 2:
                     clear()
                     self.__car_service.print_search_options()
-                    search_critera = input("Input Search Criteria: ")
-                    if search_critera == "1":
+                    search_criteria = input("Input Search Criteria: ")
+                    if search_criteria == "1":
                         self.__car_service.search_by_car_id()
-                    if search_critera == "2":
+                    if search_criteria == "2":
                         self.__car_service.search_by_class()
                         _ = input("Press Enter to continue...")
-                    if search_critera == "3":
+                    if search_criteria == "3":
                         self.__car_service.search_by_model()
                         _ = input("Press Enter to continue...")
                 if choice == 3:
@@ -173,26 +218,35 @@ class Employee:
                 if choice == 1:
                     clear()
                     self.__rental_service.print_view_rental_database_menu()
-                    search_critera = int(input("Input Choice Here: "))
-                    while (search_critera < 1) or (search_critera > 3):
+                    search_criteria = int(input("Input Choice Here: "))
+                    while (search_criteria < 1) or (search_criteria > 3):
                         print("Incorrect Input")
-                        search_critera = int(input("Input Choice Here: "))
-                    if search_critera == 1:
+                        search_criteria = int(input("Input Choice Here: "))
+                    if search_criteria == 1:
                         self.__rental_service.print_rental_database()
+                        _ = input("Press Enter to continue...")
+                    if search_criteria == 2:
+                        self.__rental_service.get_open_car_rentals_for_database()
+                        _ = input("Press Enter to continue...")
+                    else:
+                        clear()
                 if choice == 2:
                     clear()
                     self.__rental_service.print_search_rental_database_menu()
-                    search_critera = int(input("Input Choice Here: "))
-                    while (search_critera < 1) or (search_critera > 3):
+                    search_criteria = int(input("Input Choice Here: "))
+                    while (search_criteria < 1) or (search_criteria > 3):
                         print("Incorrect Input")
-                        search_critera = int(input("Input Choice Here: "))
-                    if search_critera == 1:
-                       pass
-                    if search_critera == 2:
-                        car_id = input("Input Car ID: ").upper()
-                        car = self.__rental_service.search_by_car_id_rentals(car_id)
-                        print(car)
+                        search_criteria = int(input("Input Choice Here: "))
+                    if search_criteria == 1:
+                        ssn = input("Input SSN: ")
+                        self.__rental_service.search_rentals_by_ssn(ssn)
                         _ = input("Press Enter to continue...")
-                else:
-                    break
+                    if search_criteria == 2:
+                        car_id = input("Input Car ID: ").upper()
+                        self.__rental_service.search_by_car_id_rentals(car_id)
+                        _ = input("Press Enter to continue...")
+                    else:
+                        clear()
+                if choice == 3:
+                    clear()
                 clear()

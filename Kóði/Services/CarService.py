@@ -103,9 +103,9 @@ class CarService:
 
     def get_available_cars_database(self, available_cars):
         print("Available cars")
-        print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", 
+        print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}\n{:>}".format(" ", 
             "Nr.", "License", "Make", "Model", "Manuf. Year", "Seats", "Doors", "Color", 
-            "Transmission", "Fuel", "Price per day"))
+            "Transmission", "Fuel", "Price per day", "-"*135))
         for index, car in enumerate(available_cars):
             print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", 
                 (index + 1), car.get_car_id(), car.get_make(), car.get_model(), 
@@ -199,3 +199,6 @@ class CarService:
         print("\t2. Search by Car Class")
         print("\t3. Search by Model")
         print("\t4. Return to Main Menu")
+
+    def get_car_for_rental(self, rental):
+        return self.__car_repo.get_car_for_rental(rental)

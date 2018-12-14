@@ -79,12 +79,17 @@ class RentalRepo:
         return string
 
     def get_open_rental_for_car(self, car):
+        all_open_rentals = []
         rental_list = self.get_rental_list()
         for rental in rental_list:
             if rental.get_status() == "Open":
-                if rental.get_car_id() == car.get_car_id():
-                    return rental
-    
+                if car != "Empty":
+                    if rental.get_car_id() == car.get_car_id():
+                        return rental
+                else:
+                    all_open_rentals.append(rental)
+        return all_open_rentals
+
     def change_rental_list(self, rental_list):
         with open("./Data/rentals.csv", "w", encoding = "utf-8") as f:
             f.truncate()

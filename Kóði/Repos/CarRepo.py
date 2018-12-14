@@ -194,3 +194,9 @@ class CarRepo:
                         color, transmission, fuel_type, price, tank_size, eval(availability))
                 car_class_list.append(new_car)
         return car_class_list
+
+    def get_car_for_rental(self, rental):
+        car_list = self.get_car_list()
+        for car in car_list:
+            if car.get_car_id() == rental.get_car_id():
+                return car
