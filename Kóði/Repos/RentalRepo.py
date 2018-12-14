@@ -15,8 +15,8 @@ class RentalRepo:
             start_date = rental.get_start_date()
             end_date = rental.get_end_date()
             total_price = rental.get_total_price()
-            finished = rental.get_finished()
-            rental_file.write("{},{},{},{},{},{},{},{},{}\n".format(order_num, name, ssn, license_plate, insurance, start_date, end_date, total_price, finished))
+            status = rental.get_status()
+            rental_file.write("{},{},{},{},{},{},{},{},{}\n".format(order_num, name, ssn, license_plate, insurance, start_date, end_date, total_price, status))
 
     def get_rental_list(self):
         if self.__rentals == []:
@@ -61,10 +61,9 @@ class RentalRepo:
         return return_list
 
     def __str__(self):
-        string = "{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}\n".format("Order Number:", "Name:", 
-            "SSN:", "License Plate:", "Insurance:" , "Start Date:", "End Date:", "Total Price:")
+        string = "{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}\n{}\n".format("Order Number:", "Name:", 
+            "SSN:", "License Plate:", "Insurance:" , "Start Date:", "End Date:", "Total Price:", "-"*130)
         rentallist = self.get_rental_list()
         for rental in rentallist:
             string += str(rental) + "\n"
         return string
-

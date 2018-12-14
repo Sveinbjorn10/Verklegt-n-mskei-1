@@ -33,7 +33,7 @@ class CustomerService:
         return additional_driver
 
     def confirm_customer(self, customer):
-        print("{:<30}{:<25}{:<15}{:<15}{:<15}{:<30}{:<20}{:<30}".format("Name:", "Social Security Number:", "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:"))
+        print("{:<30}{:<28}{:<25}{:<20}{:<18}{:<30}{:<20}{:<30}\n{}".format("Name:", "Social Security Number:", "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:", "-"*180))
         print(customer)
         confirm = input("Confirm(Y/N): ").upper()
         if confirm == "Y":
