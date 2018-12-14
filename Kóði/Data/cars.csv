@@ -1,4 +1,13 @@
+<<<<<<< HEAD
+DF375,Iveco,Daily,2012,3,3,5,White,Automatic,Diesel,10000,80,True
+AF315,Volkswagen,Transporter,2011,3,3,5,Grey,Automatic,Diesel,15000,70,True
+VOB36,Kia,Picanto,2012,1,5,5,Brown,Manual,Petrol,75000,60,True
+JB007,Toyota,Yaris,2012,1,4,3,Black,Automatic,Petrol,6000,45,True
+MYB00,Toyota,Land Cruiser,2018,4,7,5,Gold,Automatic,Diesel,20000,100,True
+SV034,Lincoln,Navigator,2007,4,5,5,White,Automatic,Diesel,20000,80,True
+=======
 DF375,Iveco,Daily,2012,3,3,5,White,5.0t,3.0l,180hp,Automatic,Diesel,10000,4WD,100000,80,True
 AF315,Volkswagen,Transporter,2011,3,3,5,Grey,4.0t,3.0l,180hp,Automatic,Diesel,15000,4WD,150000,70,True
 VOB36,Kia,Picanto,2012,1,5,5,Brown,2.0t,3.0l,100hp,Manual,Petrol,75000,FWD,8000,60,True
 JB007,Toyota,Yaris,2012,1,4,3,Black,1t,5l,80HP,Automatic,Petrol,6000,FWD,10000,45,True
+>>>>>>> 0662460e8a89b32edd3690d19aa4d0241e3c2655
