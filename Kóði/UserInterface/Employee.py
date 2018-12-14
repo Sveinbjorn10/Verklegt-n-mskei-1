@@ -88,9 +88,21 @@ class Employee:
                 clear()
             if action == "4":
                 clear()
-                self.__car_service.print_price_list()
-                _ = input("Press Enter To Return To Main Menu...")
-                clear()
+                self.__car_service.print_price_options()
+                choice = int(input("Input Choice Here: "))
+                while (choice < 1) or (choice > 3):
+                    print("Incorrect Input")
+                    choice = input("Input Choice Here: ")
+                if choice == 1:
+                    clear()
+                    self.__car_service.print_car_price_list()
+                    _ = input("Press Enter To Return To Main Menu...")
+                if choice == 2:
+                    clear()
+                    self.__car_service.print_insurance_price_list()
+                    _ = input("Press Enter To Return To Main Menu...")
+                else:
+                    clear()
             if action == "5":
                 clear()
                 self.__customer_service.print_customer_database_menu()

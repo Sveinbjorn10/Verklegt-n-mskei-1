@@ -104,7 +104,7 @@ class CarRepo:
                     "Model:", "Manuf. Year:", "Car Class:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
                 print("{}{}".format(string, car))
                 _ = input("Press Enter to continue...")
-                return None
+                return car
         input("Car not found!\nPress Enter to continue...")
         return None
 
@@ -164,8 +164,13 @@ class CarRepo:
                         break
 
     def __str__(self):
+<<<<<<< HEAD
         string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}\n".format("License:", "Make:", 
             "Model:", "Manuf. Year:", "Car Class:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
+=======
+        string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}\n{}\n".format("License:", "Make:", 
+            "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:", "-"*121)
+>>>>>>> 0662460e8a89b32edd3690d19aa4d0241e3c2655
         carlist = self.get_cars()
         for car in carlist:
             string += str(car) + "\n"

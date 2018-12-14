@@ -83,10 +83,6 @@ class CarService:
         return available_cars_in_class
     
     def select_car(self, available_cars):
-        # car_list = self.__car_repo.get_car_list()
-        # # available_cars = [car for car in car_list if ((car[4] == car_class) and (car[-1] == "True"))]
-        # available_cars = [car for car in car_list if (car.get_availability() == "True") and (car.get_car_class() == car_class)]
-        # clear()
         while True:
             clear()
             print("Available cars")
@@ -154,7 +150,13 @@ class CarService:
     def delete_car(self, car_id):
         return self.__car_repo.delete_car(car_id)
 
-    def print_price_list(self):
+    def print_price_options(self):
+        print("\t1. Print car prices")
+        print("\t2. Print Insurance prices")
+        print("\t3. Return to main menu")
+
+
+    def print_car_price_list(self):
         print("{:<33s}{:<33s}{:<21}".format("Car class", "Price per day", "Car make e.g"))
         print("-" * 100)
         print("{:<33s}{:<33s}{:<21}".format("Small Car", "10.000kr", "VW Golf"))
@@ -168,6 +170,30 @@ class CarService:
         print("{:<33s}{:<33s}{:<21}".format("", "", "Toyota Landcruiser"))
         print("{:<33s}{:<33s}{:<21}\n".format("", "", "Toyota Rav4"))
 
+    def print_insurance_price_list(self):
+        print("{:<45}{:^25}{:^25}{:^25}".format("Insurance Name:", "Included Insurance", "Insurance Package 1", "Insurance Package 2"))
+        print("-" * 140)
+        print("{:<45}{:^25}{:^25}{:^25}".format("Collision Damage Waiver (CDW)", "YES", "YES", "YES"))
+        print("{:<45}{:^25}{:^25}{:^25}".format("Driver + Passenger Injury Insurance (PAI)", "YES", "YES", "YES"))
+        print("{:<45}{:^25}{:^25}{:^25}".format("Third Party Insurance (TP)", "YES", "YES", "YES"))
+        print("{:<45}{:^26}{:^24}{:^25}".format("Super Collision Damage Waiver (SCDW)", "NO", "YES", "YES"))
+        print("{:<45}{:^26}{:^24}{:^25}".format("Windshield Insurance (GP)", "NO", "YES", "YES"))
+        print("{:<45}{:^26}{:^25}{:^24}".format("Sand And Dust Waiver (SADW)", "NO", "NO", "YES"))
+        print("{:<45}{:^26}{:^25}{:^24}".format("No Deductable Insurance (ZERO)", "NO", "NO", "YES"))
+        print()
+        print()
+        print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Insurance price per day:", "Small Car", "Family Car", "Van", "SUV"))
+        print("-" * 140)
+        print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Insurance Package 1", "2.000kr", "2.000kr", "3.750kr", "3.300kr"))
+        print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Insurance package 2", "3.750kr", "3.750kr", "6.000kr", "5.500kr"))
+        print()
+        print()
+        print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Max Deductable Insurance:", "Small Car", "Family Car", "Van", "SUV"))
+        print("-" * 140)
+        print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Included Insurance", "195.000kr", "195.000kr", "395.000kr", "375.000kr"))
+        print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Insurance Package 1", "49.500kr", "49.500kr", "105.000kr", "95.000kr"))
+        print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Insurance package 2", "0kr", "0kr", "0kr", "0kr"))
+        _ = input()
     def print_search_options(self):
         print("\t1. Search by Car ID")
         print("\t2. Search by Car Class")

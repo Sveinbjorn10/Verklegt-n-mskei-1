@@ -12,6 +12,9 @@ class CustomerService:
     def print_customer_database(self):
         print(self.__customer_repo)
 
+    def get_customer_for_rental(self, rental_ssn):
+        return self.__customer_repo.get_customer_for_rental(rental_ssn)
+
     def get_additional_driver(self):
         yes_no = input("Additional Driver(Y/N)? ").upper()
         clear()
@@ -33,7 +36,7 @@ class CustomerService:
         return additional_driver
 
     def confirm_customer(self, customer):
-        print("{:<30}{:<25}{:<15}{:<15}{:<15}{:<30}{:<20}{:<30}".format("Name:", "Social Security Number:", "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:"))
+        print("{:<30}{:<28}{:<25}{:<20}{:<18}{:<30}{:<20}{:<30}\n{}".format("Name:", "Social Security Number:", "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:", "-"*180))
         print(customer)
         confirm = input("Confirm(Y/N): ").upper()
         if confirm == "Y":
@@ -41,7 +44,7 @@ class CustomerService:
         else:
             return False
 
-    def customer_info(self, in_database=True):
+    def customer_info(self, in_database):
         while True:
             clear()
             while True:

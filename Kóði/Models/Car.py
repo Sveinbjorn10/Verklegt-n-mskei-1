@@ -11,7 +11,13 @@ class Car:
         self.__color = color
         self.__transmission = transmission
         self.__fuel_type = fuel_type
+<<<<<<< HEAD
         self.__tank_size = tank_size
+=======
+        self.__drive = drive
+        self.__total_km = total_km
+        self.__tank_size = int(tank_size)
+>>>>>>> 0662460e8a89b32edd3690d19aa4d0241e3c2655
         self.__price = int(price)
         self.__availability = availability
 
