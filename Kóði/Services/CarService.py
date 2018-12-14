@@ -83,10 +83,6 @@ class CarService:
         return available_cars_in_class
     
     def select_car(self, available_cars):
-        # car_list = self.__car_repo.get_car_list()
-        # # available_cars = [car for car in car_list if ((car[4] == car_class) and (car[-1] == "True"))]
-        # available_cars = [car for car in car_list if (car.get_availability() == "True") and (car.get_car_class() == car_class)]
-        # clear()
         while True:
             clear()
             print("Available cars")
