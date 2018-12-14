@@ -8,7 +8,7 @@ class CustomerRepo:
         self.__customers = []
 
     def add_customer(self, customer):
-        # first add to file then to private list
+        self.__customers.append(customer)
         with open("./Data/customers.csv", "a+", encoding = "utf-8") as customer_file:
             name = customer.get_name()
             ssn = customer.get_ssn()
@@ -65,7 +65,7 @@ class CustomerRepo:
         for customer in all_customers:
             if customer.get_ssn() == int(ssn):
                 edit_customer = customer
-                string = "{:<30}{:<12}{:<20}{:<15}{:<15}{:<30}{:<20}{:<30}\n{}".format("Name:", "SSN:", 
+                string = "{:<30}{:<12}{:<20}{:<15}{:<15}{:<30}{:<20}{:<30}\n{:<100}".format("Name:", "SSN:", 
                     "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", 
                     "Card Number:", ("-"*100))
                 print("{}{}\n".format(string, edit_customer))
