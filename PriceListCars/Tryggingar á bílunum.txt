@@ -4,6 +4,7 @@ Hámarkstrygging: 3750kr
 Súper kaskotrygging: 1624 kr
 Sand og öskufokstrygging: 1500kr
 Framrúðutrygging: 874kr
+Auka ökumaður: 3500kr
 
 Hyundai i10:
 Miðlungstrygging: 2000kr
@@ -11,7 +12,7 @@ Hámarkstrygging: 3750kr
 Súper kaskotrygging: 1624 kr
 Sand og öskufokstrygging: 1500kr
 Framrúðutrygging: 874kr
-Auka ökumaður:
+Auka ökumaður: 3500kr
 
 Toyota Corolla:
 Miðlungstrygging: 2000kr
@@ -19,7 +20,7 @@ Hámarkstrygging: 3750kr
 Súper kaskotrygging: 1624 kr
 Sand og öskufokstrygging: 1500kr
 Framrúðutrygging: 874kr
-Auka ökumaður:
+Auka ökumaður:3500kr
 
 Skoda Octavia:
 Miðlungstrygging: 2000kr
@@ -27,7 +28,7 @@ Hámarkstrygging: 3750kr
 Súper kaskotrygging: 1624 kr
 Sand og öskufokstrygging: 1500kr
 Framrúðutrygging: 874kr
-Auka ökumaður:
+Auka ökumaður:3500kr
 
 Audi Q5:
 Miðlungstrygging: 3249kr

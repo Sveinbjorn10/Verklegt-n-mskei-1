@@ -4,7 +4,7 @@ def titles():
 
 def smallcars():
     print("{:<33s}{:<33s}{:<21}".format("Small Car", "10.000kr", "VW Golf"))
-    print("{:<33s}{:<33s}{:<21}".format("", "", "Hyundai i10"))
+    print("{:<33s}{:<33s}{:<21}\n".format("", "", "Hyundai i10"))
     print("")
 
 def familycars():

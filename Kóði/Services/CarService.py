@@ -11,8 +11,24 @@ class CarService:
     def print_car_database(self):
         print(self.__car_repo)
 
-    def search_by_license_plate(self):
-        return self.__car_repo.search_by_license_plate()
+    def search_by_car_id(self):
+        return self.__car_repo.search_by_car_id()
+    
+    def search_by_class(self):
+        list_of_class_cars = self.__car_repo.search_by_class()
+        string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format("License:", "Make:", 
+            "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
+        print(string)
+        for car in list_of_class_cars:
+            print(car)
+    
+    def search_by_model(self):
+        list_of_model_cars = self.__car_repo.search_by_model()
+        string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format("License:", "Make:", 
+            "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
+        print(string)
+        for car in list_of_model_cars:
+            print(car)
 
     def print_time_period(self, start, end):
         start_date = "{}/{}/{}".format(start.day, start.month, start.year)
@@ -76,7 +92,7 @@ class CarService:
             print("Available cars")
             print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ","Nr.", "License", "Make", "Model", "Manuf. Year", "Seats", "Doors", "Color", "Transmission", "Fuel", "Price per day"))
             for index, car in enumerate(available_cars):
-                print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", (index + 1), car.get_license_plate(), car.get_make(), car.get_model(), car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), car.get_transmission(), car.get_fuel_type(), car.get_price()))
+                print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", (index + 1), car.get_car_id(), car.get_make(), car.get_model(), car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), car.get_transmission(), car.get_fuel_type(), car.get_price()))
             try:
                 car_choice = int(input("Select a car: "))
                 if (car_choice > 0) and (car_choice <= len(available_cars)):
@@ -96,7 +112,7 @@ class CarService:
             "Transmission", "Fuel", "Price per day"))
         for index, car in enumerate(available_cars):
             print("{:5}{:<5}{:<10}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<10}{:<10}".format(" ", 
-                (index + 1), car.get_license_plate(), car.get_make(), car.get_model(), 
+                (index + 1), car.get_car_id(), car.get_make(), car.get_model(), 
                 car.get_manuf_year(), car.get_seats(), car.get_doors(), car.get_color(), 
                 car.get_transmission(), car.get_fuel_type(), car.get_price()))
         print()
@@ -106,14 +122,15 @@ class CarService:
 
     def print_car_database_menu(self):
         print("\t1. View Car Database")
-        print("\t2. Add Car")
-        print("\t3. Edit Car")
-        print("\t4. Delete Car")
-        print("\t5. Return to Main Menu")
+        print("\t2. Search Cars")
+        print("\t3. Add Car")
+        print("\t4. Edit Car")
+        print("\t5. Delete Car")
+        print("\t6. Return to Main Menu")
 
     def car_info(self):
         print("New Car")
-        license_plate = input("\tLicense Plate: ")
+        car_id = input("\tCar ID: ")
         make = input("\tMake: ")
         model = input("\tModel: ")
         manuf_year = input("\tManufacturing Year: ")
@@ -131,7 +148,7 @@ class CarService:
         total_km = int(input("\tTotal Kilometers: "))
         tank_size = input("\tTank Size: ")
         availability = True
-        new_car = Car(license_plate, make, model, manuf_year, car_class, 
+        new_car = Car(car_id, make, model, manuf_year, car_class, 
             seats, doors, color, weight, engine_size,  
             horse_power, transmission, fuel_type, price, 
             drive, total_km, tank_size, availability)
@@ -143,6 +160,7 @@ class CarService:
     def delete_car(self, car_id):
         return self.__car_repo.delete_car(car_id)
 
+<<<<<<< HEAD
     def print_price_options(self):
         print("\t1. Print car prices")
         print("\t2. Print Insurance prices")
@@ -150,6 +168,9 @@ class CarService:
 
 
     def print_car_price_list(self):
+=======
+    def print_price_list(self):
+>>>>>>> 90781a6bd8d945d979beab3c38c72551e620994a
         print("{:<33s}{:<33s}{:<21}".format("Car class", "Price per day", "Car make e.g"))
         print("-" * 100)
         print("{:<33s}{:<33s}{:<21}".format("Small Car", "10.000kr", "VW Golf"))
@@ -163,6 +184,7 @@ class CarService:
         print("{:<33s}{:<33s}{:<21}".format("", "", "Toyota Landcruiser"))
         print("{:<33s}{:<33s}{:<21}\n".format("", "", "Toyota Rav4"))
 
+<<<<<<< HEAD
     def print_insurance_price_list(self):
         print("{:<45}{:^25}{:^25}{:^25}".format("Insurance Name:", "Included Insurance", "Insurance Package 1", "Insurance Package 2"))
         print("-" * 140)
@@ -187,3 +209,10 @@ class CarService:
         print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Insurance Package 1", "49.500kr", "49.500kr", "105.000kr", "95.000kr"))
         print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Insurance package 2", "0kr", "0kr", "0kr", "0kr"))
         _ = input()
+=======
+    def print_search_options(self):
+        print("\t1. Search by Car ID")
+        print("\t2. Search by Car Class")
+        print("\t3. Search by Model")
+        print("\t4. Return to Main Menu")
+>>>>>>> 90781a6bd8d945d979beab3c38c72551e620994a
