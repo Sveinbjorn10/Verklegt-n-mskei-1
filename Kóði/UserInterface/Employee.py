@@ -33,14 +33,18 @@ class Employee:
                 start_date, return_date = self.__rental_service.pick_date()
                 while True:
                     clear()
-                    search_criteria = self.__rental_service.pick_search_criteria_rent(start_date, return_date)
-                    if search_criteria == "1":
-                            car = self.__car_service.search_by_car_id()
+                    search_critera = self.__rental_service.pick_search_criteria_rent(start_date, return_date)
+                    if search_critera == "1":
+                        car = self.__car_service.search_by_car_id()
+                        if car.get_availability() == "No":
+                            clear()
+                            _ = input("Car not available.\nPress Enter to continue...")
+                        else:
                             if car != None:
-                                    break
+                                break
                     
-                    if search_criteria == "2":
-                        available_cars = self.__car_service.car_by_class(start_date, return_date)
+                    if search_critera == "2":
+                        available_cars = self.__car_service.car_by_class(start_date, return_date) #laga ehv hér
                         if available_cars != None:
                             if available_cars != []:
                                 car = self.__car_service.select_car(available_cars)
@@ -49,10 +53,11 @@ class Employee:
                                 _ = input("No car available in that class.\nPress Enter to continue...")
                         else:
                             clear()
-                    if search_criteria == "3":
+
+                    if search_critera == "3":
                         break
                     
-                if search_criteria in ["1", "2"]:
+                if search_critera in ["1", "2"]:
                     customer, additional_driver = self.__customer_service.customer_info(False)
                     while True:
                         insurance_list = self.__rental_service.insurance()
@@ -170,6 +175,7 @@ class Employee:
                     ssn = input("Input SSN For Customer To Update: ")
                     self.__customer_service.change_customer(ssn)
                 if choice == 5:
+                    clear()
                     ssn = input("Input SSN For Customer To Delete: ")
                     self.__customer_service.delete_customer(ssn)
                 else:
@@ -204,6 +210,7 @@ class Employee:
                     car_id = input("Input Car ID To Update: ").upper()
                     self.__car_service.update_car_info(car_id)
                 if choice == 5:
+                    clear()
                     car_id = input("Input Car ID To Delete: ")
                     self.__car_service.delete_car(car_id)
                 else:
