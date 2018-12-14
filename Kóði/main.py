@@ -1,3 +1,4 @@
+# ATH clear gæti mögulega ekki virkar á tölvum sem eru ekki á windows
 # https://github.com/Sveinbjorn10/Verklegt-n-mskei-1
 from UserInterface.Employee import Employee
 import os
