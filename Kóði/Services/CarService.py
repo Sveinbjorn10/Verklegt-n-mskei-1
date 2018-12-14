@@ -196,7 +196,7 @@ class CarService:
         print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Included Insurance", "195.000kr", "195.000kr", "395.000kr", "375.000kr"))
         print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Insurance Package 1", "49.500kr", "49.500kr", "105.000kr", "95.000kr"))
         print("{:<45}{:^25}{:^25}{:^25}{:^25}".format("Insurance package 2", "0kr", "0kr", "0kr", "0kr"))
-        _ = input()
+
 
     def print_search_options(self):
         print("\t1. Search by Car ID")
