@@ -1,6 +1,6 @@
 class Car:
     def __init__(self, car_id, make, model, manuf_year, car_class, 
-        seats, doors, color, transmission, fuel_type, price, tank_size, availability = True):
+        seats, doors, color, transmission, fuel_type, price, tank_size, availability):
         self.__car_id = car_id
         self.__make = make
         self.__model = model
