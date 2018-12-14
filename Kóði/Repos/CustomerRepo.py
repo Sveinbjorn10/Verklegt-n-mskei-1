@@ -7,8 +7,9 @@ class CustomerRepo:
     def __init__(self):
         self.__customers = []
 
-    def add_customer(self, customer):
-        self.__customers.append(customer)
+    def add_customer(self, customer, not_in_delete = True):
+        if not_in_delete == True:
+            self.__customers.append(customer)
         with open("./Data/customers.csv", "a+", encoding = "utf-8") as customer_file:
             name = customer.get_name()
             ssn = customer.get_ssn()
@@ -56,10 +57,9 @@ class CustomerRepo:
         with open("./Data/customers.csv", "w", encoding = "utf-8") as customer_file:
             customer_file.truncate()
             for customer in all_customers:
-                self.add_customer(customer)
+                self.add_customer(customer, False)
         clear()
                 
-
     def change_customer(self, ssn):
         all_customers = self.get_customer_list()
         for customer in all_customers:
