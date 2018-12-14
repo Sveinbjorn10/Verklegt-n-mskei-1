@@ -191,7 +191,7 @@ class Employee:
                     clear()
                     self.__car_service.print_car_database()
                     _ = input("Press Enter To Return To Main Menu...")
-                if choice == 2:
+                if choice == 2: #Search Cars
                     clear()
                     self.__car_service.print_search_options()
                     search_criteria = input("Input Search Criteria: ")
