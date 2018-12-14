@@ -50,13 +50,15 @@ class CustomerService:
             while True:
                 print("Customer information:")
                 ssn = input("\tEnter Social Security Number: ")
+                trulse = True
+                # ssn = int(ssn)
+                for num in ssn:
+                    try:
+                        int(num)
+                    except:
+                        trulse = False
 
-                try:
-                    ssn = int(ssn)
-                except:
-                    pass
-                
-                if (len(str(ssn)) == 10) and (type(ssn) == int):
+                if (len(ssn) == 10) and (trulse == True):
                     break
                 else:
                     if in_database == False:
@@ -117,4 +119,4 @@ class CustomerService:
     def search_by_ssn(self, ssn):
         return self.__customer_repo.search_by_ssn(ssn)
 
-
+    
