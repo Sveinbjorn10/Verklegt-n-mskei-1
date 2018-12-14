@@ -220,7 +220,6 @@ class Employee:
                         clear()
                     if search_criteria == "2":
                         self.__car_service.search_by_class()
-                        _ = input("Press Enter to continue...")
                         clear()
                     if search_criteria == "3":
                         self.__car_service.search_by_model()
