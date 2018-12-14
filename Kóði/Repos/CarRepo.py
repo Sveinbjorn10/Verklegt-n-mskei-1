@@ -141,35 +141,35 @@ class CarRepo:
                     "4. Return to Main Menu")
                 while True:
                     choice = input("What do you want to change: ")
-                    if (choice < 1) or (choice > 6):
+                    if (int(choice) < 1) or (int(choice) > 6):
                         print("Invalid Input")
                         _ = input("Press Enter to continue...")
                         clear()
                     else:
                         break
                 while True:
-                    if choice == 1:
+                    if choice == "1":
                         print("Current Color: {}".format(edit_car.get_color()))
                         new_color = input("New color: ")
                         edit_car.set_color(new_color)
                         print("Color Changed To: {}".format(edit_car.get_color()))
                         _ = input("Press Enter To Return To Main Menu...")
                         break
-                    if choice == 2:
+                    if choice == "2":
                         print("Current Transmission: {}".format(edit_car.get_transmission()))
                         new_transmission = input("New Transmission: ")
                         edit_car.set_transmission(new_transmission)
                         print("Transmission Changed To: {}".format(edit_car.get_transmission()))
                         _ = input("Press Enter To Return To Main Menu...")
                         break
-                    if choice == 3:
+                    if choice == "3":
                         print("Current Price: {}".format(edit_car.get_price()))
                         new_price = input("New Price: ")
                         edit_car.set_price(new_price)
-                        print("Price Changed To: {}".format(edit_car.get_drive()))
+                        print("Price Changed To: {}".format(edit_car.get_price()))
                         _ = input("Press Enter To Return To Main Menu...")
                         break
-                    if choice == 4:
+                    if choice == "4":
                         break
 
     def __str__(self):
