@@ -12,6 +12,9 @@ class CustomerService:
     def print_customer_database(self):
         print(self.__customer_repo)
 
+    def get_customer_for_rental(self, rental_ssn):
+        return self.__customer_repo.get_customer_for_rental(rental_ssn)
+
     def get_additional_driver(self):
         yes_no = input("Additional Driver(Y/N)? ").upper()
         clear()
@@ -33,7 +36,8 @@ class CustomerService:
         return additional_driver
 
     def confirm_customer(self, customer):
-        print("{:<30}{:<25}{:<15}{:<15}{:<15}{:<30}{:<20}{:<30}".format("Name:", "Social Security Number:", "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:"))
+        print("{:<30}{:<30}{:<25}{:<20}{:<15}{:<30}{:<20}{:<30}".format("Name:", "Social Security Number:", "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:"), end = "")
+        print("{:<200}".format("-" * 200))
         print(customer)
         confirm = input("Confirm(Y/N): ").upper()
         if confirm == "Y":
@@ -41,24 +45,28 @@ class CustomerService:
         else:
             return False
 
-    def customer_info(self):
+    def customer_info(self, in_database):
         while True:
             clear()
             while True:
                 print("Customer information:")
                 ssn = input("\tEnter Social Security Number: ")
+                trulse = True
+                # ssn = int(ssn)
+                for num in ssn:
+                    try:
+                        int(num)
+                    except:
+                        trulse = False
 
-                try:
-                    ssn = int(ssn)
-                except:
-                    pass
-                
-                if (len(str(ssn)) == 10) and (type(ssn) == int):
+                if (len(ssn) == 10) and (trulse == True):
                     break
                 else:
-                    _ = input("Please enter a valid Social Security Number\nPress Enter to continue...")
-                    clear()
-            temp_customer = self.__customer_repo.search_by_ssn(ssn)
+                    if in_database == False:
+                        _ = input("Please enter a valid Social Security Number\nPress Enter to continue...")
+                clear()
+
+            temp_customer = self.__customer_repo.search_by_ssn(ssn, in_database)
             if temp_customer != None:
                 clear()
                 confirm = self.confirm_customer(temp_customer)
@@ -68,7 +76,10 @@ class CustomerService:
                     break
             else:
                 clear()
-                try_again = input("Try another Social Security Number(Y/N)?").upper()
+                if in_database == False:
+                    try_again = input("Try another Social Security Number(Y/N)?").upper()
+                if in_database == True:
+                    try_again = "N"
                 if try_again != "Y":
                     clear()
                     print("Creating Customer - SSN: {}".format(ssn))
@@ -86,8 +97,11 @@ class CustomerService:
                     customer = Customer(name, ssn, home_address, local_address, mobile_phone, email, drivers_license, card_num)
                     self.__customer_repo.add_customer(customer)
                     break
-        additional_driver = self.get_additional_driver()
-        return customer, additional_driver
+        if in_database == False:
+            additional_driver = self.get_additional_driver()
+            return customer, additional_driver
+        else:
+            return customer
 
     def print_customer_database_menu(self):
         print("\t1. View Customer Database")
@@ -106,10 +120,6 @@ class CustomerService:
     def delete_customer(self, soc_sec_num):
         return self.__customer_repo.delete_customer(soc_sec_num)
 
-
-    def search_by_ssn(self, ssn):
-        return self.__customer_repo.search_by_ssn(ssn)
-
     def print_search_options(self):
         print("\t1. Search by SSN")
         print("\t2. Return to Main Menu")
@@ -117,3 +127,7 @@ class CustomerService:
     def search_by_name(self, name):
         return self.__customer_repo.search_by_name(name)
 
+    def search_by_ssn(self, ssn, in_database):
+        return self.__customer_repo.search_by_ssn(ssn, in_database)
+
+    
