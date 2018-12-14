@@ -73,7 +73,11 @@ class CarRepo:
         for car in all_cars:
             if car.get_car_class() == car_class:
                 return_list.append(car)
-        return return_list
+        if return_list != []:
+            return return_list
+        else:
+            input("Car not found!\nPress Enter to continue...")
+        return "Empty"
         
 
     def search_by_model(self):

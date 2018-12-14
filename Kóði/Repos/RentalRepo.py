@@ -60,7 +60,10 @@ class RentalRepo:
         for rental in all_rentals:
             if rental.get_ssn() == ssn:
                 return_list.append(rental)
-        return return_list
+        if return_list != []:
+            return return_list
+        else:
+            return "Empty"
 
     def search_by_car_id(self, car_id):
         return_list = []
@@ -68,7 +71,10 @@ class RentalRepo:
         for rental in all_rentals:
             if rental.get_car_id() == car_id:
                 return_list.append(rental)
-        return return_list
+        if return_list != []:
+            return return_list
+        else:
+            return "Empty"
 
     def __str__(self):
         string = "{:<15}{:<30}{:<12}{:<10}{:<12}{:<20}{:<20}{:<15}{:<10}\n{}\n".format("Order Number:", "Name:", 

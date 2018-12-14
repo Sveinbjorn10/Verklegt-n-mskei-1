@@ -34,7 +34,7 @@ class Employee:
                 while True:
                     clear()
                     search_critera = self.__rental_service.pick_search_criteria_rent(start_date, return_date)
-                    if search_critera == "1":
+                    if search_critera == "1": #Car ID
                         car = self.__car_service.search_by_car_id()
                         if car.get_availability() == "No":
                             clear()
@@ -43,18 +43,18 @@ class Employee:
                             if car != None:
                                 break
                     
-                    if search_critera == "2":
-                        available_cars = self.__car_service.car_by_class(start_date, return_date) #laga ehv hér
+                    if search_critera == "2": #Search For Car
+                        available_cars = self.__car_service.car_by_class(start_date, return_date)
                         if available_cars != None:
                             if available_cars != []:
                                 car = self.__car_service.select_car(available_cars)
                                 break
                             else:
                                 _ = input("No car available in that class.\nPress Enter to continue...")
-                        else:
+                        else: 
                             clear()
 
-                    if search_critera == "3":
+                    if search_critera == "3": #Return To Menu
                         break
                     
                 if search_critera in ["1", "2"]:
@@ -73,7 +73,7 @@ class Employee:
                 while True:
                     search_criteria = self.__rental_service.pick_search_criteria_return()
                     clear()
-                    if search_criteria == "1":
+                    if search_criteria == "1": #Car ID
                         car = self.__car_service.search_by_car_id()
                         clear()
                         if car != None:
@@ -84,7 +84,7 @@ class Employee:
                             else:
                                 _ = input("No open rental for {}.\nPress Enter to continue...".format(car.get_car_id()))
                                 clear()
-                    if search_criteria == "2":
+                    if search_criteria == "2": #Customer SSN
                         while True:
                             while True: #Þetta shit er til ehvstaðar annarsstaðar
                                 print("Customer information:")
@@ -121,7 +121,7 @@ class Employee:
                                 else:
                                     break
                                 
-                    if search_criteria == "3":
+                    if search_criteria == "3": #Return To Menu
                         break
 
                     if (search_criteria in ["1", "2"]) and (frue == True):
@@ -146,15 +146,15 @@ class Employee:
                     else:
                         _ = input("Invalid input.\nPress Enter to continue...")
                         clear()
-                if choice == "1":
+                if choice == "1": #Print Car Price List
                     self.__car_service.print_car_price_list()
                     _ = input("Press Enter To Return To Main Menu...")
                     clear()
-                if choice == "2":
+                if choice == "2": #Print Insurance Price List
                     self.__car_service.print_insurance_price_list()
                     _ = input("Press Enter To Return To Main Menu...")
                     clear()
-                else:
+                else: # Return To Main Menu
                     clear()
             if action == "5": #Customer Database
                 clear()
@@ -168,28 +168,28 @@ class Employee:
                         _ = input("Invalid input.\nPress Enter to continue...")
                         clear()
 
-                if choice == "1":
+                if choice == "1": #View Customer Database
                     self.__customer_service.print_customer_database()
                     _ = input("Press Enter To Return To Main Menu...")
                     clear()
-                if choice == "2":
+                if choice == "2": #Search For Car 
                     ssn = input("Input SSN to Search: ")
                     customer = self.__customer_service.search_by_ssn(ssn, False)
                     print(customer)
                     _ = input("Press Enter to continue...")
                     clear()
-                if choice == "3":
+                if choice == "3": #Add Customer
                     self.__customer_service.customer_info(True)
                     clear()
-                if choice == "4":
+                if choice == "4": #Edit Customer
                     ssn = input("Input SSN For Customer To Update: ")
                     self.__customer_service.change_customer(ssn)
                     clear()
-                if choice == "5":
+                if choice == "5": #Delete Customer
                     ssn = input("Input SSN For Customer To Delete: ")
                     self.__customer_service.delete_customer(ssn)
                     clear()
-                else:
+                else: #Return To Main Menu
                     clear()
             if action == "6": #Car Database
                 clear()
@@ -203,11 +203,11 @@ class Employee:
                         _ = input("Invalid input.\nPress Enter to continue...")
                         clear()
 
-                if choice == "1":
+                if choice == "1": #View Car Database
                     self.__car_service.print_car_database()
                     _ = input("Press Enter To Return To Main Menu...")
                     clear()
-                if choice == "2":
+                if choice == "2": #Search Car
                     while True:
                         self.__car_service.print_search_options()
                         search_criteria = input("Input Search Criteria: ")
@@ -215,29 +215,29 @@ class Employee:
                         if search_criteria in ["1", "2", "3", "4"]:
                             break
 
-                    if search_criteria == "1":
+                    if search_criteria == "1": #Search By Car ID
                         self.__car_service.search_by_car_id()
                         clear()
-                    if search_criteria == "2":
+                    if search_criteria == "2": #Search By Car Class
                         self.__car_service.search_by_class()
                         clear()
-                    if search_criteria == "3":
+                    if search_criteria == "3": #Search By Model
                         self.__car_service.search_by_model()
                         clear()
-                    else:
+                    else: #Return To Main Menu
                         clear()
-                if choice == "3":
+                if choice == "3": #Add Car
                     self.__car_service.car_info()
                     clear()
-                if choice == "4":
+                if choice == "4": #Edit Car
                     car_id = input("Input Car ID To Update: ").upper()
                     self.__car_service.update_car_info(car_id)
                     clear()
-                if choice == "5":
-                    car_id = input("Input Car ID To Delete: ")
+                if choice == "5": #Delete Car
+                    car_id = input("Input Car ID To Delete: ").upper()
                     self.__car_service.delete_car(car_id)
                     clear()
-                else:
+                else: #Return To Main Menu
                     clear()
             if action == "7": #Rental Database
                 clear()
@@ -246,38 +246,36 @@ class Employee:
                 while (choice < 1) or (choice > 3):
                     print("Incorrect Input")
                     choice = int(input("Input Choice Here: "))
-                if choice == 1:
+                if choice == 1: #View Rental Database
                     clear()
                     self.__rental_service.print_view_rental_database_menu()
                     search_criteria = int(input("Input Choice Here: "))
                     while (search_criteria < 1) or (search_criteria > 3):
                         print("Incorrect Input")
                         search_criteria = int(input("Input Choice Here: "))
-                    if search_criteria == 1:
+                    if search_criteria == 1: #Print Rental Database History
                         self.__rental_service.print_rental_database()
                         _ = input("Press Enter to continue...")
-                    if search_criteria == 2:
+                    if search_criteria == 2: #Print Currently Ongoing Rentals
                         self.__rental_service.get_open_car_rentals_for_database()
                         _ = input("Press Enter to continue...")
                     else:
                         clear()
-                if choice == 2:
+                if choice == 2: #Search Rental
                     clear()
                     self.__rental_service.print_search_rental_database_menu()
                     search_criteria = int(input("Input Choice Here: "))
                     while (search_criteria < 1) or (search_criteria > 3):
                         print("Incorrect Input")
                         search_criteria = int(input("Input Choice Here: "))
-                    if search_criteria == 1:
+                    if search_criteria == 1: #Search Rentals By SSN
                         ssn = input("Input SSN: ")
                         self.__rental_service.search_rentals_by_ssn(ssn)
-                        _ = input("Press Enter to continue...")
-                    if search_criteria == 2:
+                    if search_criteria == 2: #Search Rentals By Car ID
                         car_id = input("Input Car ID: ").upper()
                         self.__rental_service.search_by_car_id_rentals(car_id)
-                        _ = input("Press Enter to continue...")
-                    else:
+                    else: #Return To Main Menu
                         clear()
-                if choice == 3:
+                if choice == 3: #Return To Main Menu
                     clear()
                 clear()
