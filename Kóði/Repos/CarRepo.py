@@ -62,12 +62,18 @@ class CarRepo:
 
     def search_by_class(self):
         return_list = []
-        car_class = input("Enter Car Class: ")
+        while True:
+            car_class = input("Enter Car Class: ")
+            if car_class in ["1", "2", "3", "4"]:
+                break
+            else:
+                _ = input("Invalid Input!\nPress Enter to continue...")
         all_cars = self.get_cars()
         for car in all_cars:
-            if car.get_car_class() == int(car_class):
+            if car.get_car_class() == car_class:
                 return_list.append(car)
         return return_list
+        
 
     def search_by_model(self):
         return_list = []
@@ -76,7 +82,11 @@ class CarRepo:
         for car in all_cars:
             if car.get_model() == model:
                 return_list.append(car)
-        return return_list
+        if return_list != []:
+            return return_list
+        else:
+            input("Car not found!\nPress Enter to continue...")
+        return "Empty"
 
     def delete_car(self, car_id):
         all_cars = self.get_cars()
