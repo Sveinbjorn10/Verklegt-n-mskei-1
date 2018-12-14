@@ -1,10 +1,10 @@
 from datetime import datetime
 class Rental:
-    def __init__(self, order_num, name, soc_sec_num, car_id, insurance, 
+    def __init__(self, order_num, name, ssn, car_id, insurance, 
         start_date, end_date, total_price, status, payment, additional_driver = []):
         self.__order_num = order_num
         self.__name = name
-        self.__soc_sec_num = soc_sec_num
+        self.__ssn = ssn
         self.__car_id = car_id
         self.__insurance = insurance
         self.__start_date = start_date
@@ -21,7 +21,7 @@ class Rental:
         return self.__name
     
     def get_ssn(self):
-        return self.__soc_sec_num
+        return self.__ssn
 
     def get_car_id(self):
         return self.__car_id
@@ -67,6 +67,8 @@ class Rental:
         return self.__additional_driver
 
     def __str__(self):
+        start_date = "{}/{}/{}".format(self.__start_date[8:10], self.__start_date[5:7], self.__start_date[0:4])
+        end_date = "{}/{}/{}".format(self.__end_date[8:10], self.__end_date[5:7], self.__end_date[0:4])
         return "{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}{:<5}".format(self.__order_num, 
-            self.__name, self.__soc_sec_num, self.__car_id, self.__insurance, 
-            self.__start_date, self.__end_date, str(self.__total_price) + " kr", self.__status)
+            self.__name, self.__ssn, self.__car_id, self.__insurance, start_date, end_date, 
+            str(self.__total_price) + " kr", self.__status)

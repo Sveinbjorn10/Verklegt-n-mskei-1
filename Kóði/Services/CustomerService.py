@@ -36,7 +36,8 @@ class CustomerService:
         return additional_driver
 
     def confirm_customer(self, customer):
-        print("{:<30}{:<28}{:<25}{:<20}{:<18}{:<30}{:<20}{:<30}\n{}".format("Name:", "Social Security Number:", "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:", "-"*180))
+        print("{:<30}{:<30}{:<25}{:<20}{:<15}{:<30}{:<20}{:<30}".format("Name:", "Social Security Number:", "Home Address:", "Local Address:", "Phone Number:" , "Email:", "Driver's License:", "Card Number:"), end = "")
+        print("{:<200}".format("-" * 200))
         print(customer)
         confirm = input("Confirm(Y/N): ").upper()
         if confirm == "Y":
@@ -50,13 +51,15 @@ class CustomerService:
             while True:
                 print("Customer information:")
                 ssn = input("\tEnter Social Security Number: ")
+                trulse = True
+                # ssn = int(ssn)
+                for num in ssn:
+                    try:
+                        int(num)
+                    except:
+                        trulse = False
 
-                try:
-                    ssn = int(ssn)
-                except:
-                    pass
-                
-                if (len(str(ssn)) == 10) and (type(ssn) == int):
+                if (len(ssn) == 10) and (trulse == True):
                     break
                 else:
                     if in_database == False:
@@ -114,7 +117,7 @@ class CustomerService:
     def delete_customer(self, ssn):
         return self.__customer_repo.delete_customer(ssn)
 
-    def search_by_ssn(self, ssn):
-        return self.__customer_repo.search_by_ssn(ssn)
+    def search_by_ssn(self, ssn, in_database):
+        return self.__customer_repo.search_by_ssn(ssn, in_database)
 
-
+    

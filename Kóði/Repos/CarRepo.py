@@ -19,20 +19,14 @@ class CarRepo:
             seats = car.get_seats()
             doors = car.get_doors()
             color = car.get_color()
-            weight = car.get_weight()
-            engine_size = car.get_engine_size()
-            horse_power = car.get_horse_power()
             transmission = car.get_transmission()
             fuel_type = car.get_fuel_type()
             price = car.get_price()
-            drive = car.get_drive()
-            total_km = car.get_total_km()
             tank_size = car.get_tank_size()
             availability = car.get_availability()
-            car_file.write("{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}\n".format(car_id, 
-                make, model, manuf_year, car_class, seats, doors, color, weight, 
-                engine_size, horse_power, transmission, fuel_type, price, drive, total_km, 
-                tank_size, availability))
+            car_file.write("{},{},{},{},{},{},{},{},{},{},{},{},{}\n".format(car_id, 
+                make, model, manuf_year, car_class, seats, doors, color, 
+                transmission, fuel_type, price, tank_size, availability))
 
     def get_cars(self):
         if self.__cars == []:
@@ -47,19 +41,13 @@ class CarRepo:
                     seats = line[5]
                     doors = line[6]
                     color = line[7]
-                    weight = line[8]
-                    engine_size = line[9]
-                    horse_power = line[10]
-                    transmission = line[11]
-                    fuel_type = line[12]
-                    price = line[13]
-                    drive = line[14]
-                    total_km = line[15]
-                    tank_size = line[16]
+                    transmission = line[8]
+                    fuel_type = line[9]
+                    price = line[10]
+                    tank_size = line[11]
                     availability = "True" #Möguleiki á villum
                     new_car = Car(car_id, make, model, manuf_year, car_class, seats, doors, 
-                        color, weight, engine_size, horse_power, transmission, fuel_type, price, drive, 
-                        total_km, tank_size, eval(availability))
+                        color, transmission, fuel_type, price, tank_size, eval(availability))
                     self.__cars.append(new_car)    
         return self.__cars
 
@@ -113,7 +101,7 @@ class CarRepo:
         for car in all_cars:
             if car.get_car_id() == car_id:
                 string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}\n".format("License:", "Make:", 
-                    "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
+                    "Model:", "Manuf. Year:", "Car Class:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
                 print("{}{}".format(string, car))
                 _ = input("Press Enter to continue...")
                 return car
@@ -136,13 +124,11 @@ class CarRepo:
             if car.get_car_id == driver_license:
                 edit_car = car
                 print(edit_car)
-                print("1. Edit Color\n2. Edit Weight\n3. Edit Engine Size\n"
-                        "4. Edit Horse Power\n5. Edit Transmission\n"
-                        "6. Edit Fuel Type\n7. Edit Drive\n8. Edit Total km\n"
-                        "9. Edit Tank Size\n10. Edit Price\n11. Quit")
+                print("1. Edit Color\n2. Edit Transmission\n"
+                        "3. Edit Fuel Type\n4. Edit Tank Size\n5. Edit Price\n6. Return to Main Menu")
                 while True:   
                     choice = input("What do you want to change:")
-                    if (choice < 1) or (choice > 11):
+                    if (choice < 1) or (choice > 6):
                         print("Invalid Input")
                         _ = input("Press Enter to continue...")
                         clear()
@@ -155,56 +141,31 @@ class CarRepo:
                         edit_car.set_color(new_color)
                         print("New Current Color: {}".format(edit_car.get_color()))
                     if choice == 2:
-                        print("Current Weight: {}".format(edit_car.get_weight()))
-                        new_weight = input("New Weight: ")
-                        edit_car.set_weight(new_weight)
-                        print("New Current Weight: {}".format(edit_car.get_weight()))
-                    if choice == 3:
-                        print("Current Engine Size: {}".format(edit_car.get_engine_size()))
-                        new_engine_size = input("New Engine Size: ")
-                        edit_car.set_engine_size(new_engine_size)
-                        print("New Current Engine Size: {}".format(edit_car.get_engine_size()))
-                    if choice == 4:
-                        print("Current Horse Power: {}".format(edit_car.get_horse_power()))
-                        new_hp = input("New Horse Power: ")
-                        edit_car.set_horse_power(new_hp)
-                        print("New Current Horse Power: {}".format(edit_car.get_horse_power()))
-                    if choice == 5:
                         print("Current Transmission: {}".format(edit_car.get_transmission()))
                         new_transmission = input("New Transmission: ")
                         edit_car.set_transmission(new_transmission)
                         print("New Current Transmission: {}".format(edit_car.get_transmission()))
-                    if choice == 6:
+                    if choice == 3:
                         print("Current Fuel Type: {}".format(edit_car.get_fuel_type()))
                         new_fuel_type = input("New Fuel Type: ")
                         edit_car.set_fuel_type(new_fuel_type)
                         print("New Current Fuel Type: {}".format(edit_car.get_fuel_type()))
-                    if choice == 7:
-                        print("Current Drive: {}".format(edit_car.get_drive()))
-                        new_drive = input("New Drive: ")
-                        edit_car.set_drive(new_drive)
-                        print("New Current Drive: {}".format(edit_car.get_drive()))
-                    if choice == 8:
-                        print("Current Total km: {}".format(edit_car.get_total_km()))
-                        new_total_km = input("New Total km: ")
-                        edit_car.set_total_km(new_total_km)
-                        print("New Current Total km: {}".format(edit_car.get_total_km()))
-                    if choice == 9:
+                    if choice == 4:
                         print("Current Tank Size: {}".format(edit_car.get_tank_size()))
                         new_tank_size = input("New Tank Size: ")
                         edit_car.set_tank_size(new_tank_size)
                         print("New Current Tank Size: {}".format(edit_car.get_tank_size()))
-                    if choice == 10:
+                    if choice == 5:
                         print("Current Price: {}".format(edit_car.get_price()))
                         new_price = input("New Price: ")
                         edit_car.set_price(new_price)
                         print("New Current Price: {}".format(edit_car.get_drive()))
-                    if choice == 11:
+                    if choice == 6:
                         break
 
     def __str__(self):
-        string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}\n{}\n".format("License:", "Make:", 
-            "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:", "-"*121)
+        string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}\n".format("License:", "Make:", 
+            "Model:", "Manuf. Year:", "Car Class:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
         carlist = self.get_cars()
         for car in carlist:
             string += str(car) + "\n"
@@ -217,7 +178,27 @@ class CarRepo:
             csv_reader = csv.reader(cars)
             for car in csv_reader:
                 car_list.append(car)
-            for car in car_list:
-                new_car = Car(car[0], car[1], car[2], car[3], car[4], car[5], car[6], car[7], car[8], car[9], car[10], car[11], car[12], car[13], car[14], car[15], car[16], car[17])
+            for line in car_list:
+                car_id = line[0]
+                make = line[1]
+                model = line[2]
+                manuf_year = line[3]
+                car_class = line[4]
+                seats = line[5]
+                doors = line[6]
+                color = line[7]
+                transmission = line[8]
+                fuel_type = line[9]
+                price = line[10]
+                tank_size = line[11]
+                availability = "True"
+                new_car = Car(car_id, make, model, manuf_year, car_class, seats, doors, 
+                        color, transmission, fuel_type, price, tank_size, eval(availability))
                 car_class_list.append(new_car)
         return car_class_list
+
+    def get_car_for_rental(self, rental):
+        car_list = self.get_car_list()
+        for car in car_list:
+            if car.get_car_id() == rental.get_car_id():
+                return car

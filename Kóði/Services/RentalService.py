@@ -247,11 +247,27 @@ class RentalService:
         return open_rentals
 
     def print_open_rentals(self, open_rentals, search_criteria):
-        print("{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}{:<5}".format("Order Number", "Name", "SSN", "License Plate", "Insurance" , "Start Date", "End Date", "Total Price", "Status"))
-        for rental in open_rentals:
-            print(rental)
-        if search_criteria == "1":
-            return open_rentals[0]
+        while True:
+            print("{:<5}{:<15}{:<30}{:<12}{:<15}{:<20}{:<12}{:<12}{:<20}{:<5}".format("Nr." ,"Order Number", "Name", "SSN", "License Plate", "Insurance" , "Start Date", "End Date", "Total Price", "Status"))
+            for index, rental in enumerate(open_rentals):
+                print("{:<5}".format(index + 1), end = "")
+                print(rental)
+            if search_criteria == "1":
+                return open_rentals[0]
+            elif search_criteria == "2":
+                try:
+                    chosen_rental = int(input("Select an order: "))
+                    if (chosen_rental > 0) and ((chosen_rental - 1) < len(open_rentals)): 
+                        for index, rental in enumerate(open_rentals):
+                            if index == (chosen_rental - 1):
+                                return rental
+                    else:
+                        _ = input("Please enter a valid order\nPress Enter to continue...")
+                        clear()
+
+                except:
+                    _ = input("Please enter a valid order\nPress Enter to continue...")
+                    clear()
 
     def fuel_status(self, car):
         tank_size = car.get_tank_size()
@@ -386,3 +402,17 @@ class RentalService:
 
     def get_open_rental_for_car(self, car):
         return self.__rental_repo.get_open_rental_for_car(car)
+
+    def get_open_rental_for_customer(self, customer, search_criteria):
+        rental_list = self.__rental_repo.get_rental_list()
+        open_rentals = []
+        for rental in rental_list:
+            if (rental.get_ssn() == customer.get_ssn()) and (rental.get_status() == "Open"):
+                open_rentals.append(rental)
+        if open_rentals != []:
+            rental = self.print_open_rentals(open_rentals, search_criteria)
+            return rental
+        else:
+            _ = input("No rentals found for {}.\nPress Enter to continue...".format(customer.get_name()))
+            clear()
+            return None

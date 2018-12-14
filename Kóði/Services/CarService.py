@@ -17,7 +17,7 @@ class CarService:
     def search_by_class(self):
         list_of_class_cars = self.__car_repo.search_by_class()
         string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format("License:", "Make:", 
-            "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
+            "Model:", "Manuf. Year:", "Car Class:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
         print(string)
         for car in list_of_class_cars:
             print(car)
@@ -25,7 +25,7 @@ class CarService:
     def search_by_model(self):
         list_of_model_cars = self.__car_repo.search_by_model()
         string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}".format("License:", "Make:", 
-            "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
+            "Model:", "Manuf. Year:", "Car Class:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
         print(string)
         for car in list_of_model_cars:
             print(car)
@@ -134,20 +134,14 @@ class CarService:
         seats = int(input("\tSeats: "))
         doors = int(input("\tDoors: "))
         color = input("\tColor: ")
-        weight = input("\tWeight: ")
-        engine_size = input("\tEngine Size: ")
-        horse_power = input("\tHorse Power: ")
         transmission = input("\tTransmission: ")
         fuel_type = input("\tFuel Type: ")
         price = int(input("\tPrice: "))
-        drive = input("\tDrive: ")
-        total_km = int(input("\tTotal Kilometers: "))
         tank_size = input("\tTank Size: ")
         availability = True
         new_car = Car(car_id, make, model, manuf_year, car_class, 
-            seats, doors, color, weight, engine_size,  
-            horse_power, transmission, fuel_type, price, 
-            drive, total_km, tank_size, availability)
+            seats, doors, color, transmission, fuel_type, price, tank_size, 
+            availability)
         self.__car_repo.add_car(new_car)
 
     def update_car_info(self, car_id):
@@ -205,3 +199,6 @@ class CarService:
         print("\t2. Search by Car Class")
         print("\t3. Search by Model")
         print("\t4. Return to Main Menu")
+
+    def get_car_for_rental(self, rental):
+        return self.__car_repo.get_car_for_rental(rental)
