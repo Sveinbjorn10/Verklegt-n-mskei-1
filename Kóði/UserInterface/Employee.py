@@ -63,6 +63,8 @@ class Employee:
                     clear()
 
             if action == "2":
+                clear()
+                frue = False
                 while True:
                     search_critera = self.__rental_service.pick_search_criteria_return()
                     clear()
@@ -71,15 +73,57 @@ class Employee:
                         clear()
                         if car != None:
                             rental = self.__rental_service.get_open_rental_for_car(car)
-                            customer = self.__customer_service.get_customer_for_rental(rental.get_ssn())
-                            fuel_price, fuel_level = self.__rental_service.fuel_status(car)
-                            damage = self.__rental_service.damage_check()
-                            clear()
-                            self.__rental_service.finish_order(rental, car, customer, [fuel_price, fuel_level], damage)
+                            if rental != None:
+                                customer = self.__customer_service.get_customer_for_rental(rental.get_ssn())
+                                frue = True
+                            else:
+                                _ = input("No open rental for {}.\nPress Enter to continue...".format(car.get_car_id()))
+                                clear()
                     if search_critera == "2":
-                        pass
+                        while True:
+                            while True: #Þetta shit er til ehvstaðar annarsstaðar
+                                print("Customer information:")
+                                ssn = input("\tEnter Social Security Number: ")
+                                trulse = True
+                                for num in ssn:
+                                    try:
+                                        int(num)
+                                    except:
+                                        trulse = False
+
+                                if (len(ssn) == 10) and (trulse == True):
+                                    
+                                    break
+                                else:
+                                    _ = input("Please enter a valid Social Security Number\nPress Enter to continue...")
+                                clear()
+                            temp_customer = self.__customer_service.search_by_ssn(ssn, False)
+                            if temp_customer != None:
+                                clear()
+                                confirm = self.__customer_service.confirm_customer(temp_customer)
+                            else:
+                                confirm = False
+                                clear()
+                                break
+                            if confirm == True:
+                                customer = temp_customer
+                                clear()
+                                rental = self.__rental_service.get_open_rental_for_customer(customer, search_critera)
+                                if rental != None:
+                                    car = self.__car_service.get_car_for_rental(rental)
+                                    frue = True
+                                    break
+                                else:
+                                    break
+                                
                     if search_critera == "3":
                         break
+
+                    if (search_critera in ["1", "2"]) and (frue == True):
+                        fuel_price, fuel_level = self.__rental_service.fuel_status(car)
+                        damage = self.__rental_service.damage_check()
+                        clear()
+                        self.__rental_service.finish_order(rental, car, customer, [fuel_price, fuel_level], damage)
 
             if action == "3":
                 clear()
@@ -117,7 +161,8 @@ class Employee:
                 if choice == 2:
                     clear()
                     ssn = input("Input SSN to Search: ")
-                    self.__customer_service.search_by_ssn(ssn)
+                    customer = self.__customer_service.search_by_ssn(ssn, False)
+                    print(customer)
                     _ = input("Press Enter to continue...")
                 if choice == 3:
                     self.__customer_service.customer_info(True)

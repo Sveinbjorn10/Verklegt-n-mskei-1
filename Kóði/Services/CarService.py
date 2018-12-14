@@ -199,3 +199,6 @@ class CarService:
         print("\t2. Search by Car Class")
         print("\t3. Search by Model")
         print("\t4. Return to Main Menu")
+
+    def get_car_for_rental(self, rental):
+        return self.__car_repo.get_car_for_rental(rental)

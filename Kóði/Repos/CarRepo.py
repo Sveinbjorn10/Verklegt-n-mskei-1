@@ -164,13 +164,8 @@ class CarRepo:
                         break
 
     def __str__(self):
-<<<<<<< HEAD
         string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}\n".format("License:", "Make:", 
             "Model:", "Manuf. Year:", "Car Class:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:")
-=======
-        string = "{:<10}{:<15}{:<15}{:<15}{:<15}{:<10}{:<10}{:<10}{:<15}{:<15}\n{}\n".format("License:", "Make:", 
-            "Model:", "Car Class:", "Manuf. Year:", "Seats:", "Doors:", "Color:", "Transmission:", "Price:", "-"*121)
->>>>>>> 0662460e8a89b32edd3690d19aa4d0241e3c2655
         carlist = self.get_cars()
         for car in carlist:
             string += str(car) + "\n"
@@ -201,3 +196,9 @@ class CarRepo:
                         color, transmission, fuel_type, price, tank_size, eval(availability))
                 car_class_list.append(new_car)
         return car_class_list
+
+    def get_car_for_rental(self, rental):
+        car_list = self.get_car_list()
+        for car in car_list:
+            if car.get_car_id() == rental.get_car_id():
+                return car
